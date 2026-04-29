@@ -27,13 +27,13 @@ function getInitialTheme(): Theme {
 }
 
 export function useTheme() {
-  const [theme, setTheme] = useState<Theme>('light');
+  const [theme, setTheme] = useState<Theme>(() => getInitialTheme());
 
   useEffect(() => {
-    const initial = getInitialTheme();
-    setTheme(initial);
-    applyTheme(initial);
+    applyTheme(theme);
+  }, [theme]);
 
+  useEffect(() => {
     const mql = window.matchMedia('(prefers-color-scheme: dark)');
     const onChange = () => {
       // Only follow system when user hasn't explicitly set a theme.
