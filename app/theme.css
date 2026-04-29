@@ -1,19 +1,18 @@
 @theme static {
   /* === Brand === */
-  --color-primary-500: #006983;
+  --color-primary-500: #7c3aed;
   --color-primary: var(--color-primary-500);
 
-  /* === Base semantic tokens (light) === */
+  /* A more modern, colorful base */
   --color-bg: #ffffff;
-  --color-surface: #ffffff;
+  --color-surface: color-mix(in oklab, #ffffff 88%, var(--color-primary) 12%);
   --color-surface-muted: #f8fafc;
   --color-text: #0b1220;
   --color-text-muted: #475569;
-  --color-border: #e2e8f0;
+  --color-border: color-mix(in oklab, #e2e8f0 80%, var(--color-primary) 20%);
   --color-border-muted: #f1f5f9;
   --color-focus: var(--color-primary);
 
-  /* === Component tokens (defaults point to semantic tokens) === */
   --color-card-surface: var(--color-surface);
   --color-card-border: var(--color-border);
   --color-card-text: var(--color-text);
@@ -27,9 +26,7 @@
   --color-header-border: color-mix(in oklab, var(--color-border) 60%, transparent);
 }
 
-/* === Themes === */
 :root {
-  /* default is set via JS to dark/system, but keep safe defaults */
   color-scheme: light;
 }
 
@@ -39,19 +36,18 @@
 
 :root[data-theme='dark'] {
   color-scheme: dark;
-  --color-bg: #020617;
-  --color-surface: color-mix(in oklab, #0b1220 78%, transparent);
-  --color-surface-muted: #0b1220;
+  --color-bg: #050414;
+  --color-surface: color-mix(in oklab, #0b1024 85%, var(--color-primary) 15%);
+  --color-surface-muted: #0b1024;
   --color-text: #f8fafc;
   --color-text-muted: #cbd5e1;
-  --color-border: #1f2937;
-  --color-border-muted: #0b1220;
+  --color-border: color-mix(in oklab, #1f2937 70%, var(--color-primary) 30%);
+  --color-border-muted: #0b1024;
 
-  --color-header-surface: color-mix(in oklab, #020617 55%, transparent);
+  --color-header-surface: color-mix(in oklab, #050414 55%, transparent);
   --color-header-border: color-mix(in oklab, var(--color-border) 65%, transparent);
 }
 
-/* Contrast A: strict B/W, primary only for focus */
 :root[data-theme='contrast'] {
   color-scheme: light;
   --color-bg: #ffffff;
@@ -61,11 +57,16 @@
   --color-text-muted: #000000;
   --color-border: #000000;
   --color-border-muted: #000000;
-  /* keep focus as primary */
   --color-focus: var(--color-primary);
 
   --color-header-surface: #ffffff;
   --color-header-border: #000000;
+
+  --color-card-surface: #ffffff;
+  --color-card-border: #000000;
+  --color-badge-surface: #ffffff;
+  --color-badge-border: #000000;
+  --color-badge-text: #000000;
 }
 
 @custom-variant dark {

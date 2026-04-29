@@ -6,11 +6,8 @@ import type { Theme } from '@/src/lib/translations';
 
 const THEME_KEY = 'theme';
 
-type ThemePreference = Theme | 'system';
-
 function applyTheme(theme: Theme) {
-  const root = document.documentElement;
-  root.setAttribute('data-theme', theme);
+  document.documentElement.setAttribute('data-theme', theme);
 }
 
 function resolveSystemTheme(): Theme {
@@ -19,35 +16,29 @@ function resolveSystemTheme(): Theme {
     : 'light';
 }
 
-function getInitialPreference(): ThemePreference {
-  if (typeof window === 'undefined') return 'system';
-
+function getInitialTheme(): Theme {
+  if (typeof window === 'undefined') return 'light';
   const stored = window.localStorage.getItem(THEME_KEY);
   if (stored === 'dark' || stored === 'light' || stored === 'contrast') {
     return stored;
   }
-  if (stored === 'system') return 'system';
-
-  // Default: system.
-  return 'system';
+  // default: system
+  return resolveSystemTheme();
 }
 
 export function useTheme() {
-  const [preference, setPreference] = useState<ThemePreference>('system');
-  const [theme, setTheme] = useState<Theme>('dark');
+  const [theme, setTheme] = useState<Theme>('light');
 
   useEffect(() => {
-    const initialPref = getInitialPreference();
-    setPreference(initialPref);
-
-    const initialTheme =
-      initialPref === 'system' ? resolveSystemTheme() : initialPref;
-    setTheme(initialTheme);
-    applyTheme(initialTheme);
+    const initial = getInitialTheme();
+    setTheme(initial);
+    applyTheme(initial);
 
     const mql = window.matchMedia('(prefers-color-scheme: dark)');
     const onChange = () => {
-      if (getInitialPreference() !== 'system') return;
+      // Only follow system when user hasn't explicitly set a theme.
+      const stored = window.localStorage.getItem(THEME_KEY);
+      if (stored === 'dark' || stored === 'light' || stored === 'contrast') return;
       const next = resolveSystemTheme();
       setTheme(next);
       applyTheme(next);
@@ -60,16 +51,19 @@ export function useTheme() {
   const api = useMemo(() => {
     return {
       theme,
-      preference,
-      setPreference: (next: ThemePreference) => {
-        setPreference(next);
+      setTheme: (next: Theme) => {
+        setTheme(next);
         window.localStorage.setItem(THEME_KEY, next);
-        const resolved = next === 'system' ? resolveSystemTheme() : next;
-        setTheme(resolved);
-        applyTheme(resolved);
+        applyTheme(next);
+      },
+      clearTheme: () => {
+        window.localStorage.removeItem(THEME_KEY);
+        const next = resolveSystemTheme();
+        setTheme(next);
+        applyTheme(next);
       },
     };
-  }, [preference, theme]);
+  }, [theme]);
 
   return api;
 }

@@ -16,7 +16,6 @@ export type Translations = {
   a11y: {
     skipToContent: string;
     toggleTheme: string;
-    themeSystem: string;
     themeDark: string;
     themeLight: string;
     themeContrast: string;
@@ -59,7 +58,6 @@ const dict = {
     a11y: {
       skipToContent: 'Ga naar inhoud',
       toggleTheme: 'Thema wisselen',
-      themeSystem: 'Systeem thema',
       themeDark: 'Donker thema',
       themeLight: 'Licht thema',
       themeContrast: 'Hoog contrast',
@@ -105,7 +103,6 @@ const dict = {
     a11y: {
       skipToContent: 'Skip to content',
       toggleTheme: 'Toggle theme',
-      themeSystem: 'System theme',
       themeDark: 'Dark theme',
       themeLight: 'Light theme',
       themeContrast: 'High contrast',

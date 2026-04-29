@@ -1,9 +1,7 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  experimental: {
-    turbo: {},
-  },
+  turbopack: {},
   pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
 };
 

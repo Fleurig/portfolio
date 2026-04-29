@@ -3,49 +3,49 @@
 import { t } from '@/src/lib/translations';
 import { useTheme } from '@/src/lib/useTheme';
 
+function themeIcon(theme: 'dark' | 'light' | 'contrast') {
+  if (theme === 'dark') return '☾';
+  if (theme === 'contrast') return '◐';
+  return '☀';
+}
+
 export function ThemeToggle({ locale }: { locale: 'nl' | 'en' }) {
   const tr = t(locale);
-  const { theme, preference, setPreference } = useTheme();
+  const { theme, setTheme, clearTheme } = useTheme();
 
-  const next =
-    preference === 'system'
-      ? 'dark'
-      : preference === 'dark'
-        ? 'light'
-        : preference === 'light'
-          ? 'contrast'
-          : preference === 'contrast'
-            ? 'system'
-            : 'system';
-
-  const icon =
-    preference === 'system'
-      ? '◌'
-      : theme === 'dark'
-        ? '☾'
-        : theme === 'contrast'
-          ? '◐'
-          : '☀';
+  // No explicit "system" option in UI.
+  // Cycle: dark -> light -> contrast -> (back to system via clear)
+  const next = theme === 'dark' ? 'light' : theme === 'light' ? 'contrast' : 'dark';
 
   const label =
-    preference === 'system'
-      ? tr.a11y.themeSystem
-      : preference === 'dark'
-        ? tr.a11y.themeDark
-        : preference === 'light'
-          ? tr.a11y.themeLight
-          : tr.a11y.themeContrast;
+    theme === 'dark'
+      ? tr.a11y.themeDark
+      : theme === 'light'
+        ? tr.a11y.themeLight
+        : tr.a11y.themeContrast;
 
   return (
-    <button
-      type="button"
-      onClick={() => setPreference(next)}
-      className="ml-1 inline-flex items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-2.5 py-2 text-xs font-medium text-[var(--color-text)] shadow-sm hover:bg-[var(--color-surface-muted)]"
-      aria-label={`${tr.a11y.toggleTheme}: ${label}`}
-      title={`${tr.a11y.toggleTheme}: ${label}`}
-    >
-      <span aria-hidden="true">{icon}</span>
-      <span>{label}</span>
-    </button>
+    <div className="ml-1 inline-flex items-center gap-1">
+      <button
+        type="button"
+        onClick={() => setTheme(next)}
+        className="inline-flex items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-2.5 py-2 text-xs font-medium text-[var(--color-text)] shadow-sm hover:bg-[var(--color-surface-muted)]"
+        aria-label={`${tr.a11y.toggleTheme}: ${label}`}
+        title={`${tr.a11y.toggleTheme}: ${label}`}
+      >
+        <span aria-hidden="true">{themeIcon(theme)}</span>
+        <span>{label}</span>
+      </button>
+
+      <button
+        type="button"
+        onClick={clearTheme}
+        className="inline-flex items-center rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-2.5 py-2 text-xs font-medium text-[var(--color-text-muted)] shadow-sm hover:bg-[var(--color-surface-muted)]"
+        aria-label={locale === 'en' ? 'Use system theme' : 'Gebruik systeem thema'}
+        title={locale === 'en' ? 'Use system theme' : 'Gebruik systeem thema'}
+      >
+        <span aria-hidden="true">🖥</span>
+      </button>
+    </div>
   );
 }
