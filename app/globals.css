@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 :root {
-  color-scheme: light dark;
+  color-scheme: dark;
 }
 
 html {
@@ -11,12 +11,25 @@ html {
     'Noto Color Emoji';
 }
 
+html.dark {
+  color-scheme: dark;
+}
+
+html:not(.dark):not(.contrast) {
+  color-scheme: light;
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     scroll-behavior: auto !important;
     transition-duration: 0.001ms !important;
     animation-duration: 0.001ms !important;
   }
+}
+
+/* Optional high-contrast theme token (kept simple; expand later) */
+html.contrast {
+  filter: contrast(1.15);
 }
 
 /* Print styles for CV */

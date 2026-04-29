@@ -13,7 +13,7 @@ export function SiteLayout({
   return (
     <div className="min-h-dvh bg-[radial-gradient(80rem_50rem_at_50%_-10rem,rgba(15,23,42,0.10),transparent)] dark:bg-[radial-gradient(80rem_50rem_at_50%_-10rem,rgba(148,163,184,0.10),transparent)]">
       <SiteHeader locale={locale} />
-      <main>
+      <main id="content">
         <Container className="py-10 sm:py-14">{children}</Container>
       </main>
       <SiteFooter locale={locale} />

@@ -1,11 +1,22 @@
-export type Locale = 'nl' | 'en';
+export type Theme = 'dark' | 'light' | 'contrast';
 
 export type Translations = {
+  brand: {
+    name: string;
+    location: string;
+  };
   nav: {
     cv: string;
     projects: string;
     contact: string;
     switchLanguage: string;
+  };
+  a11y: {
+    skipToContent: string;
+    toggleTheme: string;
+    themeDark: string;
+    themeLight: string;
+    themeContrast: string;
   };
   footer: {
     builtWith: string;
@@ -19,13 +30,24 @@ export type Translations = {
   };
 };
 
-const dict: Record<Locale, Translations> = {
+const dict = {
   nl: {
+    brand: {
+      name: 'Fleur Albers',
+      location: 'Haarlem',
+    },
     nav: {
       cv: 'CV',
       projects: 'Projecten',
       contact: 'Contact',
       switchLanguage: 'Wissel taal',
+    },
+    a11y: {
+      skipToContent: 'Ga naar inhoud',
+      toggleTheme: 'Thema wisselen',
+      themeDark: 'Donker',
+      themeLight: 'Licht',
+      themeContrast: 'Hoog contrast',
     },
     footer: {
       builtWith: 'Gebouwd met Next.js + MDX.',
@@ -40,11 +62,22 @@ const dict: Record<Locale, Translations> = {
     },
   },
   en: {
+    brand: {
+      name: 'Fleur Albers',
+      location: 'Haarlem',
+    },
     nav: {
       cv: 'CV',
       projects: 'Projects',
       contact: 'Contact',
       switchLanguage: 'Switch language',
+    },
+    a11y: {
+      skipToContent: 'Skip to content',
+      toggleTheme: 'Toggle theme',
+      themeDark: 'Dark',
+      themeLight: 'Light',
+      themeContrast: 'High contrast',
     },
     footer: {
       builtWith: 'Built with Next.js + MDX.',
@@ -58,8 +91,8 @@ const dict: Record<Locale, Translations> = {
       cvDownload: 'Download CV (PDF)',
     },
   },
-};
+} as const satisfies Record<'nl' | 'en', Translations>;
 
-export function t(locale: Locale): Translations {
+export function t(locale: 'nl' | 'en'): Translations {
   return dict[locale];
 }

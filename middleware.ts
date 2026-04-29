@@ -18,6 +18,7 @@ export function middleware(req: NextRequest) {
     (l) => pathname === `/${l}` || pathname.startsWith(`/${l}/`),
   );
 
+  // Default locale routing for non-prefixed URLs.
   if (!hasLocale && pathname !== '/') {
     const url = req.nextUrl.clone();
     url.pathname = `/nl${pathname}`;

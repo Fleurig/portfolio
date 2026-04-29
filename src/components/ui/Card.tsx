@@ -8,6 +8,7 @@ export function Card({ className, ...props }: React.ComponentProps<'div'>) {
         'transition will-change-transform hover:-translate-y-0.5 hover:shadow-md',
         'focus-within:ring-2 focus-within:ring-slate-300',
         'dark:border-slate-800 dark:bg-slate-950/50 dark:focus-within:ring-slate-700',
+        'contrast:border-black contrast:bg-white contrast:shadow-none contrast:focus-within:ring-black',
         className,
       )}
       {...props}
