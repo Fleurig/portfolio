@@ -73,12 +73,18 @@ export default async function LocaleHomePage({
     <SiteLayout locale={locale}>
       {/* Hero */}
       <section className="relative">
-        <div className="glass rounded-3xl p-6 sm:p-10">
+        <div
+          className="glass rounded-3xl p-6 sm:p-10"
+          aria-labelledby="home-hero-title"
+        >
           <p className="text-sm font-medium text-[var(--color-text-muted)]">
             {isNl ? 'Front-end developer' : 'Front-end developer'}
           </p>
 
-          <h1 className="mt-3 text-4xl font-semibold tracking-tight text-[var(--color-text)] sm:text-5xl">
+          <h1
+            id="home-hero-title"
+            className="mt-3 text-4xl font-semibold tracking-tight text-[var(--color-text)] sm:text-5xl"
+          >
             Fleur Albers
           </h1>
 
@@ -98,17 +104,13 @@ export default async function LocaleHomePage({
             <a
               href={downloadHref}
               className="glass inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium text-[var(--color-text)] transition hover:opacity-90"
-              aria-label={
-                isNl
-                  ? 'Download CV als PDF'
-                  : 'Download CV as PDF'
-              }
+              aria-label={isNl ? 'Download CV als PDF' : 'Download CV as PDF'}
             >
               {isNl ? 'Download CV (PDF)' : 'Download CV (PDF)'}
             </a>
           </div>
 
-          <div className="mt-6 flex flex-wrap gap-2">
+          <div className="mt-6 flex flex-wrap gap-2" aria-label={isNl ? 'Focus' : 'Focus'}>
             <Chip>Next.js</Chip>
             <Chip>React</Chip>
             <Chip>TypeScript</Chip>
@@ -117,12 +119,12 @@ export default async function LocaleHomePage({
             <Chip>A11y & performance</Chip>
           </div>
 
-          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2">
-            <MetaItem icon="⌂" label={tr.brand.location} />
+          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2" aria-label={isNl ? 'Profiel' : 'Profile'}>
+            <MetaItem icon="📍" label={tr.brand.location} />
             <span aria-hidden="true" className="text-sm text-[var(--color-text-muted)]">
               |
             </span>
-            <MetaItem icon="🚗" label={isNl ? 'Rijbewijs' : 'Driver\'s license'} />
+            <MetaItem icon="🚗" label={isNl ? 'Rijbewijs' : "Driver's license"} />
             <span aria-hidden="true" className="text-sm text-[var(--color-text-muted)]">
               |
             </span>
@@ -131,7 +133,7 @@ export default async function LocaleHomePage({
         </div>
       </section>
 
-      {/* MDX section (About/Intro) */}
+      {/* About */}
       <section className="mt-12">
         <div className="grid gap-8 md:grid-cols-12">
           <div className="md:col-span-4">
@@ -153,10 +155,10 @@ export default async function LocaleHomePage({
       </section>
 
       {/* Featured projects */}
-      <section className="mt-12">
+      <section className="mt-12" aria-labelledby="home-featured">
         <div className="flex items-end justify-between gap-4">
           <div>
-            <h2 className="text-xl font-semibold tracking-tight text-[var(--color-text)]">
+            <h2 id="home-featured" className="text-xl font-semibold tracking-tight text-[var(--color-text)]">
               {isNl ? 'Uitgelicht' : 'Featured'}
             </h2>
             <p className="mt-2 text-sm text-[var(--color-text-muted)]">
@@ -168,6 +170,7 @@ export default async function LocaleHomePage({
           <Link
             href={`/${locale}/projects`}
             className="text-sm font-medium text-[var(--color-text)] underline underline-offset-4 hover:opacity-90"
+            aria-label={isNl ? 'Bekijk alle projecten' : 'View all projects'}
           >
             {isNl ? 'Alle projecten' : 'All projects'}
           </Link>
@@ -175,7 +178,11 @@ export default async function LocaleHomePage({
 
         <div className="mt-6 grid gap-4 md:grid-cols-2">
           {featured.map((p) => (
-            <Link key={p.slug} href={`/${locale}/projects/${p.slug}`}>
+            <Link
+              key={p.slug}
+              href={`/${locale}/projects/${p.slug}`}
+              aria-label={isNl ? `Bekijk project: ${p.title}` : `View project: ${p.title}`}
+            >
               <ProjectCard project={p} locale={locale} />
             </Link>
           ))}

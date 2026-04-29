@@ -13,10 +13,11 @@
   --color-border-muted: #f1f5f9;
   --color-focus: var(--color-primary);
 
-  /* Glass tokens */
-  --glass-bg: color-mix(in oklab, var(--color-bg) 70%, transparent);
-  --glass-border: color-mix(in oklab, var(--color-border) 65%, transparent);
-  --glass-shadow: 0 10px 30px color-mix(in oklab, #0b1220 12%, transparent);
+  /* Glass tokens (stronger, so it's visible on Safari) */
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.55);
+  --glass-shadow: 0 12px 40px rgba(11, 18, 32, 0.12);
+  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.6);
 
   --color-card-surface: var(--color-surface);
   --color-card-border: var(--color-border);
@@ -49,9 +50,11 @@
   --color-border: color-mix(in oklab, #1f2937 70%, var(--color-primary) 30%);
   --color-border-muted: #0b1024;
 
-  --glass-bg: color-mix(in oklab, #0b1024 55%, transparent);
-  --glass-border: color-mix(in oklab, var(--color-border) 70%, transparent);
-  --glass-shadow: 0 10px 30px color-mix(in oklab, #000 35%, transparent);
+  /* Dark glass */
+  --glass-bg: rgba(11, 16, 36, 0.62);
+  --glass-border: rgba(255, 255, 255, 0.14);
+  --glass-shadow: 0 16px 50px rgba(0, 0, 0, 0.45);
+  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 
   --color-header-surface: color-mix(in oklab, #050414 55%, transparent);
   --color-header-border: color-mix(in oklab, var(--color-border) 65%, transparent);
@@ -71,6 +74,7 @@
   --glass-bg: #ffffff;
   --glass-border: #000000;
   --glass-shadow: none;
+  --glass-highlight: none;
 
   --color-header-surface: #ffffff;
   --color-header-border: #000000;
@@ -114,7 +118,8 @@
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
     box-shadow: var(--glass-shadow);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    box-shadow: var(--glass-shadow), var(--glass-highlight);
+    -webkit-backdrop-filter: blur(18px) saturate(130%);
+    backdrop-filter: blur(18px) saturate(130%);
   }
 }
