@@ -36,10 +36,11 @@ export default async function ContactPage({
   const { locale } = await params;
   if (locale !== 'nl' && locale !== 'en') return notFound();
 
+  const tr = t(locale);
   const mdx = await getPageMdx(locale, 'contact');
 
   return (
-    <SiteLayout locale={locale}>
+    <SiteLayout locale={locale} title={tr.seo.contactTitle} backHref={`/${locale}`}>
       <article className="prose max-w-none">
         <Mdx source={mdx} />
       </article>

@@ -49,10 +49,33 @@ export default async function ProjectDetailPage({
   const { locale, slug } = await params;
   if (locale !== 'nl' && locale !== 'en') return notFound();
 
+  const tr = t(locale);
   const mdx = await getProjectMdx(locale, slug);
+  const title = mdx.frontmatter.title;
 
   return (
-    <SiteLayout locale={locale}>
+    <SiteLayout
+      locale={locale}
+      title={title}
+      backHref={`/${locale}/projects`}
+    >
+      {mdx.frontmatter.url ? (
+        <div className="not-prose mb-6">
+          <a
+            href={mdx.frontmatter.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-2 text-sm font-medium text-[var(--color-text)] shadow-sm hover:bg-[var(--color-surface-muted)]"
+          >
+            {tr.pages.projectWebsite}
+            <span className="text-xs text-[var(--color-text-muted)]" aria-hidden="true">
+              ↗
+            </span>
+            <span className="sr-only">({tr.a11y.externalLinkNewTab})</span>
+          </a>
+        </div>
+      ) : null}
+
       <article className="prose max-w-none">
         <Mdx source={mdx} />
       </article>

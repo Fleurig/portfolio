@@ -40,7 +40,7 @@ export default async function CvPage({
   const mdx = await getPageMdx(locale, 'cv');
 
   return (
-    <SiteLayout locale={locale}>
+    <SiteLayout locale={locale} title={tr.seo.cvTitle} backHref={`/${locale}`}>
       <div className="no-print mb-6 flex flex-wrap items-center gap-3">
         <a
           className="inline-flex items-center justify-center rounded-xl bg-[var(--color-text)] px-4 py-2 text-sm font-medium text-[var(--color-bg)] shadow-sm transition hover:opacity-90"

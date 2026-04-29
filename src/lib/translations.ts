@@ -7,6 +7,7 @@ export type Translations = {
   };
   nav: {
     home: string;
+    back: string;
     cv: string;
     projects: string;
     contact: string;
@@ -19,6 +20,8 @@ export type Translations = {
     themeDark: string;
     themeLight: string;
     themeContrast: string;
+    externalLinkNewTab: string;
+    useSystemTheme: string;
   };
   seo: {
     siteName: string;
@@ -38,6 +41,7 @@ export type Translations = {
     projectsIntro: string;
     cvTip: string;
     cvDownload: string;
+    projectWebsite: string;
   };
 };
 
@@ -49,6 +53,7 @@ const dict = {
     },
     nav: {
       home: 'Home',
+      back: 'Terug',
       cv: 'CV',
       projects: 'Projecten',
       contact: 'Contact',
@@ -61,6 +66,8 @@ const dict = {
       themeDark: 'Donker thema',
       themeLight: 'Licht thema',
       themeContrast: 'Hoog contrast',
+      externalLinkNewTab: 'Opent in een nieuw tabblad',
+      useSystemTheme: 'Gebruik systeem thema',
     },
     seo: {
       siteName: 'Fleur Albers',
@@ -85,6 +92,7 @@ const dict = {
         'Een selectie van producten en platformen waar ik aan heb gewerkt — met focus op UX, toegankelijkheid en onderhoudbare front-end architectuur.',
       cvTip: 'Tip: gebruik je browser print-dialog voor een nette A4 export.',
       cvDownload: 'Download CV (PDF)',
+      projectWebsite: 'Website',
     },
   },
   en: {
@@ -94,6 +102,7 @@ const dict = {
     },
     nav: {
       home: 'Home',
+      back: 'Back',
       cv: 'CV',
       projects: 'Projects',
       contact: 'Contact',
@@ -106,6 +115,8 @@ const dict = {
       themeDark: 'Dark theme',
       themeLight: 'Light theme',
       themeContrast: 'High contrast',
+      externalLinkNewTab: 'Opens in a new tab',
+      useSystemTheme: 'Use system theme',
     },
     seo: {
       siteName: 'Fleur Albers',
@@ -130,6 +141,7 @@ const dict = {
         'A selection of products and platforms I worked on — focusing on UX, accessibility, and maintainable front-end architecture.',
       cvTip: 'Tip: use your browser print dialog for a clean A4 export.',
       cvDownload: 'Download CV (PDF)',
+      projectWebsite: 'Website',
     },
   },
 } as const satisfies Record<'nl' | 'en', Translations>;

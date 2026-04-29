@@ -13,8 +13,6 @@ export function ThemeToggle({ locale }: { locale: 'nl' | 'en' }) {
   const tr = t(locale);
   const { theme, setTheme, clearTheme } = useTheme();
 
-  // No explicit "system" option in UI.
-  // Cycle: dark -> light -> contrast -> (back to system via clear)
   const next = theme === 'dark' ? 'light' : theme === 'light' ? 'contrast' : 'dark';
 
   const label =
@@ -41,8 +39,8 @@ export function ThemeToggle({ locale }: { locale: 'nl' | 'en' }) {
         type="button"
         onClick={clearTheme}
         className="inline-flex items-center rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-2.5 py-2 text-xs font-medium text-[var(--color-text-muted)] shadow-sm hover:bg-[var(--color-surface-muted)]"
-        aria-label={locale === 'en' ? 'Use system theme' : 'Gebruik systeem thema'}
-        title={locale === 'en' ? 'Use system theme' : 'Gebruik systeem thema'}
+        aria-label={tr.a11y.useSystemTheme}
+        title={tr.a11y.useSystemTheme}
       >
         <span aria-hidden="true">🖥</span>
       </button>

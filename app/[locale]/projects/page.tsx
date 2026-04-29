@@ -41,11 +41,8 @@ export default async function ProjectsIndexPage({
   const projects = await getAllProjects(locale);
 
   return (
-    <SiteLayout locale={locale}>
+    <SiteLayout locale={locale} title={tr.seo.projectsTitle} backHref={`/${locale}`}>
       <header className="mb-8">
-        <h1 className="text-2xl font-semibold tracking-tight text-[var(--color-text)]">
-          {tr.seo.projectsTitle}
-        </h1>
         <p className="mt-2 max-w-2xl text-[var(--color-text-muted)]">
           {tr.pages.projectsIntro}
         </p>

@@ -36,10 +36,11 @@ export default async function LocaleHomePage({
   const { locale } = await params;
   if (locale !== 'nl' && locale !== 'en') return notFound();
 
+  const tr = t(locale);
   const mdx = await getPageMdx(locale, 'home');
 
   return (
-    <SiteLayout locale={locale}>
+    <SiteLayout locale={locale} title={tr.seo.homeTitle} backHref={`/${locale}`}>
       <article className="prose max-w-none">
         <Mdx source={mdx} />
       </article>
