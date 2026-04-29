@@ -1,4 +1,82 @@
+/* Theme tokens + base styles (Safari friendly) */
+
 @layer base {
+  :root {
+    color-scheme: light;
+
+    /* Brand */
+    --color-primary: #7c3aed;
+
+    /* Neutrals (light) */
+    --color-bg: #fbfbff;
+    --color-surface: rgba(255, 255, 255, 0.78);
+    --color-surface-muted: rgba(255, 255, 255, 0.6);
+
+    --color-text: #0b1220;
+    --color-text-muted: #475569;
+
+    --color-border: rgba(15, 23, 42, 0.12);
+    --color-border-muted: rgba(15, 23, 42, 0.08);
+
+    --color-focus: var(--color-primary);
+
+    /* Glass tokens */
+    --glass-bg: rgba(255, 255, 255, 0.62);
+    --glass-border: rgba(15, 23, 42, 0.14);
+    --glass-shadow: 0 14px 45px rgba(11, 18, 32, 0.12);
+    --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+
+    /* Background blobs */
+    --blob-1: radial-gradient(70rem 40rem at 18% -8%, rgba(124, 58, 237, 0.18), transparent 60%);
+    --blob-2: radial-gradient(60rem 40rem at 82% -12%, rgba(59, 130, 246, 0.14), transparent 58%);
+    --blob-3: radial-gradient(50rem 32rem at 50% 110%, rgba(236, 72, 153, 0.08), transparent 55%);
+  }
+
+  :root[data-theme='dark'] {
+    color-scheme: dark;
+
+    --color-bg: #050414;
+    --color-surface: rgba(11, 16, 36, 0.72);
+    --color-surface-muted: rgba(11, 16, 36, 0.58);
+
+    --color-text: #f8fafc;
+    --color-text-muted: rgba(203, 213, 225, 0.9);
+
+    --color-border: rgba(255, 255, 255, 0.14);
+    --color-border-muted: rgba(255, 255, 255, 0.09);
+
+    --glass-bg: rgba(11, 16, 36, 0.62);
+    --glass-border: rgba(255, 255, 255, 0.14);
+    --glass-shadow: 0 16px 55px rgba(0, 0, 0, 0.5);
+    --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+    --blob-1: radial-gradient(70rem 40rem at 18% -8%, rgba(124, 58, 237, 0.22), transparent 60%);
+    --blob-2: radial-gradient(60rem 40rem at 82% -12%, rgba(59, 130, 246, 0.18), transparent 58%);
+    --blob-3: radial-gradient(50rem 32rem at 50% 110%, rgba(236, 72, 153, 0.08), transparent 55%);
+  }
+
+  :root[data-theme='contrast'] {
+    color-scheme: light;
+
+    --color-bg: #ffffff;
+    --color-surface: #ffffff;
+    --color-surface-muted: #ffffff;
+    --color-text: #000000;
+    --color-text-muted: #000000;
+    --color-border: #000000;
+    --color-border-muted: #000000;
+    --color-focus: var(--color-primary);
+
+    --glass-bg: #ffffff;
+    --glass-border: #000000;
+    --glass-shadow: none;
+    --glass-highlight: none;
+
+    --blob-1: none;
+    --blob-2: none;
+    --blob-3: none;
+  }
+
   body {
     background: var(--color-bg);
     color: var(--color-text);
@@ -8,12 +86,22 @@
       'Noto Color Emoji';
   }
 
+  /* Site background (subtle, performant) */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background-image: var(--blob-1), var(--blob-2), var(--blob-3);
+  }
+
   *:focus-visible {
     outline: 2px solid var(--color-focus);
     outline-offset: 2px;
   }
 
-  /* Glass utility (use background-color to avoid being reset by background shorthand) */
+  /* Glass utility – background-color avoids resets by background shorthands */
   .glass {
     background-color: var(--glass-bg);
     border: 1px solid var(--glass-border);
@@ -26,7 +114,13 @@
     box-shadow: var(--glass-shadow), var(--glass-highlight);
   }
 
-  .hero-bg {
-    background-image: var(--hero-blob-1), var(--hero-blob-2);
+  /* Subtle hover glow for interactive glass */
+  .glass-hover:hover {
+    border-color: rgba(124, 58, 237, 0.35);
+  }
+
+  /* Better text selection */
+  ::selection {
+    background: rgba(124, 58, 237, 0.25);
   }
 }
