@@ -1,9 +1,9 @@
-import path from "node:path";
-import fs from "node:fs/promises";
-import { cache } from "react";
-import { compileMDX } from "next-mdx-remote/rsc";
+import path from 'node:path';
+import fs from 'node:fs/promises';
+import { cache } from 'react';
+import { compileMDX } from 'next-mdx-remote/rsc';
 
-import type { Locale } from "@/src/lib/i18n";
+import type { Locale } from '@/src/lib/i18n';
 
 export type ProjectFrontmatter = {
   title: string;
@@ -11,14 +11,15 @@ export type ProjectFrontmatter = {
   period?: string;
   url?: string;
   tags?: string[];
+  featured?: boolean;
 };
 
 function contentRoot() {
-  return path.join(process.cwd(), "content");
+  return path.join(process.cwd(), 'content');
 }
 
 async function readFileSafe(filePath: string) {
-  return fs.readFile(filePath, "utf8");
+  return fs.readFile(filePath, 'utf8');
 }
 
 export const getPageMdx = cache(async (locale: Locale, page: string) => {
@@ -37,11 +38,11 @@ export const getPageMdx = cache(async (locale: Locale, page: string) => {
 });
 
 export const getProjectSlugs = cache(async (locale: Locale) => {
-  const dir = path.join(contentRoot(), locale, "projects");
+  const dir = path.join(contentRoot(), locale, 'projects');
   const entries = await fs.readdir(dir);
   return entries
-    .filter((f) => f.endsWith(".mdx"))
-    .map((f) => f.replace(/\.mdx$/, ""));
+    .filter((f) => f.endsWith('.mdx'))
+    .map((f) => f.replace(/\.mdx$/, ''));
 });
 
 export const getAllProjects = cache(async (locale: Locale) => {
@@ -49,7 +50,7 @@ export const getAllProjects = cache(async (locale: Locale) => {
 
   const projects = await Promise.all(
     slugs.map(async (slug) => {
-      const filePath = path.join(contentRoot(), locale, "projects", `${slug}.mdx`);
+      const filePath = path.join(contentRoot(), locale, 'projects', `${slug}.mdx`);
       const source = await readFileSafe(filePath);
       const compiled = await compileMDX({
         source,
@@ -61,15 +62,19 @@ export const getAllProjects = cache(async (locale: Locale) => {
         slug,
         ...fm,
       };
-    })
+    }),
   );
 
-  // Keep a stable order: featured first (by filename), then alphabetical.
-  return projects.sort((a, b) => a.title.localeCompare(b.title));
+  return projects.sort((a, b) => {
+    const af = a.featured ? 1 : 0;
+    const bf = b.featured ? 1 : 0;
+    if (af !== bf) return bf - af;
+    return a.title.localeCompare(b.title);
+  });
 });
 
 export const getProjectMdx = cache(async (locale: Locale, slug: string) => {
-  const filePath = path.join(contentRoot(), locale, "projects", `${slug}.mdx`);
+  const filePath = path.join(contentRoot(), locale, 'projects', `${slug}.mdx`);
   const source = await readFileSafe(filePath);
 
   const compiled = await compileMDX({

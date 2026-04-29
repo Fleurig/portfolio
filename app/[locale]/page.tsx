@@ -1,10 +1,12 @@
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { SiteLayout } from "@/src/components/site/SiteLayout";
-import { getPageMdx } from "@/src/lib/content";
-import { Mdx } from "@/src/components/mdx/Mdx";
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
-export const dynamic = "force-static";
+import { SiteLayout } from '@/src/components/site/SiteLayout';
+import { getPageMdx } from '@/src/lib/content';
+import { Mdx } from '@/src/components/mdx/Mdx';
+import { t } from '@/src/lib/translations';
+
+export const dynamic = 'force-static';
 
 export async function generateMetadata({
   params,
@@ -12,8 +14,18 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const title = locale === "en" ? "Home" : "Home";
-  return { title };
+  if (locale !== 'nl' && locale !== 'en') return {};
+  const tr = t(locale);
+
+  return {
+    title: tr.seo.homeTitle,
+    description: tr.seo.homeDescription,
+    openGraph: {
+      title: tr.seo.homeTitle,
+      description: tr.seo.homeDescription,
+      locale,
+    },
+  };
 }
 
 export default async function LocaleHomePage({
@@ -22,13 +34,15 @@ export default async function LocaleHomePage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  if (locale !== "nl" && locale !== "en") return notFound();
+  if (locale !== 'nl' && locale !== 'en') return notFound();
 
-  const mdx = await getPageMdx(locale, "home");
+  const mdx = await getPageMdx(locale, 'home');
 
   return (
     <SiteLayout locale={locale}>
-      <Mdx source={mdx} />
+      <article className="prose max-w-none">
+        <Mdx source={mdx} />
+      </article>
     </SiteLayout>
   );
 }

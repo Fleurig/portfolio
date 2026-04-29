@@ -1,19 +1,44 @@
-import { notFound } from "next/navigation";
-import { SiteLayout } from "@/src/components/site/SiteLayout";
-import { getProjectSlugs, getProjectMdx } from "@/src/lib/content";
-import { Mdx } from "@/src/components/mdx/Mdx";
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
-export const dynamic = "force-static";
+import { SiteLayout } from '@/src/components/site/SiteLayout';
+import { getProjectSlugs, getProjectMdx } from '@/src/lib/content';
+import { Mdx } from '@/src/components/mdx/Mdx';
+import { t } from '@/src/lib/translations';
+
+export const dynamic = 'force-static';
 
 export async function generateStaticParams() {
-  // Build both locales.
-  const nl = await getProjectSlugs("nl");
-  const en = await getProjectSlugs("en");
+  const nl = await getProjectSlugs('nl');
+  const en = await getProjectSlugs('en');
 
   return [
-    ...nl.map((slug) => ({ locale: "nl", slug })),
-    ...en.map((slug) => ({ locale: "en", slug })),
+    ...nl.map((slug) => ({ locale: 'nl', slug })),
+    ...en.map((slug) => ({ locale: 'en', slug })),
   ];
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}): Promise<Metadata> {
+  const { locale, slug } = await params;
+  if (locale !== 'nl' && locale !== 'en') return {};
+  const tr = t(locale);
+
+  const mdx = await getProjectMdx(locale, slug);
+  const title = mdx.frontmatter.title ?? tr.seo.projectsTitle;
+
+  return {
+    title,
+    description: tr.seo.projectsDescription,
+    openGraph: {
+      title,
+      description: tr.seo.projectsDescription,
+      locale,
+    },
+  };
 }
 
 export default async function ProjectDetailPage({
@@ -22,13 +47,13 @@ export default async function ProjectDetailPage({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
-  if (locale !== "nl" && locale !== "en") return notFound();
+  if (locale !== 'nl' && locale !== 'en') return notFound();
 
   const mdx = await getProjectMdx(locale, slug);
 
   return (
     <SiteLayout locale={locale}>
-      <article className="prose prose-slate max-w-none">
+      <article className="prose max-w-none">
         <Mdx source={mdx} />
       </article>
     </SiteLayout>

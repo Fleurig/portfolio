@@ -5,6 +5,7 @@ import { LanguageSwitch } from '@/src/components/site/LanguageSwitch';
 import type { Locale } from '@/src/lib/i18n';
 import { t } from '@/src/lib/translations';
 import { ThemeToggle } from '@/src/components/site/ThemeToggle';
+import { NavLink } from '@/src/components/site/NavLink';
 
 export function SiteHeader({ locale }: { locale: Locale }) {
   const tr = t(locale);
@@ -22,29 +23,21 @@ export function SiteHeader({ locale }: { locale: Locale }) {
         <Link
           href={`/${locale}`}
           className="font-semibold tracking-tight text-[var(--color-text)]"
+          aria-label={tr.nav.home}
         >
           {tr.brand.name}
         </Link>
 
         <nav className="flex items-center gap-1" aria-label="Primary">
-          <Link
-            className="rounded-lg px-3 py-2 text-sm text-[var(--color-text-muted)] hover:bg-[var(--color-surface-muted)]"
-            href={`/${locale}/cv`}
-          >
+          <NavLink locale={locale} href={`/${locale}/cv`}>
             {tr.nav.cv}
-          </Link>
-          <Link
-            className="rounded-lg px-3 py-2 text-sm text-[var(--color-text-muted)] hover:bg-[var(--color-surface-muted)]"
-            href={`/${locale}/projects`}
-          >
+          </NavLink>
+          <NavLink locale={locale} href={`/${locale}/projects`}>
             {tr.nav.projects}
-          </Link>
-          <Link
-            className="rounded-lg px-3 py-2 text-sm text-[var(--color-text-muted)] hover:bg-[var(--color-surface-muted)]"
-            href={`/${locale}/contact`}
-          >
+          </NavLink>
+          <NavLink locale={locale} href={`/${locale}/contact`}>
             {tr.nav.contact}
-          </Link>
+          </NavLink>
 
           <ThemeToggle locale={locale} />
           <LanguageSwitch locale={locale} />

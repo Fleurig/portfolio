@@ -7,7 +7,6 @@ export function ThemeToggle({ locale }: { locale: 'nl' | 'en' }) {
   const tr = t(locale);
   const { theme, preference, setPreference } = useTheme();
 
-  // Cycle: system -> dark -> light -> contrast -> system
   const next =
     preference === 'system'
       ? 'dark'
@@ -41,11 +40,12 @@ export function ThemeToggle({ locale }: { locale: 'nl' | 'en' }) {
     <button
       type="button"
       onClick={() => setPreference(next)}
-      className="ml-1 inline-flex items-center rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-2.5 py-2 text-xs font-medium text-[var(--color-text)] shadow-sm hover:bg-[var(--color-surface-muted)]"
+      className="ml-1 inline-flex items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-2.5 py-2 text-xs font-medium text-[var(--color-text)] shadow-sm hover:bg-[var(--color-surface-muted)]"
       aria-label={`${tr.a11y.toggleTheme}: ${label}`}
       title={`${tr.a11y.toggleTheme}: ${label}`}
     >
-      {icon}
+      <span aria-hidden="true">{icon}</span>
+      <span className="hidden sm:inline">{label}</span>
     </button>
   );
 }

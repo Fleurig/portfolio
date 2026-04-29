@@ -9,17 +9,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: {
-    default: 'Fleur Albers — Front-end Developer',
-    template: '%s — Fleur Albers',
-  },
-  description:
-    'Bilingual portfolio and CV of Fleur Albers (Haarlem) — Front-end Developer (React/Next.js).',
   metadataBase: new URL('https://fleuralbers.nl'),
   openGraph: {
-    title: 'Fleur Albers — Front-end Developer',
-    description:
-      'Portfolio and CV — React/Next.js, TypeScript, design systems, multi-tenant apps.',
     url: 'https://fleuralbers.nl',
     siteName: 'Fleur Albers',
     type: 'website',

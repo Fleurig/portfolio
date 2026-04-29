@@ -1,31 +1,40 @@
 import { Card } from '@/src/components/ui/Card';
 import { Badge } from '@/src/components/ui/Badge';
+import { t } from '@/src/lib/translations';
 
 export function ProjectCard({
   project,
+  locale,
 }: {
   project: {
     title: string;
     company?: string;
     period?: string;
     tags?: string[];
+    featured?: boolean;
   };
+  locale: 'nl' | 'en';
 }) {
+  const tr = t(locale);
+
   return (
     <Card className="h-full">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <h2 className="text-base font-semibold tracking-tight text-slate-900 dark:text-slate-100 contrast:text-black">
-            {project.title}
-          </h2>
+          <div className="flex flex-wrap items-center gap-2">
+            <h2 className="text-base font-semibold tracking-tight text-[var(--color-card-text)]">
+              {project.title}
+            </h2>
+            {project.featured ? <Badge>{tr.nav.featured}</Badge> : null}
+          </div>
           {project.company ? (
-            <p className="mt-1 text-sm text-slate-600 dark:text-slate-300 contrast:text-black">
+            <p className="mt-1 text-sm text-[var(--color-card-text-muted)]">
               {project.company}
             </p>
           ) : null}
         </div>
         {project.period ? (
-          <span className="text-xs text-slate-500 dark:text-slate-400 contrast:text-black">
+          <span className="text-xs text-[var(--color-text-muted)]">
             {project.period}
           </span>
         ) : null}
