@@ -20,16 +20,22 @@
 
     --color-focus: var(--color-primary);
 
-    /* Glass tokens */
-    --glass-bg: rgba(255, 255, 255, 0.62);
+    /* Apple-ish glass tokens */
+    --glass-bg: rgba(255, 255, 255, 0.52);
     --glass-border: rgba(15, 23, 42, 0.14);
-    --glass-shadow: 0 14px 45px rgba(11, 18, 32, 0.12);
-    --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+    --glass-shadow: 0 16px 55px rgba(11, 18, 32, 0.12);
+    --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.85);
+    --glass-inner: inset 0 0 0 1px rgba(255, 255, 255, 0.45);
+    --glass-hover-border: rgba(124, 58, 237, 0.35);
+    --glass-hover-shadow: 0 22px 70px rgba(11, 18, 32, 0.16);
 
     /* Background blobs */
     --blob-1: radial-gradient(70rem 40rem at 18% -8%, rgba(124, 58, 237, 0.18), transparent 60%);
     --blob-2: radial-gradient(60rem 40rem at 82% -12%, rgba(59, 130, 246, 0.14), transparent 58%);
     --blob-3: radial-gradient(50rem 32rem at 50% 110%, rgba(236, 72, 153, 0.08), transparent 55%);
+
+    /* Typography */
+    --text-track-tight: -0.02em;
   }
 
   :root[data-theme='dark'] {
@@ -45,10 +51,14 @@
     --color-border: rgba(255, 255, 255, 0.14);
     --color-border-muted: rgba(255, 255, 255, 0.09);
 
-    --glass-bg: rgba(11, 16, 36, 0.62);
+    /* Dark Apple-ish glass */
+    --glass-bg: rgba(11, 16, 36, 0.52);
     --glass-border: rgba(255, 255, 255, 0.14);
-    --glass-shadow: 0 16px 55px rgba(0, 0, 0, 0.5);
-    --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    --glass-shadow: 0 18px 65px rgba(0, 0, 0, 0.55);
+    --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.10);
+    --glass-inner: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    --glass-hover-border: rgba(124, 58, 237, 0.45);
+    --glass-hover-shadow: 0 26px 90px rgba(0, 0, 0, 0.65);
 
     --blob-1: radial-gradient(70rem 40rem at 18% -8%, rgba(124, 58, 237, 0.22), transparent 60%);
     --blob-2: radial-gradient(60rem 40rem at 82% -12%, rgba(59, 130, 246, 0.18), transparent 58%);
@@ -71,6 +81,7 @@
     --glass-border: #000000;
     --glass-shadow: none;
     --glass-highlight: none;
+    --glass-inner: none;
 
     --blob-1: none;
     --blob-2: none;
@@ -101,22 +112,33 @@
     outline-offset: 2px;
   }
 
-  /* Glass utility – background-color avoids resets by background shorthands */
+  /* Glass utility – Apple-ish look */
   .glass {
     background-color: var(--glass-bg);
     border: 1px solid var(--glass-border);
     box-shadow: var(--glass-shadow);
-    -webkit-backdrop-filter: blur(18px) saturate(130%);
-    backdrop-filter: blur(18px) saturate(130%);
+    -webkit-backdrop-filter: blur(22px) saturate(160%);
+    backdrop-filter: blur(22px) saturate(160%);
   }
 
   .glass--elevated {
-    box-shadow: var(--glass-shadow), var(--glass-highlight);
+    box-shadow: var(--glass-shadow), var(--glass-highlight), var(--glass-inner);
   }
 
-  /* Subtle hover glow for interactive glass */
+  .glass-hover {
+    transition:
+      transform 180ms ease,
+      border-color 180ms ease,
+      box-shadow 220ms ease,
+      background-color 220ms ease,
+      opacity 180ms ease;
+    will-change: transform;
+  }
+
   .glass-hover:hover {
-    border-color: rgba(124, 58, 237, 0.35);
+    border-color: var(--glass-hover-border);
+    box-shadow: var(--glass-hover-shadow), var(--glass-highlight), var(--glass-inner);
+    transform: translateY(-2px);
   }
 
   /* Better text selection */
