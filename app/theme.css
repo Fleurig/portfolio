@@ -3,7 +3,7 @@
   --color-primary-500: #7c3aed;
   --color-primary: var(--color-primary-500);
 
-  /* A more modern, colorful base */
+  /* Base */
   --color-bg: #ffffff;
   --color-surface: color-mix(in oklab, #ffffff 88%, var(--color-primary) 12%);
   --color-surface-muted: #f8fafc;
@@ -13,10 +13,15 @@
   --color-border-muted: #f1f5f9;
   --color-focus: var(--color-primary);
 
+  /* Glass tokens */
+  --glass-bg: color-mix(in oklab, var(--color-bg) 55%, transparent);
+  --glass-border: color-mix(in oklab, var(--color-border) 55%, transparent);
+  --glass-shadow: 0 10px 30px color-mix(in oklab, #0b1220 10%, transparent);
+
   --color-card-surface: var(--color-surface);
   --color-card-border: var(--color-border);
   --color-card-text: var(--color-text);
-  --color-card-text-muted: var(--color-text-muted);
+  --color-card-text-muted: var(--color-color-text-muted, var(--color-text-muted));
 
   --color-badge-surface: var(--color-surface-muted);
   --color-badge-border: var(--color-border);
@@ -44,6 +49,10 @@
   --color-border: color-mix(in oklab, #1f2937 70%, var(--color-primary) 30%);
   --color-border-muted: #0b1024;
 
+  --glass-bg: color-mix(in oklab, #0b1024 55%, transparent);
+  --glass-border: color-mix(in oklab, var(--color-border) 65%, transparent);
+  --glass-shadow: 0 10px 30px color-mix(in oklab, #000 35%, transparent);
+
   --color-header-surface: color-mix(in oklab, #050414 55%, transparent);
   --color-header-border: color-mix(in oklab, var(--color-border) 65%, transparent);
 }
@@ -58,6 +67,10 @@
   --color-border: #000000;
   --color-border-muted: #000000;
   --color-focus: var(--color-primary);
+
+  --glass-bg: #ffffff;
+  --glass-border: #000000;
+  --glass-shadow: none;
 
   --color-header-surface: #ffffff;
   --color-header-border: #000000;
@@ -94,5 +107,14 @@
   *:focus-visible {
     outline: 2px solid var(--color-focus);
     outline-offset: 2px;
+  }
+
+  /* Glass utility */
+  .glass {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
   }
 }

@@ -5,7 +5,7 @@ export function Card({ className, ...props }: ComponentProps<'div'>) {
   return (
     <div
       className={clsx(
-        'rounded-2xl border border-[var(--color-card-border)] bg-[var(--color-card-surface)] p-5 shadow-sm',
+        'glass rounded-2xl p-5',
         'transition will-change-transform hover:-translate-y-0.5 hover:shadow-md',
         'focus-within:ring-2 focus-within:ring-[var(--color-focus)]',
         className,

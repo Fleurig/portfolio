@@ -1,12 +1,6 @@
-import Link from 'next/link';
-
 import { Card } from '@/src/components/ui/Card';
 
-export function ContactCta({
-  locale,
-}: {
-  locale: 'nl' | 'en';
-}) {
+export function ContactCta({ locale }: { locale: 'nl' | 'en' }) {
   const isNl = locale === 'nl';
 
   return (
@@ -26,7 +20,8 @@ export function ContactCta({
         <div className="flex flex-wrap gap-2">
           <a
             href="mailto:fleuralbers@live.nl"
-            className="inline-flex items-center justify-center rounded-xl bg-[var(--color-text)] px-4 py-2 text-sm font-medium text-[var(--color-bg)] shadow-sm transition hover:opacity-90"
+            className="glass inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium text-[var(--color-text)] transition hover:opacity-90"
+            aria-label={isNl ? 'Mail Fleur' : 'Email Fleur'}
           >
             {isNl ? 'Mail' : 'Email'}
           </a>
@@ -34,19 +29,14 @@ export function ContactCta({
             href="https://www.linkedin.com/in/fleuralbers/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-2 text-sm font-medium text-[var(--color-text)] shadow-sm transition hover:bg-[var(--color-surface-muted)]"
+            className="glass inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium text-[var(--color-text)] transition hover:opacity-90"
+            aria-label={isNl ? 'LinkedIn profiel (opent in nieuw tabblad)' : 'LinkedIn profile (opens in a new tab)'}
           >
             LinkedIn
             <span aria-hidden="true" className="ml-1 text-xs text-[var(--color-text-muted)]">
               ↗
             </span>
           </a>
-          <Link
-            href={`/${locale}/contact`}
-            className="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium text-[var(--color-text)] hover:bg-[var(--color-surface-muted)]"
-          >
-            {isNl ? 'Contact' : 'Contact'}
-          </Link>
         </div>
       </div>
     </Card>
