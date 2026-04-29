@@ -1,0 +1,64 @@
+@import 'tailwindcss';
+@import './theme.css';
+
+/* Token-friendly MDX typography */
+.prose {
+  color: var(--color-text);
+}
+
+.prose :where(a):not(:where([class~='not-prose'] *)) {
+  color: var(--color-text);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklab, var(--color-primary) 55%, transparent);
+}
+
+.prose :where(p, li):not(:where([class~='not-prose'] *)) {
+  color: var(--color-text);
+}
+
+.prose :where(h1, h2, h3):not(:where([class~='not-prose'] *)) {
+  color: var(--color-text);
+}
+
+.prose :where(code):not(:where([class~='not-prose'] *)) {
+  color: var(--color-text);
+  background: var(--color-surface-muted);
+  border: 1px solid var(--color-border);
+  padding: 0.1rem 0.25rem;
+  border-radius: 0.375rem;
+}
+
+.prose :where(pre):not(:where([class~='not-prose'] *)) {
+  color: var(--color-text);
+  background: var(--color-surface-muted);
+  border: 1px solid var(--color-border);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+  }
+}
+
+/* Print styles for CV */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  a {
+    text-decoration: none !important;
+    color: inherit !important;
+  }
+
+  .print-break-avoid {
+    break-inside: avoid;
+  }
+}
