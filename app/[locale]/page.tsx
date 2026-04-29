@@ -66,7 +66,7 @@ export default async function LocaleHomePage({
   return (
     <SiteLayout locale={locale}>
       {/* Hero */}
-      <section className="relative hero-bg">
+      <section className="relative">
         <div
           className="glass glass--elevated rounded-3xl p-6 sm:p-10"
           aria-labelledby="home-hero-title"
@@ -97,7 +97,7 @@ export default async function LocaleHomePage({
             </ButtonLink>
             <a
               href={downloadHref}
-              className="glass glass--elevated inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium text-[var(--color-text)] transition will-change-transform hover:-translate-y-0.5 hover:opacity-95"
+              className="glass glass--elevated glass-hover inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium text-[var(--color-text)]"
               aria-label={isNl ? 'Download CV als PDF' : 'Download CV as PDF'}
             >
               {isNl ? 'Download CV (PDF)' : 'Download CV (PDF)'}
@@ -144,21 +144,23 @@ export default async function LocaleHomePage({
 
       {/* About */}
       <section className="mt-14">
-        <div className="grid gap-8 md:grid-cols-12">
-          <div className="md:col-span-4">
-            <h2 className="text-xl font-semibold tracking-tight text-[var(--color-text)]">
-              {isNl ? 'Over mij' : 'About'}
-            </h2>
-            <p className="mt-2 text-sm text-[var(--color-text-muted)]">
-              {isNl
-                ? 'Korte intro uit MDX (makkelijk aanpasbaar).'
-                : 'Short intro pulled from MDX (easy to update).'}
-            </p>
-          </div>
-          <div className="md:col-span-8">
-            <article className="prose max-w-none prose-p:leading-relaxed prose-p:text-[var(--color-text-muted)] prose-strong:text-[var(--color-text)]">
-              <Mdx source={mdx} />
-            </article>
+        <div className="glass glass--elevated rounded-3xl p-6 sm:p-10">
+          <div className="grid gap-8 md:grid-cols-12">
+            <div className="md:col-span-4">
+              <h2 className="text-xl font-semibold tracking-tight text-[var(--color-text)]">
+                {isNl ? 'Over mij' : 'About'}
+              </h2>
+              <p className="mt-2 text-sm text-[var(--color-text-muted)]">
+                {isNl
+                  ? 'Korte intro uit MDX (makkelijk aanpasbaar).'
+                  : 'Short intro pulled from MDX (easy to update).'}
+              </p>
+            </div>
+            <div className="md:col-span-8">
+              <article className="prose max-w-none prose-p:leading-relaxed prose-p:text-[var(--color-text-muted)] prose-strong:text-[var(--color-text)]">
+                <Mdx source={mdx} />
+              </article>
+            </div>
           </div>
         </div>
       </section>

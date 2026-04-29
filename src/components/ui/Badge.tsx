@@ -8,7 +8,7 @@ export function Badge({
   return (
     <span
       className={clsx(
-        'inline-flex items-center rounded-full border border-badge-border bg-badge-surface px-2.5 py-1 text-xs font-medium text-badge-text',
+        'glass glass--elevated inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium text-[var(--color-text-muted)]',
         className,
       )}
       {...props}

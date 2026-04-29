@@ -22,10 +22,10 @@ export function NavLink({
       href={href}
       aria-current={active ? 'page' : undefined}
       className={clsx(
-        'rounded-lg px-3 py-2 text-sm transition',
+        'glass glass--elevated glass-hover rounded-lg px-3 py-2 text-sm',
         active
-          ? 'bg-card-surface-muted text-card-text'
-          : 'text-card-text-muted hover:bg-card-surface-muted',
+          ? 'text-[var(--color-text)]'
+          : 'text-[var(--color-text-muted)] hover:opacity-95',
       )}
     >
       {children}
