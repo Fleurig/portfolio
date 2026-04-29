@@ -1,6 +1,7 @@
+import type { ComponentProps } from 'react';
 import { clsx } from 'clsx';
 
-export function Card({ className, ...props }: React.ComponentProps<'div'>) {
+export function Card({ className, ...props }: ComponentProps<'div'>) {
   return (
     <div
       className={clsx(

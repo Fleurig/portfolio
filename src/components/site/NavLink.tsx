@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { clsx } from 'clsx';
@@ -7,11 +8,9 @@ import { clsx } from 'clsx';
 export function NavLink({
   href,
   children,
-  locale,
 }: {
   href: string;
-  children: React.ReactNode;
-  locale: 'nl' | 'en';
+  children: ReactNode;
 }) {
   const pathname = usePathname();
 

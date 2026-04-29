@@ -2,6 +2,14 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 const locales = ['nl', 'en'] as const;
+type Locale = (typeof locales)[number];
+
+function detectLocale(pathname: string): Locale {
+  for (const l of locales) {
+    if (pathname === `/${l}` || pathname.startsWith(`/${l}/`)) return l;
+  }
+  return 'nl';
+}
 
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
@@ -25,7 +33,10 @@ export function middleware(req: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  return NextResponse.next();
+  const locale = detectLocale(pathname);
+  const response = NextResponse.next();
+  response.headers.set('x-locale', locale);
+  return response;
 }
 
 export const config = {

@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import type { Locale } from '@/src/lib/i18n';
 import { SiteHeader } from '@/src/components/site/SiteHeader';
 import { SiteFooter } from '@/src/components/site/SiteFooter';
@@ -13,7 +14,7 @@ export function SiteLayout({
   locale: Locale;
   title?: string;
   backHref?: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return (
     <div className="min-h-dvh flex flex-col bg-[radial-gradient(80rem_50rem_at_50%_-10rem,color-mix(in_oklab,var(--color-primary)_10%,transparent),transparent)]">

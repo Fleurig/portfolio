@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import type { ReactNode } from 'react';
+import { headers } from 'next/headers';
 import { Inter } from 'next/font/google';
 import './globals.css';
 
@@ -21,11 +23,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
-}: Readonly<{ children: React.ReactNode }>) {
+}: Readonly<{ children: ReactNode }>) {
+  const headersList = await headers();
+  const locale = headersList.get('x-locale') ?? 'nl';
   return (
-    <html lang="nl" className={inter.variable} suppressHydrationWarning>
+    <html lang={locale} className={inter.variable} suppressHydrationWarning>
       <body className="min-h-dvh antialiased">{children}</body>
     </html>
   );

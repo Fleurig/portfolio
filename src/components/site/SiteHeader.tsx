@@ -29,13 +29,13 @@ export function SiteHeader({ locale }: { locale: Locale }) {
         </Link>
 
         <nav className="flex items-center gap-1" aria-label="Primary">
-          <NavLink locale={locale} href={`/${locale}/cv`}>
+          <NavLink href={`/${locale}/cv`}>
             {tr.nav.cv}
           </NavLink>
-          <NavLink locale={locale} href={`/${locale}/projects`}>
+          <NavLink href={`/${locale}/projects`}>
             {tr.nav.projects}
           </NavLink>
-          <NavLink locale={locale} href={`/${locale}/contact`}>
+          <NavLink href={`/${locale}/contact`}>
             {tr.nav.contact}
           </NavLink>
 

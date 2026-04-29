@@ -1,9 +1,10 @@
+import type { ComponentProps } from 'react';
 import { clsx } from 'clsx';
 
 export function Badge({
   className,
   ...props
-}: React.ComponentProps<'span'>) {
+}: ComponentProps<'span'>) {
   return (
     <span
       className={clsx(
