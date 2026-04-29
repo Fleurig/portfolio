@@ -25,11 +25,11 @@ export function MdxLink({
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="font-medium text-[var(--color-text)] underline decoration-[color-mix(in_oklab,var(--color-primary)_55%,transparent)] underline-offset-4 hover:opacity-90"
+        className="font-medium text-text underline decoration-[color-mix(in_oklab,var(--color-primary)_55%,transparent)] underline-offset-4 hover:opacity-90"
         {...props}
       >
         {children}
-        <span aria-hidden="true" className="ml-1 text-xs text-[var(--color-text-muted)]">
+        <span aria-hidden="true" className="ml-1 text-xs text-text-muted">
           ↗
         </span>
       </a>
@@ -39,7 +39,7 @@ export function MdxLink({
   return (
     <Link
       href={href}
-      className="font-medium text-[var(--color-text)] underline decoration-[color-mix(in_oklab,var(--color-primary)_55%,transparent)] underline-offset-4 hover:opacity-90"
+      className="font-medium text-text underline decoration-[color-mix(in_oklab,var(--color-primary)_55%,transparent)] underline-offset-4 hover:opacity-90"
     >
       {children}
     </Link>

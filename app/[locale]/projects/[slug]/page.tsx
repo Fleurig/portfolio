@@ -65,10 +65,10 @@ export default async function ProjectDetailPage({
             href={mdx.frontmatter.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-2 text-sm font-medium text-[var(--color-text)] shadow-sm hover:bg-[var(--color-surface-muted)]"
+            className="inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-4 py-2 text-sm font-medium text-text shadow-sm hover:bg-surface-muted"
           >
             {tr.pages.projectWebsite}
-            <span className="text-xs text-[var(--color-text-muted)]" aria-hidden="true">
+            <span className="text-xs text-text-muted" aria-hidden="true">
               ↗
             </span>
             <span className="sr-only">({tr.a11y.externalLinkNewTab})</span>

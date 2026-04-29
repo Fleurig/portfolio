@@ -6,7 +6,7 @@ export function MdxCode({ className, ...props }: ComponentProps<'code'>) {
     <code
       className={
         className ??
-        'rounded-md border border-[var(--color-border)] bg-[var(--color-surface-muted)] px-1 py-0.5 text-[0.9em]'
+        'rounded-md border border-border bg-surface-muted px-1 py-0.5 text-[0.9em]'
       }
       {...props}
     />

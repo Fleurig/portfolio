@@ -43,7 +43,7 @@ export default async function CvPage({
     <SiteLayout locale={locale} title={tr.seo.cvTitle} backHref={`/${locale}`}>
       <div className="no-print mb-6 flex flex-wrap items-center gap-3">
         <a
-          className="inline-flex items-center justify-center rounded-xl bg-[var(--color-text)] px-4 py-2 text-sm font-medium text-[var(--color-bg)] shadow-sm transition hover:opacity-90"
+          className="inline-flex items-center justify-center rounded-xl bg-text px-4 py-2 text-sm font-medium text-bg shadow-sm transition hover:opacity-90"
           href={
             locale === 'en'
               ? '/cv-fleur-albers-en.pdf'
@@ -52,7 +52,7 @@ export default async function CvPage({
         >
           {tr.pages.cvDownload}
         </a>
-        <p className="text-sm text-[var(--color-text-muted)]">{tr.pages.cvTip}</p>
+        <p className="text-sm text-text-muted">{tr.pages.cvTip}</p>
       </div>
 
       <article className="prose max-w-none print:prose-sm">

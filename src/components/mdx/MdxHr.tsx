@@ -1,5 +1,5 @@
 import type { ComponentProps } from 'react';
 
 export function MdxHr(props: ComponentProps<'hr'>) {
-  return <hr className="my-8 border-[var(--color-border)]" {...props} />;
+  return <hr className="my-8 border-border" {...props} />;
 }

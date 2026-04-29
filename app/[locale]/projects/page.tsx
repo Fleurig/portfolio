@@ -43,7 +43,7 @@ export default async function ProjectsIndexPage({
   return (
     <SiteLayout locale={locale} title={tr.seo.projectsTitle} backHref={`/${locale}`}>
       <header className="mb-8">
-        <p className="mt-2 max-w-2xl text-[var(--color-text-muted)]">
+        <p className="mt-2 max-w-2xl text-text-muted">
           {tr.pages.projectsIntro}
         </p>
       </header>
