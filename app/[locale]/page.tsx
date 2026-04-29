@@ -72,7 +72,7 @@ export default async function LocaleHomePage({
           aria-labelledby="home-hero-title"
         >
           <p className="text-sm font-medium text-[var(--color-text-muted)]">
-            {isNl ? 'Front-end developer' : 'Front-end developer'}
+            {isNl ? 'Front-end Developer · React & Next.js' : 'Front-end Developer · React & Next.js'}
           </p>
 
           <h1
@@ -84,8 +84,8 @@ export default async function LocaleHomePage({
 
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-[var(--color-text-muted)] sm:text-lg">
             {isNl
-              ? 'Ik bouw toegankelijke, snelle en onderhoudbare webapplicaties met React/Next.js — met oog voor UX, design en component-architectuur.'
-              : 'I build accessible, fast, and maintainable web applications with React/Next.js — with a strong focus on UX, design and component architecture.'}
+              ? 'Ik bouw productieklare webapplicaties met React en Next.js — met oog voor DX, herbruikbaarheid en component-kwaliteit.'
+              : 'I build production-ready web applications with React and Next.js — with a focus on DX, reusability, and component quality.'}
           </p>
 
           <div className="mt-6 flex flex-wrap gap-3">
@@ -113,7 +113,6 @@ export default async function LocaleHomePage({
             <Chip>TypeScript</Chip>
             <Chip>{isNl ? 'Design systems' : 'Design systems'}</Chip>
             <Chip>{isNl ? 'Forms & workflows' : 'Forms & workflows'}</Chip>
-            <Chip>A11y & performance</Chip>
           </div>
 
           <div
@@ -152,8 +151,8 @@ export default async function LocaleHomePage({
               </h2>
               <p className="mt-2 text-sm text-[var(--color-text-muted)]">
                 {isNl
-                  ? 'Korte intro uit MDX (makkelijk aanpasbaar).'
-                  : 'Short intro pulled from MDX (easy to update).'}
+                  ? 'Wie ik ben en wat me drijft.'
+                  : 'Who I am and what drives me.'}
               </p>
             </div>
             <div className="md:col-span-8">
