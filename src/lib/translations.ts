@@ -85,7 +85,7 @@ const dict = {
         'Contactgegevens en links om Fleur Albers te bereiken.',
     },
     footer: {
-      builtWith: 'Gebouwd met Next.js + MDX.',
+      builtWith: '',
     },
     pages: {
       projectsIntro:
@@ -134,7 +134,7 @@ const dict = {
         'Contact details and links to reach Fleur Albers.',
     },
     footer: {
-      builtWith: 'Built with Next.js + MDX.',
+      builtWith: '',
     },
     pages: {
       projectsIntro:
