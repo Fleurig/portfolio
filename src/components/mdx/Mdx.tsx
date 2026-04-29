@@ -1,7 +1,7 @@
-import type { ComponentProps } from 'react';
+import type { ComponentProps, ReactNode } from 'react';
 
 type Props = {
-  source: { content: React.ReactNode };
+  source: { content: ReactNode };
 } & ComponentProps<'div'>;
 
 export function Mdx({ source, className, ...props }: Props) {
