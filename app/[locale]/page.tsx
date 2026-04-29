@@ -33,6 +33,23 @@ export async function generateMetadata({
   };
 }
 
+function MetaItem({
+  icon,
+  label,
+}: {
+  icon: string;
+  label: string;
+}) {
+  return (
+    <span className="inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)]">
+      <span aria-hidden="true" className="text-base">
+        {icon}
+      </span>
+      <span>{label}</span>
+    </span>
+  );
+}
+
 export default async function LocaleHomePage({
   params,
 }: {
@@ -49,11 +66,14 @@ export default async function LocaleHomePage({
 
   const isNl = locale === 'nl';
 
+  const downloadHref =
+    locale === 'en' ? '/cv-fleur-albers-en.pdf' : '/cv-fleur-albers-nl.pdf';
+
   return (
     <SiteLayout locale={locale}>
       {/* Hero */}
       <section className="relative">
-        <div className="rounded-3xl border border-[var(--color-border)] bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-surface)_70%,transparent),transparent)] p-6 sm:p-10">
+        <div className="glass rounded-3xl p-6 sm:p-10">
           <p className="text-sm font-medium text-[var(--color-text-muted)]">
             {isNl ? 'Front-end developer' : 'Front-end developer'}
           </p>
@@ -76,14 +96,15 @@ export default async function LocaleHomePage({
               {isNl ? 'Bekijk CV' : 'View CV'}
             </ButtonLink>
             <a
-              href={
-                locale === 'en'
-                  ? '/cv-fleur-albers-en.pdf'
-                  : '/cv-fleur-albers-nl.pdf'
+              href={downloadHref}
+              className="glass inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium text-[var(--color-text)] transition hover:opacity-90"
+              aria-label={
+                isNl
+                  ? 'Download CV als PDF'
+                  : 'Download CV as PDF'
               }
-              className="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium text-[var(--color-text)] hover:bg-[var(--color-surface-muted)]"
             >
-              {isNl ? 'Download PDF' : 'Download PDF'}
+              {isNl ? 'Download CV (PDF)' : 'Download CV (PDF)'}
             </a>
           </div>
 
@@ -96,29 +117,16 @@ export default async function LocaleHomePage({
             <Chip>A11y & performance</Chip>
           </div>
 
-          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-[var(--color-text-muted)]">
-            <span>
-              <span className="font-medium text-[var(--color-text)]">
-                {tr.brand.location}
-              </span>
+          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2">
+            <MetaItem icon="⌂" label={tr.brand.location} />
+            <span aria-hidden="true" className="text-sm text-[var(--color-text-muted)]">
+              |
             </span>
-            <span aria-hidden="true">•</span>
-            <a
-              href="https://www.linkedin.com/in/fleuralbers/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline underline-offset-4 hover:opacity-90"
-            >
-              LinkedIn
-              <span aria-hidden="true"> ↗</span>
-            </a>
-            <span aria-hidden="true">•</span>
-            <a
-              href="mailto:fleuralbers@live.nl"
-              className="underline underline-offset-4 hover:opacity-90"
-            >
-              fleuralbers@live.nl
-            </a>
+            <MetaItem icon="🚗" label={isNl ? 'Rijbewijs' : 'Driver\'s license'} />
+            <span aria-hidden="true" className="text-sm text-[var(--color-text-muted)]">
+              |
+            </span>
+            <MetaItem icon="🎂" label="26-08-1999" />
           </div>
         </div>
       </section>
@@ -137,11 +145,9 @@ export default async function LocaleHomePage({
             </p>
           </div>
           <div className="md:col-span-8">
-            <div className="space-y-4 text-[var(--color-text)]">
-              <article className="prose max-w-none prose-p:leading-relaxed prose-p:text-[var(--color-text-muted)] prose-strong:text-[var(--color-text)]">
-                <Mdx source={mdx} />
-              </article>
-            </div>
+            <article className="prose max-w-none prose-p:leading-relaxed prose-p:text-[var(--color-text-muted)] prose-strong:text-[var(--color-text)]">
+              <Mdx source={mdx} />
+            </article>
           </div>
         </div>
       </section>
