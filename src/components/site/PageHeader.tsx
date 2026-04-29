@@ -19,9 +19,11 @@ export function PageHeader({
       {backHref ? (
         <Link
           href={backHref}
-          className="inline-flex w-fit items-center gap-2 rounded-lg px-2 py-1 text-sm font-medium text-card-text-muted hover:bg-card-surface-muted hover:text-card-text"
+          className="inline-flex w-fit items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-sm font-medium text-[var(--color-text-muted)] transition-all duration-200 hover:bg-[var(--color-surface-muted)] hover:text-[var(--color-text)] active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]"
         >
-          <span aria-hidden="true">←</span>
+          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M10 12L6 8l4-4" />
+          </svg>
           <span>{tr.nav.back}</span>
         </Link>
       ) : null}
