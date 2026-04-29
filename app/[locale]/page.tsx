@@ -35,7 +35,7 @@ export async function generateMetadata({
 
 function MetaItem({ icon, label }: { icon: string; label: string }) {
   return (
-    <span className="inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)]">
+    <span className="inline-flex items-center gap-2 text-sm text-text-muted">
       <span aria-hidden="true" className="text-base">
         {icon}
       </span>
@@ -71,21 +71,21 @@ export default async function LocaleHomePage({
           className="glass glass--elevated rounded-3xl p-6 sm:p-10"
           aria-labelledby="home-hero-title"
         >
-          <p className="text-sm font-medium text-[var(--color-text-muted)]">
+          <p className="text-sm font-medium text-text-muted">
             {isNl ? 'Front-end Developer · React & Next.js' : 'Front-end Developer · React & Next.js'}
           </p>
 
           <h1
             id="home-hero-title"
-            className="mt-3 text-4xl font-semibold tracking-tight text-[var(--color-text)] sm:text-6xl"
+            className="mt-3 text-4xl font-semibold tracking-tight text-text sm:text-6xl"
           >
             Fleur Albers
           </h1>
 
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-[var(--color-text-muted)] sm:text-lg">
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-muted sm:text-lg">
             {isNl
-              ? 'Ik bouw productieklare webapplicaties met React en Next.js — met oog voor DX, herbruikbaarheid en component-kwaliteit.'
-              : 'I build production-ready web applications with React and Next.js — with a focus on DX, reusability, and component quality.'}
+              ? 'Ik bouw productieklare webapplicaties met React en Next.js — met oog voor UX, herbruikbaarheid en component-kwaliteit.'
+              : 'I build production-ready web applications with React and Next.js — with a focus on UX, reusability, and component quality.'}
           </p>
 
           <div className="mt-6 flex flex-wrap gap-3">
@@ -97,7 +97,7 @@ export default async function LocaleHomePage({
             </ButtonLink>
             <a
               href={downloadHref}
-              className="glass glass--elevated glass-hover inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium text-[var(--color-text)]"
+              className="glass glass--elevated glass-hover inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium text-text-muted transition hover:text-text"
               aria-label={isNl ? 'Download CV als PDF' : 'Download CV as PDF'}
             >
               {isNl ? 'Download CV (PDF)' : 'Download CV (PDF)'}
@@ -122,7 +122,7 @@ export default async function LocaleHomePage({
             <MetaItem icon="📍" label={tr.brand.location} />
             <span
               aria-hidden="true"
-              className="text-sm text-[var(--color-text-muted)]"
+              className="text-sm text-text-muted"
             >
               |
             </span>
@@ -132,7 +132,7 @@ export default async function LocaleHomePage({
             />
             <span
               aria-hidden="true"
-              className="text-sm text-[var(--color-text-muted)]"
+              className="text-sm text-text-muted"
             >
               |
             </span>
@@ -146,17 +146,17 @@ export default async function LocaleHomePage({
         <div className="glass glass--elevated rounded-3xl p-6 sm:p-10">
           <div className="grid gap-8 md:grid-cols-12">
             <div className="md:col-span-4">
-              <h2 className="text-xl font-semibold tracking-tight text-[var(--color-text)]">
+              <h2 className="text-xl font-semibold tracking-tight text-text">
                 {isNl ? 'Over mij' : 'About'}
               </h2>
-              <p className="mt-2 text-sm text-[var(--color-text-muted)]">
+              <p className="mt-2 text-sm text-text-muted">
                 {isNl
                   ? 'Wie ik ben en wat me drijft.'
                   : 'Who I am and what drives me.'}
               </p>
             </div>
             <div className="md:col-span-8">
-              <article className="prose max-w-none prose-p:leading-relaxed prose-p:text-[var(--color-text-muted)] prose-strong:text-[var(--color-text)]">
+              <article className="prose max-w-none prose-p:leading-relaxed prose-p:text-text-muted prose-strong:text-text">
                 <Mdx source={mdx} />
               </article>
             </div>
@@ -170,11 +170,11 @@ export default async function LocaleHomePage({
           <div>
             <h2
               id="home-featured"
-              className="text-xl font-semibold tracking-tight text-[var(--color-text)]"
+              className="text-xl font-semibold tracking-tight text-text"
             >
               {isNl ? 'Uitgelicht' : 'Featured'}
             </h2>
-            <p className="mt-2 text-sm text-[var(--color-text-muted)]">
+            <p className="mt-2 text-sm text-text-muted">
               {isNl
                 ? 'Een paar projecten waar ik met plezier aan heb gebouwd.'
                 : 'A few projects I enjoyed building.'}
@@ -182,7 +182,7 @@ export default async function LocaleHomePage({
           </div>
           <Link
             href={`/${locale}/projects`}
-            className="text-sm font-medium text-[var(--color-text)] underline underline-offset-4 hover:opacity-90"
+            className="text-sm font-medium text-text underline underline-offset-4 hover:opacity-90"
             aria-label={isNl ? 'Bekijk alle projecten' : 'View all projects'}
           >
             {isNl ? 'Alle projecten' : 'All projects'}
