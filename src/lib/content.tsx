@@ -1,9 +1,9 @@
 import path from 'node:path';
 import fs from 'node:fs/promises';
 import { cache } from 'react';
-import { compileMDX } from 'next-mdx-remote/rsc';
 
 import type { Locale } from '@/src/lib/i18n';
+import { compileRuntimeMdx } from '@/src/lib/mdxRuntime';
 
 export type ProjectFrontmatter = {
   title: string;
@@ -27,10 +27,7 @@ export const getPageMdx = cache(async (locale: Locale, page: string) => {
   const source = await readFileSafe(filePath);
 
   try {
-    const compiled = await compileMDX({
-      source,
-      options: { parseFrontmatter: true },
-    });
+    const compiled = await compileRuntimeMdx(source);
 
     return {
       content: compiled.content,
@@ -57,10 +54,7 @@ export const getAllProjects = cache(async (locale: Locale) => {
       const source = await readFileSafe(filePath);
 
       try {
-        const compiled = await compileMDX({
-          source,
-          options: { parseFrontmatter: true },
-        });
+        const compiled = await compileRuntimeMdx(source);
 
         const fm = compiled.frontmatter as ProjectFrontmatter;
         return {
@@ -87,10 +81,7 @@ export const getProjectMdx = cache(async (locale: Locale, slug: string) => {
   const source = await readFileSafe(filePath);
 
   try {
-    const compiled = await compileMDX({
-      source,
-      options: { parseFrontmatter: true },
-    });
+    const compiled = await compileRuntimeMdx(source);
 
     return {
       slug,
