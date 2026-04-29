@@ -33,13 +33,7 @@ export async function generateMetadata({
   };
 }
 
-function MetaItem({
-  icon,
-  label,
-}: {
-  icon: string;
-  label: string;
-}) {
+function MetaItem({ icon, label }: { icon: string; label: string }) {
   return (
     <span className="inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)]">
       <span aria-hidden="true" className="text-base">
@@ -72,9 +66,9 @@ export default async function LocaleHomePage({
   return (
     <SiteLayout locale={locale}>
       {/* Hero */}
-      <section className="relative">
+      <section className="relative hero-bg">
         <div
-          className="glass rounded-3xl p-6 sm:p-10"
+          className="glass glass--elevated rounded-3xl p-6 sm:p-10"
           aria-labelledby="home-hero-title"
         >
           <p className="text-sm font-medium text-[var(--color-text-muted)]">
@@ -83,7 +77,7 @@ export default async function LocaleHomePage({
 
           <h1
             id="home-hero-title"
-            className="mt-3 text-4xl font-semibold tracking-tight text-[var(--color-text)] sm:text-5xl"
+            className="mt-3 text-4xl font-semibold tracking-tight text-[var(--color-text)] sm:text-6xl"
           >
             Fleur Albers
           </h1>
@@ -103,14 +97,17 @@ export default async function LocaleHomePage({
             </ButtonLink>
             <a
               href={downloadHref}
-              className="glass inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium text-[var(--color-text)] transition hover:opacity-90"
+              className="glass glass--elevated inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium text-[var(--color-text)] transition will-change-transform hover:-translate-y-0.5 hover:opacity-95"
               aria-label={isNl ? 'Download CV als PDF' : 'Download CV as PDF'}
             >
               {isNl ? 'Download CV (PDF)' : 'Download CV (PDF)'}
             </a>
           </div>
 
-          <div className="mt-6 flex flex-wrap gap-2" aria-label={isNl ? 'Focus' : 'Focus'}>
+          <div
+            className="mt-7 flex flex-wrap gap-2"
+            aria-label={isNl ? 'Focus' : 'Focus'}
+          >
             <Chip>Next.js</Chip>
             <Chip>React</Chip>
             <Chip>TypeScript</Chip>
@@ -119,13 +116,25 @@ export default async function LocaleHomePage({
             <Chip>A11y & performance</Chip>
           </div>
 
-          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2" aria-label={isNl ? 'Profiel' : 'Profile'}>
+          <div
+            className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2"
+            aria-label={isNl ? 'Profiel' : 'Profile'}
+          >
             <MetaItem icon="📍" label={tr.brand.location} />
-            <span aria-hidden="true" className="text-sm text-[var(--color-text-muted)]">
+            <span
+              aria-hidden="true"
+              className="text-sm text-[var(--color-text-muted)]"
+            >
               |
             </span>
-            <MetaItem icon="🚗" label={isNl ? 'Rijbewijs' : "Driver's license"} />
-            <span aria-hidden="true" className="text-sm text-[var(--color-text-muted)]">
+            <MetaItem
+              icon="🚗"
+              label={isNl ? 'Rijbewijs' : "Driver's license"}
+            />
+            <span
+              aria-hidden="true"
+              className="text-sm text-[var(--color-text-muted)]"
+            >
               |
             </span>
             <MetaItem icon="🎂" label="26-08-1999" />
@@ -134,7 +143,7 @@ export default async function LocaleHomePage({
       </section>
 
       {/* About */}
-      <section className="mt-12">
+      <section className="mt-14">
         <div className="grid gap-8 md:grid-cols-12">
           <div className="md:col-span-4">
             <h2 className="text-xl font-semibold tracking-tight text-[var(--color-text)]">
@@ -155,10 +164,13 @@ export default async function LocaleHomePage({
       </section>
 
       {/* Featured projects */}
-      <section className="mt-12" aria-labelledby="home-featured">
+      <section className="mt-14" aria-labelledby="home-featured">
         <div className="flex items-end justify-between gap-4">
           <div>
-            <h2 id="home-featured" className="text-xl font-semibold tracking-tight text-[var(--color-text)]">
+            <h2
+              id="home-featured"
+              className="text-xl font-semibold tracking-tight text-[var(--color-text)]"
+            >
               {isNl ? 'Uitgelicht' : 'Featured'}
             </h2>
             <p className="mt-2 text-sm text-[var(--color-text-muted)]">
@@ -181,7 +193,9 @@ export default async function LocaleHomePage({
             <Link
               key={p.slug}
               href={`/${locale}/projects/${p.slug}`}
-              aria-label={isNl ? `Bekijk project: ${p.title}` : `View project: ${p.title}`}
+              aria-label={
+                isNl ? `Bekijk project: ${p.title}` : `View project: ${p.title}`
+              }
             >
               <ProjectCard project={p} locale={locale} />
             </Link>
