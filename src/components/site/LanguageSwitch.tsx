@@ -17,7 +17,7 @@ export function LanguageSwitch({ locale }: { locale: Locale }) {
   return (
     <Link
       href={nextPath}
-      className="ml-1 inline-flex items-center rounded-lg border border-card-border bg-card-surface px-2.5 py-2 text-xs font-medium text-card-text shadow-sm hover:bg-card-surface-muted"
+      className="btn btn-surface ml-1 px-2.5 py-2 text-xs"
       aria-label={tr.nav.switchLanguage}
     >
       {target.toUpperCase()}

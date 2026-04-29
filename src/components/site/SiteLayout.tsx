@@ -17,7 +17,7 @@ export function SiteLayout({
   children: ReactNode;
 }) {
   return (
-    <div className="min-h-dvh flex flex-col bg-[radial-gradient(80rem_50rem_at_50%_-10rem,rgba(124,58,237,0.18),transparent),radial-gradient(60rem_40rem_at_10%_10%,rgba(59,130,246,0.12),transparent)]">
+    <div className="min-h-dvh flex flex-col bg-[var(--color-bg)] [background-image:radial-gradient(ellipse_80%_50%_at_50%_-15%,color-mix(in_oklab,var(--color-primary)_14%,transparent),transparent),radial-gradient(ellipse_50%_30%_at_80%_60%,color-mix(in_oklab,var(--color-primary)_6%,transparent),transparent)]">
       <SiteHeader locale={locale} />
       <main id="content" className="flex-1">
         <Container className="py-10 sm:py-14">

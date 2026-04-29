@@ -11,7 +11,8 @@ export function SiteHeader({ locale }: { locale: Locale }) {
   const tr = t(locale);
 
   return (
-    <header className="no-print sticky top-0 z-40 border-b border-[var(--line)] bg-[var(--glass-bg)] backdrop-blur supports-backdrop-filter:bg-[var(--glass-bg)]">
+    <header className="no-print sticky top-0 z-40 border-b border-[var(--color-header-border)] bg-[var(--color-header-surface)] backdrop-blur-xl saturate-150 supports-[backdrop-filter]:bg-[var(--color-header-surface)]">
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" aria-hidden="true" />
       <Container className="flex h-14 items-center justify-between gap-4">
         <a
           href="#content"
@@ -22,7 +23,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
 
         <Link
           href={`/${locale}`}
-          className="font-semibold tracking-tight text-[var(--color-text)]"
+          className="font-semibold tracking-tight text-[var(--color-text)] hover:opacity-80 transition-opacity duration-200"
           aria-label={tr.nav.home}
         >
           {tr.brand.name}

@@ -37,9 +37,10 @@ export function ThemeToggle({ locale }: { locale: 'nl' | 'en' }) {
       <button
         type="button"
         onClick={() => setTheme(next)}
-        className="inline-flex items-center gap-2 rounded-lg border border-border bg-surface px-2.5 py-2 text-xs font-medium text-text shadow-sm hover:bg-surface-muted"
+        className="btn btn-surface inline-flex items-center gap-2 px-2.5 py-2 text-xs"
         aria-label={`${tr.a11y.toggleTheme}: ${label}`}
         title={`${tr.a11y.toggleTheme}: ${label}`}
+        aria-pressed={visibleTheme !== 'light'}
       >
         <span aria-hidden="true">{themeIcon(visibleTheme)}</span>
         <span>{label}</span>
@@ -48,7 +49,7 @@ export function ThemeToggle({ locale }: { locale: 'nl' | 'en' }) {
       <button
         type="button"
         onClick={clearTheme}
-        className="inline-flex items-center rounded-lg border border-border bg-surface px-2.5 py-2 text-xs font-medium text-text-muted shadow-sm hover:bg-surface-muted"
+        className="btn btn-surface inline-flex items-center px-2.5 py-2 text-xs"
         aria-label={tr.a11y.useSystemTheme}
         title={tr.a11y.useSystemTheme}
       >
