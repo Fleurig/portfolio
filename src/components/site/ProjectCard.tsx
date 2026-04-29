@@ -22,19 +22,19 @@ export function ProjectCard({
       <div className="flex items-start justify-between gap-3">
         <div>
           <div className="flex flex-wrap items-center gap-2">
-            <h2 className="text-base font-semibold tracking-tight text-[var(--color-card-text)]">
+            <h2 className="text-base font-semibold tracking-tight text-card-text">
               {project.title}
             </h2>
             {project.featured ? <Badge>{tr.nav.featured}</Badge> : null}
           </div>
           {project.company ? (
-            <p className="mt-1 text-sm text-[var(--color-card-text-muted)]">
+            <p className="mt-1 text-sm text-card-text-muted">
               {project.company}
             </p>
           ) : null}
         </div>
         {project.period ? (
-          <span className="text-xs text-[var(--color-text-muted)]">
+          <span className="text-xs text-card-text-muted">
             {project.period}
           </span>
         ) : null}

@@ -11,18 +11,18 @@ export function SiteHeader({ locale }: { locale: Locale }) {
   const tr = t(locale);
 
   return (
-    <header className="no-print sticky top-0 z-40 border-b border-[var(--color-header-border)] bg-[var(--color-header-surface)] backdrop-blur supports-[backdrop-filter]:bg-[var(--color-header-surface)]">
+    <header className="no-print sticky top-0 z-40 border-b border-card-border bg-card-surface backdrop-blur supports-backdrop-filter:bg-card-surface">
       <Container className="flex h-14 items-center justify-between gap-4">
         <a
           href="#content"
-          className="sr-only rounded-lg px-3 py-2 text-sm font-medium text-[var(--color-text)] focus:not-sr-only"
+          className="sr-only rounded-lg px-3 py-2 text-sm font-medium text-card-text focus:not-sr-only"
         >
           {tr.a11y.skipToContent}
         </a>
 
         <Link
           href={`/${locale}`}
-          className="font-semibold tracking-tight text-[var(--color-text)]"
+          className="font-semibold tracking-tight text-card-text"
           aria-label={tr.nav.home}
         >
           {tr.brand.name}

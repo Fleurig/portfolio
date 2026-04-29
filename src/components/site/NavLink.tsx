@@ -24,8 +24,8 @@ export function NavLink({
       className={clsx(
         'rounded-lg px-3 py-2 text-sm transition',
         active
-          ? 'bg-[var(--color-surface-muted)] text-[var(--color-text)]'
-          : 'text-[var(--color-text-muted)] hover:bg-[var(--color-surface-muted)]',
+          ? 'bg-card-surface-muted text-card-text'
+          : 'text-card-text-muted hover:bg-card-surface-muted',
       )}
     >
       {children}

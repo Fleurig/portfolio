@@ -19,7 +19,7 @@ export function PageHeader({
       {backHref ? (
         <Link
           href={backHref}
-          className="inline-flex w-fit items-center gap-2 rounded-lg px-2 py-1 text-sm font-medium text-[var(--color-text-muted)] hover:bg-[var(--color-surface-muted)] hover:text-[var(--color-text)]"
+          className="inline-flex w-fit items-center gap-2 rounded-lg px-2 py-1 text-sm font-medium text-card-text-muted hover:bg-card-surface-muted hover:text-card-text"
         >
           <span aria-hidden="true">←</span>
           <span>{tr.nav.back}</span>
@@ -27,7 +27,7 @@ export function PageHeader({
       ) : null}
 
       {title ? (
-        <h1 className="text-2xl font-semibold tracking-tight text-[var(--color-text)]">
+        <h1 className="text-2xl font-semibold tracking-tight text-card-text">
           {title}
         </h1>
       ) : null}

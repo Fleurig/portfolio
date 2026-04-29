@@ -7,7 +7,7 @@ export function Card({ className, ...props }: ComponentProps<'div'>) {
       className={clsx(
         'glass rounded-2xl p-5',
         'transition will-change-transform hover:-translate-y-0.5 hover:shadow-md',
-        'focus-within:ring-2 focus-within:ring-[var(--color-focus)]',
+        'focus-within:ring-2 focus-within:ring-focus',
         className,
       )}
       {...props}
