@@ -45,7 +45,7 @@ export function ThemeToggle({ locale }: { locale: 'nl' | 'en' }) {
       title={`${tr.a11y.toggleTheme}: ${label}`}
     >
       <span aria-hidden="true">{icon}</span>
-      <span className="hidden sm:inline">{label}</span>
+      <span>{label}</span>
     </button>
   );
 }
