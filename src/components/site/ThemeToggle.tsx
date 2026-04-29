@@ -1,7 +1,15 @@
 "use client";
 
+import { useSyncExternalStore } from 'react';
+
 import { t } from '@/src/lib/translations';
 import { useTheme } from '@/src/lib/useTheme';
+
+const emptySubscribe = () => () => {};
+
+function useHydrated() {
+  return useSyncExternalStore(emptySubscribe, () => true, () => false);
+}
 
 function themeIcon(theme: 'dark' | 'light' | 'contrast') {
   if (theme === 'dark') return '☾';
@@ -12,13 +20,15 @@ function themeIcon(theme: 'dark' | 'light' | 'contrast') {
 export function ThemeToggle({ locale }: { locale: 'nl' | 'en' }) {
   const tr = t(locale);
   const { theme, setTheme, clearTheme } = useTheme();
+  const hydrated = useHydrated();
+  const visibleTheme = hydrated ? theme : 'light';
 
-  const next = theme === 'dark' ? 'light' : theme === 'light' ? 'contrast' : 'dark';
+  const next = visibleTheme === 'dark' ? 'light' : visibleTheme === 'light' ? 'contrast' : 'dark';
 
   const label =
-    theme === 'dark'
+    visibleTheme === 'dark'
       ? tr.a11y.themeDark
-      : theme === 'light'
+      : visibleTheme === 'light'
         ? tr.a11y.themeLight
         : tr.a11y.themeContrast;
 
@@ -27,18 +37,18 @@ export function ThemeToggle({ locale }: { locale: 'nl' | 'en' }) {
       <button
         type="button"
         onClick={() => setTheme(next)}
-        className="inline-flex items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-2.5 py-2 text-xs font-medium text-[var(--color-text)] shadow-sm hover:bg-[var(--color-surface-muted)]"
+        className="inline-flex items-center gap-2 rounded-lg border border-border bg-surface px-2.5 py-2 text-xs font-medium text-text shadow-sm hover:bg-surface-muted"
         aria-label={`${tr.a11y.toggleTheme}: ${label}`}
         title={`${tr.a11y.toggleTheme}: ${label}`}
       >
-        <span aria-hidden="true">{themeIcon(theme)}</span>
+        <span aria-hidden="true">{themeIcon(visibleTheme)}</span>
         <span>{label}</span>
       </button>
 
       <button
         type="button"
         onClick={clearTheme}
-        className="inline-flex items-center rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-2.5 py-2 text-xs font-medium text-[var(--color-text-muted)] shadow-sm hover:bg-[var(--color-surface-muted)]"
+        className="inline-flex items-center rounded-lg border border-border bg-surface px-2.5 py-2 text-xs font-medium text-text-muted shadow-sm hover:bg-surface-muted"
         aria-label={tr.a11y.useSystemTheme}
         title={tr.a11y.useSystemTheme}
       >
