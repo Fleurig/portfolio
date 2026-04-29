@@ -1,5 +1,5 @@
-import { Card } from "@/src/components/ui/Card";
-import { Badge } from "@/src/components/ui/Badge";
+import { Card } from '@/src/components/ui/Card';
+import { Badge } from '@/src/components/ui/Badge';
 
 export function ProjectCard({
   project,
@@ -15,15 +15,19 @@ export function ProjectCard({
     <Card className="h-full">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <h2 className="text-base font-semibold tracking-tight text-slate-900">
+          <h2 className="text-base font-semibold tracking-tight text-slate-900 dark:text-slate-100">
             {project.title}
           </h2>
           {project.company ? (
-            <p className="mt-1 text-sm text-slate-600">{project.company}</p>
+            <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
+              {project.company}
+            </p>
           ) : null}
         </div>
         {project.period ? (
-          <span className="text-xs text-slate-500">{project.period}</span>
+          <span className="text-xs text-slate-500 dark:text-slate-400">
+            {project.period}
+          </span>
         ) : null}
       </div>
 

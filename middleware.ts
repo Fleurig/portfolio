@@ -1,26 +1,24 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
-const locales = ["nl", "en"] as const;
+const locales = ['nl', 'en'] as const;
 
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  // Ignore next internals and public files.
   if (
-    pathname.startsWith("/_next") ||
-    pathname.startsWith("/api") ||
-    pathname.includes(".")
+    pathname.startsWith('/_next') ||
+    pathname.startsWith('/api') ||
+    pathname.includes('.')
   ) {
     return NextResponse.next();
   }
 
-  // If the pathname already includes a locale, continue.
   const hasLocale = locales.some(
-    (l) => pathname === `/${l}` || pathname.startsWith(`/${l}/`)
+    (l) => pathname === `/${l}` || pathname.startsWith(`/${l}/`),
   );
 
-  if (!hasLocale && pathname !== "/") {
+  if (!hasLocale && pathname !== '/') {
     const url = req.nextUrl.clone();
     url.pathname = `/nl${pathname}`;
     return NextResponse.redirect(url);
@@ -30,5 +28,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/:path*"],
+  matcher: ['/:path*'],
 };

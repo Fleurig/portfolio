@@ -1,10 +1,11 @@
-import { notFound } from "next/navigation";
-import Link from "next/link";
-import { SiteLayout } from "@/src/components/site/SiteLayout";
-import { getAllProjects } from "@/src/lib/content";
-import { ProjectCard } from "@/src/components/site/ProjectCard";
+import { notFound } from 'next/navigation';
+import Link from 'next/link';
+import { SiteLayout } from '@/src/components/site/SiteLayout';
+import { getAllProjects } from '@/src/lib/content';
+import { ProjectCard } from '@/src/components/site/ProjectCard';
+import { t } from '@/src/lib/translations';
 
-export const dynamic = "force-static";
+export const dynamic = 'force-static';
 
 export default async function ProjectsIndexPage({
   params,
@@ -12,20 +13,19 @@ export default async function ProjectsIndexPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  if (locale !== "nl" && locale !== "en") return notFound();
+  if (locale !== 'nl' && locale !== 'en') return notFound();
 
+  const tr = t(locale);
   const projects = await getAllProjects(locale);
 
   return (
     <SiteLayout locale={locale}>
       <header className="mb-8">
-        <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
-          {locale === "en" ? "Projects" : "Projecten"}
+        <h1 className="text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
+          {tr.pages.projectsTitle}
         </h1>
-        <p className="mt-2 max-w-2xl text-slate-600">
-          {locale === "en"
-            ? "A selection of products and platforms I worked on — focusing on UX, accessibility, and maintainable front-end architecture."
-            : "Een selectie van producten en platformen waar ik aan heb gewerkt — met focus op UX, toegankelijkheid en onderhoudbare front-end architectuur."}
+        <p className="mt-2 max-w-2xl text-slate-600 dark:text-slate-300">
+          {tr.pages.projectsIntro}
         </p>
       </header>
 

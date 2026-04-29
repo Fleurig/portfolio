@@ -1,9 +1,9 @@
-import { notFound } from "next/navigation";
-import { SiteLayout } from "@/src/components/site/SiteLayout";
-import { getPageMdx } from "@/src/lib/content";
-import { Mdx } from "@/src/components/mdx/Mdx";
+import { notFound } from 'next/navigation';
+import { SiteLayout } from '@/src/components/site/SiteLayout';
+import { getPageMdx } from '@/src/lib/content';
+import { Mdx } from '@/src/components/mdx/Mdx';
 
-export const dynamic = "force-static";
+export const dynamic = 'force-static';
 
 export default async function ContactPage({
   params,
@@ -11,13 +11,13 @@ export default async function ContactPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  if (locale !== "nl" && locale !== "en") return notFound();
+  if (locale !== 'nl' && locale !== 'en') return notFound();
 
-  const mdx = await getPageMdx(locale, "contact");
+  const mdx = await getPageMdx(locale, 'contact');
 
   return (
     <SiteLayout locale={locale}>
-      <article className="prose prose-slate max-w-none">
+      <article className="prose prose-slate max-w-none dark:prose-invert">
         <Mdx source={mdx} />
       </article>
     </SiteLayout>
