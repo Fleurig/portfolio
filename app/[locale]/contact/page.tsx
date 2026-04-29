@@ -17,7 +17,7 @@ export default async function ContactPage({
 
   return (
     <SiteLayout locale={locale}>
-      <article className="prose prose-slate max-w-none dark:prose-invert">
+      <article className="prose max-w-none">
         <Mdx source={mdx} />
       </article>
     </SiteLayout>

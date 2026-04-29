@@ -21,10 +21,10 @@ export default async function ProjectsIndexPage({
   return (
     <SiteLayout locale={locale}>
       <header className="mb-8">
-        <h1 className="text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
+        <h1 className="text-2xl font-semibold tracking-tight text-[var(--color-text)]">
           {tr.pages.projectsTitle}
         </h1>
-        <p className="mt-2 max-w-2xl text-slate-600 dark:text-slate-300">
+        <p className="mt-2 max-w-2xl text-[var(--color-text-muted)]">
           {tr.pages.projectsIntro}
         </p>
       </header>

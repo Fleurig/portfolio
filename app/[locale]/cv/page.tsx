@@ -21,7 +21,7 @@ export default async function CvPage({
     <SiteLayout locale={locale}>
       <div className="no-print mb-6 flex flex-wrap items-center gap-3">
         <a
-          className="inline-flex items-center justify-center rounded-xl bg-slate-900 px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 dark:bg-slate-100 dark:text-slate-950 dark:hover:bg-white"
+          className="inline-flex items-center justify-center rounded-xl bg-[var(--color-text)] px-4 py-2 text-sm font-medium text-[var(--color-bg)] shadow-sm transition hover:opacity-90"
           href={
             locale === 'en'
               ? '/cv-fleur-albers-en.pdf'
@@ -30,10 +30,10 @@ export default async function CvPage({
         >
           {tr.pages.cvDownload}
         </a>
-        <p className="text-sm text-slate-600 dark:text-slate-300">{tr.pages.cvTip}</p>
+        <p className="text-sm text-[var(--color-text-muted)]">{tr.pages.cvTip}</p>
       </div>
 
-      <article className="prose prose-slate max-w-none print:prose-sm dark:prose-invert">
+      <article className="prose max-w-none print:prose-sm">
         <Mdx source={mdx} />
       </article>
     </SiteLayout>

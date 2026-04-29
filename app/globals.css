@@ -1,23 +1,5 @@
 @import 'tailwindcss';
-
-:root {
-  color-scheme: dark;
-}
-
-html {
-  font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
-    BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-    'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-    'Noto Color Emoji';
-}
-
-html.dark {
-  color-scheme: dark;
-}
-
-html:not(.dark):not(.contrast) {
-  color-scheme: light;
-}
+@import './theme.css';
 
 @media (prefers-reduced-motion: reduce) {
   * {
@@ -25,11 +7,6 @@ html:not(.dark):not(.contrast) {
     transition-duration: 0.001ms !important;
     animation-duration: 0.001ms !important;
   }
-}
-
-/* Optional high-contrast theme token (kept simple; expand later) */
-html.contrast {
-  filter: contrast(1.15);
 }
 
 /* Print styles for CV */
@@ -40,6 +17,7 @@ html.contrast {
 
   body {
     background: #fff !important;
+    color: #000 !important;
   }
 
   a {
