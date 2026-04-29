@@ -22,12 +22,17 @@ async function readFileSafe(filePath: string) {
   return fs.readFile(filePath, 'utf8');
 }
 
+function withFileContext(source: string, filePath: string) {
+  // Helps debugging MDX parse issues by showing which file failed.
+  return `/* file:${filePath} */\n${source}`;
+}
+
 export const getPageMdx = cache(async (locale: Locale, page: string) => {
   const filePath = path.join(contentRoot(), locale, `${page}.mdx`);
   const source = await readFileSafe(filePath);
 
   const compiled = await compileMDX({
-    source,
+    source: withFileContext(source, filePath),
     options: { parseFrontmatter: true },
   });
 
@@ -40,9 +45,7 @@ export const getPageMdx = cache(async (locale: Locale, page: string) => {
 export const getProjectSlugs = cache(async (locale: Locale) => {
   const dir = path.join(contentRoot(), locale, 'projects');
   const entries = await fs.readdir(dir);
-  return entries
-    .filter((f) => f.endsWith('.mdx'))
-    .map((f) => f.replace(/\.mdx$/, ''));
+  return entries.filter((f) => f.endsWith('.mdx')).map((f) => f.replace(/\.mdx$/, ''));
 });
 
 export const getAllProjects = cache(async (locale: Locale) => {
@@ -53,7 +56,7 @@ export const getAllProjects = cache(async (locale: Locale) => {
       const filePath = path.join(contentRoot(), locale, 'projects', `${slug}.mdx`);
       const source = await readFileSafe(filePath);
       const compiled = await compileMDX({
-        source,
+        source: withFileContext(source, filePath),
         options: { parseFrontmatter: true },
       });
 
@@ -78,7 +81,7 @@ export const getProjectMdx = cache(async (locale: Locale, slug: string) => {
   const source = await readFileSafe(filePath);
 
   const compiled = await compileMDX({
-    source,
+    source: withFileContext(source, filePath),
     options: { parseFrontmatter: true },
   });
 
