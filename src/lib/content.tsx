@@ -22,24 +22,28 @@ async function readFileSafe(filePath: string) {
   return fs.readFile(filePath, 'utf8');
 }
 
+async function compileWithPath(source: string, filePath: string) {
+  try {
+    return await compileMDX({
+      source,
+      options: { parseFrontmatter: true },
+    });
+  } catch (err) {
+    console.error('[mdx] failed compiling:', filePath);
+    throw err;
+  }
+}
+
 export const getPageMdx = cache(async (locale: Locale, page: string) => {
   const filePath = path.join(contentRoot(), locale, `${page}.mdx`);
   const source = await readFileSafe(filePath);
 
-  try {
-    const compiled = await compileMDX({
-      source,
-      options: { parseFrontmatter: true },
-    });
+  const compiled = await compileWithPath(source, filePath);
 
-    return {
-      content: compiled.content,
-      frontmatter: compiled.frontmatter as Record<string, unknown>,
-    };
-  } catch (err) {
-    console.error(`[mdx] failed compiling page: ${filePath}`);
-    throw err;
-  }
+  return {
+    content: compiled.content,
+    frontmatter: compiled.frontmatter as Record<string, unknown>,
+  };
 });
 
 export const getProjectSlugs = cache(async (locale: Locale) => {
@@ -55,22 +59,13 @@ export const getAllProjects = cache(async (locale: Locale) => {
     slugs.map(async (slug) => {
       const filePath = path.join(contentRoot(), locale, 'projects', `${slug}.mdx`);
       const source = await readFileSafe(filePath);
+      const compiled = await compileWithPath(source, filePath);
 
-      try {
-        const compiled = await compileMDX({
-          source,
-          options: { parseFrontmatter: true },
-        });
-
-        const fm = compiled.frontmatter as ProjectFrontmatter;
-        return {
-          slug,
-          ...fm,
-        };
-      } catch (err) {
-        console.error(`[mdx] failed compiling project: ${filePath}`);
-        throw err;
-      }
+      const fm = compiled.frontmatter as ProjectFrontmatter;
+      return {
+        slug,
+        ...fm,
+      };
     }),
   );
 
@@ -86,19 +81,11 @@ export const getProjectMdx = cache(async (locale: Locale, slug: string) => {
   const filePath = path.join(contentRoot(), locale, 'projects', `${slug}.mdx`);
   const source = await readFileSafe(filePath);
 
-  try {
-    const compiled = await compileMDX({
-      source,
-      options: { parseFrontmatter: true },
-    });
+  const compiled = await compileWithPath(source, filePath);
 
-    return {
-      slug,
-      content: compiled.content,
-      frontmatter: compiled.frontmatter as ProjectFrontmatter,
-    };
-  } catch (err) {
-    console.error(`[mdx] failed compiling project page: ${filePath}`);
-    throw err;
-  }
+  return {
+    slug,
+    content: compiled.content,
+    frontmatter: compiled.frontmatter as ProjectFrontmatter,
+  };
 });
