@@ -1,0 +1,71 @@
+{
+  "brand": {
+    "name": "Fleur Albers",
+    "location": "Haarlem"
+  },
+  "nav": {
+    "home": "Home",
+    "back": "Back",
+    "cv": "CV",
+    "projects": "Projects",
+    "contact": "Contact",
+    "switchLanguage": "Switch language",
+    "featured": "Featured",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "a11y": {
+    "skipToContent": "Skip to content",
+    "toggleTheme": "Toggle theme",
+    "themeDark": "Dark",
+    "themeLight": "Light",
+    "themeContrast": "High contrast",
+    "externalLinkNewTab": "Opens in a new tab",
+    "useSystemTheme": "Use system theme"
+  },
+  "seo": {
+    "siteName": "Fleur Albers",
+    "homeTitle": "Home",
+    "homeDescription": "Portfolio and CV of Fleur Albers (Haarlem) — Front-end Developer (React/Next.js).",
+    "projectsTitle": "Projects",
+    "projectsDescription": "Selected projects: multi-tenant apps, design systems, and form-heavy workflows.",
+    "cvTitle": "CV",
+    "cvDescription": "CV of Fleur Albers — experience, projects, skills and education (print-friendly).",
+    "contactTitle": "Contact",
+    "contactDescription": "Contact details and links to reach Fleur Albers."
+  },
+  "footer": {
+    "linkedInLabel": "LinkedIn profile (opens in a new tab)"
+  },
+  "pages": {
+    "projectsIntro": "A selection of products and platforms I worked on — focusing on UX, accessibility, and maintainable front-end architecture.",
+    "cvTip": "Tip: use your browser print dialog for a clean A4 export.",
+    "cvDownload": "Download CV (PDF)",
+    "projectWebsite": "Website"
+  },
+  "home": {
+    "role": "Front-end Developer · React & Next.js",
+    "tagline": "I build production-ready web applications with React and Next.js — with a focus on UX, reusability, and component quality.",
+    "viewProjects": "View projects",
+    "viewCv": "View CV",
+    "downloadCvLabel": "Download CV as PDF",
+    "downloadCv": "Download CV (PDF)",
+    "focusLabel": "Focus",
+    "profileLabel": "Profile",
+    "driversLicense": "Driver's license",
+    "aboutTitle": "About",
+    "aboutSubtitle": "Who I am and what drives me",
+    "featuredTitle": "Featured",
+    "featuredSubtitle": "A few projects I enjoyed building.",
+    "allProjects": "All projects",
+    "allProjectsLabel": "View all projects",
+    "viewProjectLabel": "View project: {title}"
+  },
+  "contact": {
+    "heading": "Want to work together?",
+    "subheading": "Send me a message via email or LinkedIn.",
+    "emailLabel": "Email Fleur",
+    "email": "Email",
+    "linkedInLabel": "LinkedIn profile (opens in a new tab)"
+  }
+}

@@ -1,10 +1,9 @@
+import { useTranslations } from 'next-intl';
 import { Card } from '@/src/components/ui/Card';
 import { Badge } from '@/src/components/ui/Badge';
-import { t } from '@/src/lib/translations';
 
 export function ProjectCard({
   project,
-  locale,
 }: {
   project: {
     title: string;
@@ -13,9 +12,8 @@ export function ProjectCard({
     tags?: string[];
     featured?: boolean;
   };
-  locale: 'nl' | 'en';
 }) {
-  const tr = t(locale);
+  const t = useTranslations('nav');
 
   return (
     <Card className="h-full">
@@ -25,7 +23,7 @@ export function ProjectCard({
             <h2 className="text-base font-semibold tracking-tight text-card-text">
               {project.title}
             </h2>
-            {project.featured ? <Badge>{tr.nav.featured}</Badge> : null}
+            {project.featured ? <Badge>{t('featured')}</Badge> : null}
           </div>
           {project.company ? (
             <p className="mt-1 text-sm text-card-text-muted">
@@ -42,11 +40,12 @@ export function ProjectCard({
 
       {project.tags?.length ? (
         <div className="mt-4 flex flex-wrap gap-2">
-          {project.tags.slice(0, 6).map((t) => (
-            <Badge key={t}>{t}</Badge>
+          {project.tags.slice(0, 6).map((tag) => (
+            <Badge key={tag}>{tag}</Badge>
           ))}
         </div>
       ) : null}
     </Card>
   );
 }
+

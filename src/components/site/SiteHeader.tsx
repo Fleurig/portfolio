@@ -1,14 +1,15 @@
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 import { Container } from '@/src/components/ui/Container';
 import { LanguageSwitch } from '@/src/components/site/LanguageSwitch';
 import type { Locale } from '@/src/lib/i18n';
-import { t } from '@/src/lib/translations';
 import { ThemeToggle } from '@/src/components/site/ThemeToggle';
 import { NavLink } from '@/src/components/site/NavLink';
+import { MobileNav } from '@/src/components/site/MobileNav';
 
 export function SiteHeader({ locale }: { locale: Locale }) {
-  const tr = t(locale);
+  const t = useTranslations();
 
   return (
     <header className="no-print sticky top-0 z-40 border-b border-header-border bg-header-surface backdrop-blur-xl saturate-150 supports-backdrop-filter:bg-header-surface">
@@ -18,26 +19,30 @@ export function SiteHeader({ locale }: { locale: Locale }) {
           href="#content"
           className="sr-only rounded-lg px-3 py-2 text-sm font-medium text-text focus:not-sr-only"
         >
-          {tr.a11y.skipToContent}
+          {t('a11y.skipToContent')}
         </a>
 
         <Link
           href={`/${locale}`}
           className="font-semibold tracking-tight text-text hover:opacity-80 transition-opacity duration-200"
-          aria-label={tr.nav.home}
+          aria-label={t('nav.home')}
         >
-          {tr.brand.name}
+          {t('brand.name')}
         </Link>
 
-        <nav className="flex items-center gap-1" aria-label="Primary">
-          <NavLink href={`/${locale}/cv`}>{tr.nav.cv}</NavLink>
-          <NavLink href={`/${locale}/projects`}>{tr.nav.projects}</NavLink>
-          <NavLink href={`/${locale}/contact`}>{tr.nav.contact}</NavLink>
-
-          <ThemeToggle locale={locale} />
+        {/* Desktop nav */}
+        <nav className="hidden sm:flex items-center gap-1" aria-label="Primary">
+          <NavLink href={`/${locale}/cv`}>{t('nav.cv')}</NavLink>
+          <NavLink href={`/${locale}/projects`}>{t('nav.projects')}</NavLink>
+          <NavLink href={`/${locale}/contact`}>{t('nav.contact')}</NavLink>
+          <ThemeToggle />
           <LanguageSwitch locale={locale} />
         </nav>
+
+        {/* Mobile nav */}
+        <MobileNav locale={locale} />
       </Container>
     </header>
   );
 }
+

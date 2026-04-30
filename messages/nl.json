@@ -1,0 +1,71 @@
+{
+  "brand": {
+    "name": "Fleur Albers",
+    "location": "Haarlem"
+  },
+  "nav": {
+    "home": "Home",
+    "back": "Terug",
+    "cv": "CV",
+    "projects": "Projecten",
+    "contact": "Contact",
+    "switchLanguage": "Wissel taal",
+    "featured": "Uitgelicht",
+    "openMenu": "Menu openen",
+    "closeMenu": "Menu sluiten"
+  },
+  "a11y": {
+    "skipToContent": "Ga naar inhoud",
+    "toggleTheme": "Thema wisselen",
+    "themeDark": "Donker",
+    "themeLight": "Licht",
+    "themeContrast": "Hoog contrast",
+    "externalLinkNewTab": "Opent in een nieuw tabblad",
+    "useSystemTheme": "Gebruik systeem thema"
+  },
+  "seo": {
+    "siteName": "Fleur Albers",
+    "homeTitle": "Home",
+    "homeDescription": "Portfolio en CV van Fleur Albers (Haarlem) — Front-end Developer (React/Next.js).",
+    "projectsTitle": "Projecten",
+    "projectsDescription": "Selectie van projecten: multi-tenant apps, design systems en form-heavy workflows.",
+    "cvTitle": "CV",
+    "cvDescription": "CV van Fleur Albers — ervaring, projecten, skills en opleiding (print-friendly).",
+    "contactTitle": "Contact",
+    "contactDescription": "Contactgegevens en links om Fleur Albers te bereiken."
+  },
+  "footer": {
+    "linkedInLabel": "LinkedIn profiel (opent in nieuw tabblad)"
+  },
+  "pages": {
+    "projectsIntro": "Een selectie van producten en platformen waar ik aan heb gewerkt — met focus op UX, toegankelijkheid en onderhoudbare front-end architectuur.",
+    "cvTip": "Tip: gebruik je browser print-dialog voor een nette A4 export.",
+    "cvDownload": "Download CV (PDF)",
+    "projectWebsite": "Website"
+  },
+  "home": {
+    "role": "Front-end Developer · React & Next.js",
+    "tagline": "Ik bouw productieklare webapplicaties met React en Next.js — met oog voor UX, herbruikbaarheid en component-kwaliteit.",
+    "viewProjects": "Bekijk projecten",
+    "viewCv": "Bekijk CV",
+    "downloadCvLabel": "Download CV als PDF",
+    "downloadCv": "Download CV (PDF)",
+    "focusLabel": "Focus",
+    "profileLabel": "Profiel",
+    "driversLicense": "Rijbewijs",
+    "aboutTitle": "Over mij",
+    "aboutSubtitle": "Wie ik ben en wat me drijft",
+    "featuredTitle": "Uitgelicht",
+    "featuredSubtitle": "Een paar projecten waar ik met plezier aan heb gebouwd.",
+    "allProjects": "Alle projecten",
+    "allProjectsLabel": "Bekijk alle projecten",
+    "viewProjectLabel": "Bekijk project: {title}"
+  },
+  "contact": {
+    "heading": "Samenwerken?",
+    "subheading": "Stuur me een bericht via mail of LinkedIn.",
+    "emailLabel": "Mail Fleur",
+    "email": "Mail",
+    "linkedInLabel": "LinkedIn profiel (opent in nieuw tabblad)"
+  }
+}

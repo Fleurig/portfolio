@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 
-import type { Theme } from '@/src/lib/translations';
+export type Theme = 'dark' | 'light' | 'contrast';
 
 const THEME_KEY = 'theme';
 

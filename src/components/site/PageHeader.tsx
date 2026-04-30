@@ -1,18 +1,14 @@
 import Link from 'next/link';
-
-import type { Locale } from '@/src/lib/i18n';
-import { t } from '@/src/lib/translations';
+import { useTranslations } from 'next-intl';
 
 export function PageHeader({
-  locale,
   title,
   backHref,
 }: {
-  locale: Locale;
   title?: string;
   backHref?: string;
 }) {
-  const tr = t(locale);
+  const t = useTranslations('nav');
 
   return (
     <div className="flex flex-col gap-3">
@@ -24,7 +20,7 @@ export function PageHeader({
           <svg aria-hidden="true" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M10 12L6 8l4-4" />
           </svg>
-          <span>{tr.nav.back}</span>
+          <span>{t('back')}</span>
         </Link>
       ) : null}
 
@@ -36,3 +32,4 @@ export function PageHeader({
     </div>
   );
 }
+

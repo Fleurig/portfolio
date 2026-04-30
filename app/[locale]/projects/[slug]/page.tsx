@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { getTranslations } from 'next-intl/server';
 
 import { SiteLayout } from '@/src/components/site/SiteLayout';
 import { getProjectSlugs, getProjectMdx } from '@/src/lib/content';
 import { Mdx } from '@/src/components/mdx/Mdx';
-import { t } from '@/src/lib/translations';
 
 export const dynamic = 'force-static';
 
@@ -25,17 +25,17 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale, slug } = await params;
   if (locale !== 'nl' && locale !== 'en') return {};
-  const tr = t(locale);
+  const t = await getTranslations({ locale, namespace: 'seo' });
 
   const mdx = await getProjectMdx(locale, slug);
-  const title = mdx.frontmatter.title ?? tr.seo.projectsTitle;
+  const title = mdx.frontmatter.title ?? t('projectsTitle');
 
   return {
     title,
-    description: tr.seo.projectsDescription,
+    description: t('projectsDescription'),
     openGraph: {
       title,
-      description: tr.seo.projectsDescription,
+      description: t('projectsDescription'),
       locale,
     },
   };
@@ -49,7 +49,7 @@ export default async function ProjectDetailPage({
   const { locale, slug } = await params;
   if (locale !== 'nl' && locale !== 'en') return notFound();
 
-  const tr = t(locale);
+  const t = await getTranslations({ locale });
   const mdx = await getProjectMdx(locale, slug);
   const title = mdx.frontmatter.title;
 
@@ -67,11 +67,11 @@ export default async function ProjectDetailPage({
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-4 py-2 text-sm font-medium text-text shadow-sm hover:bg-surface-muted"
           >
-            {tr.pages.projectWebsite}
+            {t('pages.projectWebsite')}
             <span className="text-xs text-text-muted" aria-hidden="true">
               ↗
             </span>
-            <span className="sr-only">({tr.a11y.externalLinkNewTab})</span>
+            <span className="sr-only">({t('a11y.externalLinkNewTab')})</span>
           </a>
         </div>
       ) : null}

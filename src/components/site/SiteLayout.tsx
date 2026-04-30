@@ -23,7 +23,7 @@ export function SiteLayout({
         <Container className="py-10 sm:py-14">
           {title || backHref ? (
             <div className="mb-8">
-              <PageHeader locale={locale} title={title} backHref={backHref} />
+              <PageHeader title={title} backHref={backHref} />
             </div>
           ) : null}
           {children}
@@ -33,3 +33,4 @@ export function SiteLayout({
     </div>
   );
 }
+

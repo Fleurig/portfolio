@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import { getTranslations } from 'next-intl/server';
 
 import { SiteLayout } from '@/src/components/site/SiteLayout';
 import { getAllProjects, getPageMdx } from '@/src/lib/content';
 import { Mdx } from '@/src/components/mdx/Mdx';
-import { t } from '@/src/lib/translations';
 import { ButtonLink } from '@/src/components/ui/ButtonLink';
 import { Chip } from '@/src/components/ui/Chip';
 import { ProjectCard } from '@/src/components/site/ProjectCard';
@@ -20,14 +20,14 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   if (locale !== 'nl' && locale !== 'en') return {};
-  const tr = t(locale);
+  const t = await getTranslations({ locale, namespace: 'seo' });
 
   return {
-    title: tr.seo.homeTitle,
-    description: tr.seo.homeDescription,
+    title: t('homeTitle'),
+    description: t('homeDescription'),
     openGraph: {
-      title: tr.seo.homeTitle,
-      description: tr.seo.homeDescription,
+      title: t('homeTitle'),
+      description: t('homeDescription'),
       locale,
     },
   };
@@ -52,13 +52,10 @@ export default async function LocaleHomePage({
   const { locale } = await params;
   if (locale !== 'nl' && locale !== 'en') return notFound();
 
-  const tr = t(locale);
-
+  const t = await getTranslations({ locale });
   const mdx = await getPageMdx(locale, 'home');
   const projects = await getAllProjects(locale);
   const featured = projects.filter((p) => p.featured).slice(0, 4);
-
-  const isNl = locale === 'nl';
 
   const downloadHref =
     locale === 'en' ? '/cv-fleur-albers-en.pdf' : '/cv-fleur-albers-nl.pdf';
@@ -72,70 +69,55 @@ export default async function LocaleHomePage({
           aria-labelledby="home-hero-title"
         >
           <p className="text-sm font-medium text-text-muted">
-            {isNl ? 'Front-end Developer · React & Next.js' : 'Front-end Developer · React & Next.js'}
+            {t('home.role')}
           </p>
 
           <h1
             id="home-hero-title"
             className="mt-3 text-4xl font-semibold tracking-tight text-text sm:text-6xl"
           >
-            Fleur Albers
+            {t('brand.name')}
           </h1>
 
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-muted sm:text-lg">
-            {isNl
-              ? 'Ik bouw productieklare webapplicaties met React en Next.js — met oog voor UX, herbruikbaarheid en component-kwaliteit.'
-              : 'I build production-ready web applications with React and Next.js — with a focus on UX, reusability, and component quality.'}
+            {t('home.tagline')}
           </p>
 
           <div className="mt-6 flex flex-wrap gap-3">
             <ButtonLink href={`/${locale}/projects`} variant="primary">
-              {isNl ? 'Bekijk projecten' : 'View projects'}
+              {t('home.viewProjects')}
             </ButtonLink>
             <ButtonLink href={`/${locale}/cv`} variant="secondary">
-              {isNl ? 'Bekijk CV' : 'View CV'}
+              {t('home.viewCv')}
             </ButtonLink>
             <a
               href={downloadHref}
               className="glass glass--elevated glass-hover inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium text-text-muted transition hover:text-text"
-              aria-label={isNl ? 'Download CV als PDF' : 'Download CV as PDF'}
+              aria-label={t('home.downloadCvLabel')}
             >
-              {isNl ? 'Download CV (PDF)' : 'Download CV (PDF)'}
+              {t('home.downloadCv')}
             </a>
           </div>
 
           <div
             className="mt-7 flex flex-wrap gap-2"
-            aria-label={isNl ? 'Focus' : 'Focus'}
+            aria-label={t('home.focusLabel')}
           >
             <Chip>Next.js</Chip>
             <Chip>React</Chip>
             <Chip>TypeScript</Chip>
-            <Chip>{isNl ? 'Design systems' : 'Design systems'}</Chip>
-            <Chip>{isNl ? 'Forms & workflows' : 'Forms & workflows'}</Chip>
+            <Chip>Design systems</Chip>
+            <Chip>Forms &amp; workflows</Chip>
           </div>
 
           <div
             className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2"
-            aria-label={isNl ? 'Profiel' : 'Profile'}
+            aria-label={t('home.profileLabel')}
           >
-            <MetaItem icon="📍" label={tr.brand.location} />
-            <span
-              aria-hidden="true"
-              className="text-sm text-text-muted"
-            >
-              |
-            </span>
-            <MetaItem
-              icon="🚗"
-              label={isNl ? 'Rijbewijs' : "Driver's license"}
-            />
-            <span
-              aria-hidden="true"
-              className="text-sm text-text-muted"
-            >
-              |
-            </span>
+            <MetaItem icon="📍" label={t('brand.location')} />
+            <span aria-hidden="true" className="text-sm text-text-muted">|</span>
+            <MetaItem icon="🚗" label={t('home.driversLicense')} />
+            <span aria-hidden="true" className="text-sm text-text-muted">|</span>
             <MetaItem icon="🎂" label="26-08-1999" />
           </div>
         </div>
@@ -147,12 +129,10 @@ export default async function LocaleHomePage({
           <div className="grid gap-8 md:grid-cols-12">
             <div className="md:col-span-4">
               <h2 className="text-xl font-semibold tracking-tight text-text">
-                {isNl ? 'Over mij' : 'About'}
+                {t('home.aboutTitle')}
               </h2>
               <p className="mt-2 text-sm text-text-muted">
-                {isNl
-                  ? 'Wie ik ben en wat me drijft'
-                  : 'Who I am and what drives me'}
+                {t('home.aboutSubtitle')}
               </p>
             </div>
             <div className="md:col-span-8">
@@ -172,20 +152,18 @@ export default async function LocaleHomePage({
               id="home-featured"
               className="text-xl font-semibold tracking-tight text-text"
             >
-              {isNl ? 'Uitgelicht' : 'Featured'}
+              {t('home.featuredTitle')}
             </h2>
             <p className="mt-2 text-sm text-text-muted">
-              {isNl
-                ? 'Een paar projecten waar ik met plezier aan heb gebouwd.'
-                : 'A few projects I enjoyed building.'}
+              {t('home.featuredSubtitle')}
             </p>
           </div>
           <Link
             href={`/${locale}/projects`}
             className="text-sm font-medium text-text underline underline-offset-4 hover:opacity-90"
-            aria-label={isNl ? 'Bekijk alle projecten' : 'View all projects'}
+            aria-label={t('home.allProjectsLabel')}
           >
-            {isNl ? 'Alle projecten' : 'All projects'}
+            {t('home.allProjects')}
           </Link>
         </div>
 
@@ -194,18 +172,17 @@ export default async function LocaleHomePage({
             <Link
               key={p.slug}
               href={`/${locale}/projects/${p.slug}`}
-              aria-label={
-                isNl ? `Bekijk project: ${p.title}` : `View project: ${p.title}`
-              }
+              aria-label={t('home.viewProjectLabel', { title: p.title })}
             >
-              <ProjectCard project={p} locale={locale} />
+              <ProjectCard project={p} />
             </Link>
           ))}
         </div>
       </section>
 
       {/* Contact CTA */}
-      <ContactCta locale={locale} />
+      <ContactCta />
     </SiteLayout>
   );
 }
+

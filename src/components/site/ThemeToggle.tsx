@@ -1,8 +1,8 @@
 "use client";
 
 import { useSyncExternalStore } from 'react';
+import { useTranslations } from 'next-intl';
 
-import { t } from '@/src/lib/translations';
 import { useTheme } from '@/src/lib/useTheme';
 
 const emptySubscribe = () => () => {};
@@ -17,8 +17,8 @@ function themeIcon(theme: 'dark' | 'light' | 'contrast') {
   return '☀';
 }
 
-export function ThemeToggle({ locale }: { locale: 'nl' | 'en' }) {
-  const tr = t(locale);
+export function ThemeToggle() {
+  const t = useTranslations('a11y');
   const { theme, setTheme, clearTheme } = useTheme();
   const hydrated = useHydrated();
   const visibleTheme = hydrated ? theme : 'light';
@@ -27,34 +27,35 @@ export function ThemeToggle({ locale }: { locale: 'nl' | 'en' }) {
 
   const label =
     visibleTheme === 'dark'
-      ? tr.a11y.themeDark
+      ? t('themeDark')
       : visibleTheme === 'light'
-        ? tr.a11y.themeLight
-        : tr.a11y.themeContrast;
+        ? t('themeLight')
+        : t('themeContrast');
 
   return (
-    <div className="ml-1 inline-flex items-center gap-1">
+    <div className="inline-flex items-center gap-1">
       <button
         type="button"
         onClick={() => setTheme(next)}
-        className="btn btn-surface inline-flex items-center gap-2 px-2.5 py-2 text-xs"
-        aria-label={`${tr.a11y.toggleTheme}: ${label}`}
-        title={`${tr.a11y.toggleTheme}: ${label}`}
+        className="btn btn-surface inline-flex items-center gap-1.5 px-2.5 py-2 text-xs"
+        aria-label={`${t('toggleTheme')}: ${label}`}
+        title={`${t('toggleTheme')}: ${label}`}
         aria-pressed={visibleTheme !== 'light'}
       >
         <span aria-hidden="true">{themeIcon(visibleTheme)}</span>
-        <span>{label}</span>
+        <span className="hidden sm:inline">{label}</span>
       </button>
 
       <button
         type="button"
         onClick={clearTheme}
         className="btn btn-surface inline-flex items-center px-2.5 py-2 text-xs"
-        aria-label={tr.a11y.useSystemTheme}
-        title={tr.a11y.useSystemTheme}
+        aria-label={t('useSystemTheme')}
+        title={t('useSystemTheme')}
       >
         <span aria-hidden="true">🖥</span>
       </button>
     </div>
   );
 }
+
