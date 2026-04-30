@@ -20,9 +20,11 @@
 
 /* Prevent horizontal scroll without breaking position:fixed.
    overflow-x:clip clips at the viewport edge but — unlike hidden — does NOT
-   create a scroll container, so fixed-positioned elements (the mobile nav
-   drawer, its backdrop) remain relative to the true viewport in all browsers
-   including Safari. position:sticky is also unaffected. */
+   create a scroll container, so fixed-positioned elements remain relative to
+   the true viewport in all browsers including Safari. Full-screen overlays are
+   portalled to <body> so legitimate popovers/tooltips are not clipped by html.
+   If older browser support is ever expanded, re-check `overflow-x:clip`
+   compatibility before relying on this behavior. */
 html {
   overflow-x: clip;
   text-rendering: optimizeLegibility;
