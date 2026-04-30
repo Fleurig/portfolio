@@ -39,6 +39,9 @@
   },
   "pages": {
     "projectsIntro": "Een selectie van producten en platformen waar ik aan heb gewerkt — met focus op UX, toegankelijkheid en onderhoudbare front-end architectuur.",
+    "projectsWord": "projecten",
+    "projectsOtherLabel": "Overige projecten",
+    "projectsOther": "Overige",
     "cvTip": "Tip: gebruik je browser print-dialog voor een nette A4 export.",
     "cvDownload": "Download CV (PDF)",
     "projectWebsite": "Website"
@@ -66,6 +69,15 @@
     "subheading": "Stuur me een bericht via mail of LinkedIn.",
     "emailLabel": "Mail Fleur",
     "email": "Mail",
-    "linkedInLabel": "LinkedIn profiel (opent in nieuw tabblad)"
+    "linkedInLabel": "LinkedIn profiel (opent in nieuw tabblad)",
+    "availability": "Beschikbaar voor nieuwe projecten",
+    "responseTime": "Ik reageer doorgaans binnen 24 uur.",
+    "emailCardTitle": "E-mail",
+    "linkedInCardTitle": "LinkedIn",
+    "availableForTitle": "Beschikbaar voor",
+    "availableFor1": "Freelance opdrachten",
+    "availableFor2": "Vast dienstverband",
+    "availableFor3": "Front-end & React projecten",
+    "availableFor4": "Design system werk"
   }
 }

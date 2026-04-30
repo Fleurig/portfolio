@@ -39,6 +39,9 @@
   },
   "pages": {
     "projectsIntro": "A selection of products and platforms I worked on — focusing on UX, accessibility, and maintainable front-end architecture.",
+    "projectsWord": "projects",
+    "projectsOtherLabel": "Other projects",
+    "projectsOther": "More",
     "cvTip": "Tip: use your browser print dialog for a clean A4 export.",
     "cvDownload": "Download CV (PDF)",
     "projectWebsite": "Website"
@@ -66,6 +69,15 @@
     "subheading": "Send me a message via email or LinkedIn.",
     "emailLabel": "Email Fleur",
     "email": "Email",
-    "linkedInLabel": "LinkedIn profile (opens in a new tab)"
+    "linkedInLabel": "LinkedIn profile (opens in a new tab)",
+    "availability": "Available for new projects",
+    "responseTime": "I typically respond within 24 hours.",
+    "emailCardTitle": "Email",
+    "linkedInCardTitle": "LinkedIn",
+    "availableForTitle": "Available for",
+    "availableFor1": "Freelance projects",
+    "availableFor2": "Full-time positions",
+    "availableFor3": "Front-end & React work",
+    "availableFor4": "Design system projects"
   }
 }

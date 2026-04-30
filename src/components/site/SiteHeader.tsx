@@ -12,8 +12,14 @@ export function SiteHeader({ locale }: { locale: Locale }) {
   const t = useTranslations();
 
   return (
-    <header className="no-print sticky top-0 z-40 border-b border-header-border bg-header-surface backdrop-blur-xl saturate-150 supports-backdrop-filter:bg-header-surface">
-      <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/30 to-transparent pointer-events-none" aria-hidden="true" />
+    <header className="no-print sticky top-0 z-40 glass-header">
+      {/* Specular top-edge highlight */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-px"
+        style={{ background: 'linear-gradient(to right, transparent 10%, rgba(255,255,255,0.55) 50%, transparent 90%)' }}
+        aria-hidden="true"
+      />
+
       <Container className="flex h-14 items-center justify-between gap-4">
         <a
           href="#content"
@@ -24,18 +30,21 @@ export function SiteHeader({ locale }: { locale: Locale }) {
 
         <Link
           href={`/${locale}`}
-          className="font-semibold tracking-tight text-text hover:opacity-80 transition-opacity duration-200"
+          className="text-[15px] font-semibold tracking-tight text-text transition-opacity duration-200 hover:opacity-60"
           aria-label={t('nav.home')}
         >
           {t('brand.name')}
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden sm:flex items-center gap-1" aria-label="Primary">
+        <nav className="hidden sm:flex items-center gap-0.5" aria-label="Primary">
           <NavLink href={`/${locale}/cv`}>{t('nav.cv')}</NavLink>
           <NavLink href={`/${locale}/projects`}>{t('nav.projects')}</NavLink>
           <NavLink href={`/${locale}/contact`}>{t('nav.contact')}</NavLink>
-          <ThemeToggle />
+
+          <span className="mx-2 h-4 w-px bg-border opacity-60" aria-hidden="true" />
+
+          <ThemeToggle compact />
           <LanguageSwitch locale={locale} />
         </nav>
 

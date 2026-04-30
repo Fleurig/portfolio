@@ -17,13 +17,18 @@ function themeIcon(theme: 'dark' | 'light' | 'contrast') {
   return '☀';
 }
 
-export function ThemeToggle() {
+export function ThemeToggle({ compact = false }: { compact?: boolean }) {
   const t = useTranslations('a11y');
   const { theme, setTheme, clearTheme } = useTheme();
   const hydrated = useHydrated();
   const visibleTheme = hydrated ? theme : 'light';
 
-  const next = visibleTheme === 'dark' ? 'light' : visibleTheme === 'light' ? 'contrast' : 'dark';
+  const next =
+    visibleTheme === 'dark'
+      ? 'light'
+      : visibleTheme === 'light'
+        ? 'contrast'
+        : 'dark';
 
   const label =
     visibleTheme === 'dark'
@@ -33,27 +38,27 @@ export function ThemeToggle() {
         : t('themeContrast');
 
   return (
-    <div className="inline-flex items-center gap-1">
+    <div className="inline-flex items-center gap-0.5">
       <button
         type="button"
         onClick={() => setTheme(next)}
-        className="btn btn-surface inline-flex items-center gap-1.5 px-2.5 py-2 text-xs"
+        className="btn btn-surface inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs"
         aria-label={`${t('toggleTheme')}: ${label}`}
         title={`${t('toggleTheme')}: ${label}`}
         aria-pressed={visibleTheme !== 'light'}
       >
-        <span aria-hidden="true">{themeIcon(visibleTheme)}</span>
-        <span>{label}</span>
+        <span aria-hidden="true" className="text-sm leading-none">{themeIcon(visibleTheme)}</span>
+        {!compact && <span>{label}</span>}
       </button>
 
       <button
         type="button"
         onClick={clearTheme}
-        className="btn btn-surface inline-flex items-center px-2.5 py-2 text-xs"
+        className="btn btn-surface inline-flex items-center px-2 py-1.5 text-xs"
         aria-label={t('useSystemTheme')}
         title={t('useSystemTheme')}
       >
-        <span aria-hidden="true">🖥</span>
+        <span aria-hidden="true" className="text-sm leading-none">🖥</span>
       </button>
     </div>
   );

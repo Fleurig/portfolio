@@ -67,7 +67,38 @@ html {
   }
 }
 
-/* ── Glass card ─────────────────────────────── */
+/* ── Glass header (Apple-style frosted bar) ── */
+.glass-header {
+  -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.04);
+  backdrop-filter: blur(40px) saturate(200%) brightness(1.04);
+  background: var(--color-header-surface);
+  border-bottom: 1px solid var(--color-header-border);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.12),
+    0 4px 32px rgba(0, 0, 0, 0.06);
+}
+
+:root[data-theme='dark'] .glass-header {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.06),
+    0 4px 32px rgba(0, 0, 0, 0.35);
+}
+
+/* ── Glass drawer (mobile nav panel) ── */
+.glass-drawer {
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
+  backdrop-filter: blur(32px) saturate(180%);
+  background: color-mix(in srgb, var(--color-header-surface) 96%, transparent);
+  border-left: 1px solid var(--glass-border);
+  box-shadow: -8px 0 40px rgba(0, 0, 0, 0.14), var(--glass-highlight);
+}
+
+:root[data-theme='dark'] .glass-drawer {
+  background: color-mix(in srgb, var(--color-header-surface) 92%, transparent);
+  box-shadow: -8px 0 40px rgba(0, 0, 0, 0.55), var(--glass-highlight);
+}
+
+
 .glass-card {
   background: var(--glass-bg-light);
   border: 1px solid var(--glass-border-light);

@@ -173,6 +173,7 @@ export default async function LocaleHomePage({
               key={p.slug}
               href={`/${locale}/projects/${p.slug}`}
               aria-label={t('home.viewProjectLabel', { title: p.title })}
+              className="group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-bg rounded-2xl"
             >
               <ProjectCard project={p} />
             </Link>

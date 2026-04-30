@@ -39,22 +39,73 @@ export default async function ProjectsIndexPage({
 
   const t = await getTranslations({ locale });
   const projects = await getAllProjects(locale);
+  const featured = projects.filter((p) => p.featured);
+  const rest = projects.filter((p) => !p.featured);
 
   return (
-    <SiteLayout locale={locale} title={t('seo.projectsTitle')} backHref={`/${locale}`}>
-      <header className="mb-8">
-        <p className="mt-2 max-w-2xl text-text-muted">
+    <SiteLayout locale={locale} backHref={`/${locale}`}>
+      {/* Page header */}
+      <div className="mb-10">
+        <h1 className="text-3xl font-semibold tracking-tight text-text sm:text-4xl">
+          {t('seo.projectsTitle')}
+        </h1>
+        <p className="mt-3 max-w-2xl text-base leading-relaxed text-text-muted">
           {t('pages.projectsIntro')}
         </p>
-      </header>
 
-      <div className="grid gap-4 md:grid-cols-2">
-        {projects.map((p) => (
-          <Link key={p.slug} href={`/${locale}/projects/${p.slug}`}>
-            <ProjectCard project={p} />
-          </Link>
-        ))}
+        <div className="mt-3 flex items-center gap-2">
+          <span className="text-xs font-medium text-text-muted">
+            {projects.length}&nbsp;{t('pages.projectsWord')}
+          </span>
+        </div>
       </div>
+
+      {/* Featured */}
+      {featured.length > 0 ? (
+        <section aria-label={t('home.featuredTitle')}>
+          <h2 className="mb-4 text-xs font-semibold uppercase tracking-widest text-text-muted">
+            {t('nav.featured')}
+          </h2>
+          <div className="grid gap-4 md:grid-cols-2">
+            {featured.map((p) => (
+              <Link
+                key={p.slug}
+                href={`/${locale}/projects/${p.slug}`}
+                aria-label={t('home.viewProjectLabel', { title: p.title })}
+                className="group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-bg rounded-2xl"
+              >
+                <ProjectCard project={p} />
+              </Link>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {/* Remaining projects */}
+      {rest.length > 0 ? (
+        <section
+          aria-label={t('pages.projectsOtherLabel')}
+          className={featured.length > 0 ? 'mt-10' : undefined}
+        >
+          {featured.length > 0 ? (
+            <h2 className="mb-4 text-xs font-semibold uppercase tracking-widest text-text-muted">
+              {t('pages.projectsOther')}
+            </h2>
+          ) : null}
+          <div className="grid gap-4 md:grid-cols-2">
+            {rest.map((p) => (
+              <Link
+                key={p.slug}
+                href={`/${locale}/projects/${p.slug}`}
+                aria-label={t('home.viewProjectLabel', { title: p.title })}
+                className="group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-bg rounded-2xl"
+              >
+                <ProjectCard project={p} />
+              </Link>
+            ))}
+          </div>
+        </section>
+      ) : null}
     </SiteLayout>
   );
 }

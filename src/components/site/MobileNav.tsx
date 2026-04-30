@@ -12,40 +12,41 @@ export function MobileNav({ locale }: { locale: Locale }) {
   const [open, setOpen] = useState(false);
   const t = useTranslations();
   const pathname = usePathname();
-  const menuRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
 
   const close = () => setOpen(false);
 
-  // Close on Escape key
+  // Escape key closes drawer + returns focus
   useEffect(() => {
     if (!open) return;
-
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        setOpen(false);
+        close();
         triggerRef.current?.focus();
       }
     };
-
     document.addEventListener('keydown', handleKey);
     return () => document.removeEventListener('keydown', handleKey);
   }, [open]);
 
-  // Prevent body scroll when open
+  // Lock body scroll while open
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [open]);
 
   const navLinks = [
+    { href: `/${locale}`, label: t('nav.home') },
     { href: `/${locale}/cv`, label: t('nav.cv') },
     { href: `/${locale}/projects`, label: t('nav.projects') },
     { href: `/${locale}/contact`, label: t('nav.contact') },
   ];
 
   return (
-    <div className="flex sm:hidden items-center gap-2">
+    <div className="flex sm:hidden items-center">
+      {/* Hamburger trigger */}
       <button
         ref={triggerRef}
         type="button"
@@ -53,73 +54,91 @@ export function MobileNav({ locale }: { locale: Locale }) {
         aria-expanded={open}
         aria-controls="mobile-menu"
         aria-label={open ? t('nav.closeMenu') : t('nav.openMenu')}
-        className="btn btn-surface p-2"
+        className="btn btn-surface flex h-9 w-9 flex-col items-center justify-center gap-[5px] p-0"
       >
-        {/* Animated hamburger icon */}
-        <span aria-hidden="true" className="flex flex-col justify-center items-center w-5 h-5 gap-1">
-          <span
-            className={`block h-0.5 w-5 rounded-full bg-current transition-all duration-200 origin-center ${open ? 'translate-y-1.5 rotate-45' : ''}`}
-          />
-          <span
-            className={`block h-0.5 w-5 rounded-full bg-current transition-all duration-200 ${open ? 'opacity-0 scale-x-0' : ''}`}
-          />
-          <span
-            className={`block h-0.5 w-5 rounded-full bg-current transition-all duration-200 origin-center ${open ? '-translate-y-1.5 -rotate-45' : ''}`}
-          />
-        </span>
+        <span
+          aria-hidden="true"
+          className={`block h-[1.5px] w-[18px] rounded-full bg-current origin-center transition-all duration-[250ms] ${open ? 'translate-y-[6.5px] rotate-45' : ''}`}
+        />
+        <span
+          aria-hidden="true"
+          className={`block h-[1.5px] w-[18px] rounded-full bg-current transition-all duration-[250ms] ${open ? 'opacity-0 scale-x-50' : ''}`}
+        />
+        <span
+          aria-hidden="true"
+          className={`block h-[1.5px] w-[18px] rounded-full bg-current origin-center transition-all duration-[250ms] ${open ? '-translate-y-[6.5px] -rotate-45' : ''}`}
+        />
       </button>
 
       {/* Backdrop */}
-      {open && (
-        <div
-          className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm"
-          aria-hidden="true"
-          onClick={close}
-        />
-      )}
+      <div
+        onClick={close}
+        aria-hidden="true"
+        className={`fixed inset-0 z-40 transition-opacity duration-300 ${open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+        style={{ background: 'rgba(0,0,0,0.32)' }}
+      />
 
-      {/* Drawer */}
+      {/* Slide-in drawer */}
       <div
         id="mobile-menu"
-        ref={menuRef}
         role="dialog"
         aria-modal="true"
-        aria-label={t('nav.openMenu')}
-        className={`fixed inset-y-0 right-0 z-50 w-72 max-w-[85vw] flex flex-col glass glass--elevated shadow-2xl transition-transform duration-300 ease-in-out ${open ? 'translate-x-0' : 'translate-x-full'}`}
+        aria-label="Navigation menu"
+        className={`glass-drawer fixed inset-y-0 right-0 z-50 flex w-72 max-w-[88vw] flex-col transition-transform duration-300 ease-[cubic-bezier(0.32,0,0.18,1)] ${open ? 'translate-x-0' : 'translate-x-full'}`}
       >
         {/* Drawer header */}
-        <div className="flex items-center justify-between border-b border-border px-5 h-14">
-          <span className="font-semibold tracking-tight text-text">
+        <div className="flex h-14 items-center justify-between border-b border-border/60 px-5">
+          <span className="text-[15px] font-semibold tracking-tight text-text">
             {t('brand.name')}
           </span>
           <button
             type="button"
             onClick={close}
             aria-label={t('nav.closeMenu')}
-            className="btn btn-surface p-2"
+            className="btn btn-surface flex h-8 w-8 items-center justify-center p-0"
           >
-            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-              <path d="M2 2l12 12M14 2L2 14" />
+            <svg
+              aria-hidden="true"
+              width="14"
+              height="14"
+              viewBox="0 0 14 14"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+            >
+              <path d="M1 1l12 12M13 1L1 13" />
             </svg>
           </button>
         </div>
 
         {/* Nav links */}
-        <nav className="flex-1 overflow-y-auto px-4 py-6" aria-label="Mobile navigation">
-          <ul className="flex flex-col gap-1">
+        <nav className="flex-1 overflow-y-auto px-3 py-4" aria-label="Mobile navigation">
+          <ul className="flex flex-col gap-0.5">
             {navLinks.map(({ href, label }) => {
-              const active = pathname === href || pathname.startsWith(`${href}/`);
+              // Exact match for home, prefix for sub-pages
+              const active =
+                href === `/${locale}`
+                  ? pathname === href
+                  : pathname === href || pathname.startsWith(`${href}/`);
               return (
                 <li key={href}>
                   <Link
                     href={href}
                     onClick={close}
                     aria-current={active ? 'page' : undefined}
-                    className={`flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-medium transition-colors ${active ? 'bg-surface text-text' : 'text-text-muted hover:bg-surface-muted hover:text-text'}`}
+                    className={`group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-150 ${
+                      active
+                        ? 'bg-surface text-text shadow-[0_1px_3px_rgba(0,0,0,0.06)]'
+                        : 'text-text-muted hover:bg-surface-muted hover:text-text'
+                    }`}
                   >
-                    {active && (
-                      <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
-                    )}
+                    <span
+                      aria-hidden="true"
+                      className={`h-1.5 w-1.5 flex-shrink-0 rounded-full transition-all duration-200 ${
+                        active ? 'bg-primary' : 'bg-transparent group-hover:bg-text-muted'
+                      }`}
+                    />
                     {label}
                   </Link>
                 </li>
@@ -129,9 +148,11 @@ export function MobileNav({ locale }: { locale: Locale }) {
         </nav>
 
         {/* Bottom toolbar */}
-        <div className="border-t border-border px-4 py-4 flex flex-wrap items-center gap-2">
-          <ThemeToggle />
-          <LanguageSwitch locale={locale} />
+        <div className="border-t border-border/60 px-4 py-3">
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <LanguageSwitch locale={locale} />
+          </div>
         </div>
       </div>
     </div>

@@ -60,17 +60,21 @@ export default async function ProjectDetailPage({
       backHref={`/${locale}/projects`}
     >
       {mdx.frontmatter.url ? (
-        <div className="not-prose mb-6">
+        <div className="not-prose mb-8">
           <a
             href={mdx.frontmatter.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-4 py-2 text-sm font-medium text-text shadow-sm hover:bg-surface-muted"
+            className="glass glass--elevated glass-hover inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
           >
-            {t('pages.projectWebsite')}
-            <span className="text-xs text-text-muted" aria-hidden="true">
+            <span
+              aria-hidden="true"
+              className="flex h-6 w-6 items-center justify-center rounded-full text-xs"
+              style={{ background: 'rgba(124,58,237,0.12)' }}
+            >
               ↗
             </span>
+            {t('pages.projectWebsite')}
             <span className="sr-only">({t('a11y.externalLinkNewTab')})</span>
           </a>
         </div>
