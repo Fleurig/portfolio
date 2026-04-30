@@ -7,10 +7,10 @@ export function ContactCta({ locale }: { locale: 'nl' | 'en' }) {
     <Card className="mt-12">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h2 className="text-lg font-semibold tracking-tight text-[var(--color-card-text)]">
+          <h2 className="text-lg font-semibold tracking-tight text-card-text">
             {isNl ? 'Samenwerken?' : 'Want to work together?'}
           </h2>
-          <p className="mt-1 text-sm text-[var(--color-card-text-muted)]">
+          <p className="mt-1 text-sm text-card-text-muted">
             {isNl
               ? 'Stuur me een bericht via mail of LinkedIn.'
               : 'Send me a message via email or LinkedIn.'}
@@ -20,7 +20,7 @@ export function ContactCta({ locale }: { locale: 'nl' | 'en' }) {
         <div className="flex flex-wrap gap-2">
           <a
             href="mailto:fleuralbers@live.nl"
-            className="glass inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium text-[var(--color-text)] transition hover:opacity-90"
+            className="glass inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium text-card-text transition hover:opacity-90"
             aria-label={isNl ? 'Mail Fleur' : 'Email Fleur'}
           >
             {isNl ? 'Mail' : 'Email'}
@@ -29,11 +29,11 @@ export function ContactCta({ locale }: { locale: 'nl' | 'en' }) {
             href="https://www.linkedin.com/in/fleuralbers/"
             target="_blank"
             rel="noopener noreferrer"
-            className="glass inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium text-[var(--color-text)] transition hover:opacity-90"
+            className="glass inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium text-card-text transition hover:opacity-90"
             aria-label={isNl ? 'LinkedIn profiel (opent in nieuw tabblad)' : 'LinkedIn profile (opens in a new tab)'}
           >
             LinkedIn
-            <span aria-hidden="true" className="ml-1 text-xs text-[var(--color-text-muted)]">
+            <span aria-hidden="true" className="ml-1 text-xs text-card-text-muted">
               ↗
             </span>
           </a>

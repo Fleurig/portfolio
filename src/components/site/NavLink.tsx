@@ -23,16 +23,16 @@ export function NavLink({
       aria-current={active ? 'page' : undefined}
       className={clsx(
         'relative rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200',
-        'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]',
+        'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus',
         active
-          ? 'bg-[var(--color-surface)] text-[var(--color-text)] shadow-sm'
-          : 'text-[var(--color-text-muted)] hover:bg-[var(--color-surface-muted)] hover:text-[var(--color-text)]',
+          ? 'bg-surface text-text shadow-sm'
+          : 'text-text-muted hover:bg-surface-muted hover:text-text',
       )}
     >
       {children}
       {active && (
         <span
-          className="absolute inset-x-2 -bottom-px h-0.5 rounded-full bg-[var(--color-primary)]"
+          className="absolute inset-x-2 -bottom-px h-0.5 rounded-full bg-primary"
           aria-hidden="true"
         />
       )}

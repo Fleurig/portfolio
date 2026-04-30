@@ -151,8 +151,8 @@ export default async function LocaleHomePage({
               </h2>
               <p className="mt-2 text-sm text-text-muted">
                 {isNl
-                  ? 'Wie ik ben en wat me drijft.'
-                  : 'Who I am and what drives me.'}
+                  ? 'Wie ik ben en wat me drijft'
+                  : 'Who I am and what drives me'}
               </p>
             </div>
             <div className="md:col-span-8">
