@@ -42,7 +42,7 @@ export default async function CvPage({
     locale === 'en' ? '/cv-fleur-albers-en.pdf' : '/cv-fleur-albers-nl.pdf';
 
   return (
-    <SiteLayout locale={locale} title={t('seo.cvTitle')} backHref={`/${locale}`}>
+    <SiteLayout locale={locale} backHref={`/${locale}`}>
       {/* Download / print toolbar */}
       <div className="no-print mb-8 glass glass--elevated rounded-2xl p-4 sm:p-5">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
