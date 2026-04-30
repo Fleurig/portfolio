@@ -43,7 +43,7 @@ export function ThemeToggle() {
         aria-pressed={visibleTheme !== 'light'}
       >
         <span aria-hidden="true">{themeIcon(visibleTheme)}</span>
-        <span className="hidden sm:inline">{label}</span>
+        <span>{label}</span>
       </button>
 
       <button
@@ -58,4 +58,3 @@ export function ThemeToggle() {
     </div>
   );
 }
-
