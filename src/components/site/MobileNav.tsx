@@ -120,7 +120,7 @@ export function MobileNav({ locale }: { locale: Locale }) {
               <div
                 onClick={close}
                 aria-hidden="true"
-                className={`fixed inset-0 z-40 bg-black/45 transition-opacity duration-300 ${
+                className={`fixed inset-0 z-40 bg-black/18 transition-opacity duration-300 ${
                   open ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
                 }`}
               />
@@ -135,12 +135,12 @@ export function MobileNav({ locale }: { locale: Locale }) {
                 aria-modal="true"
                 aria-labelledby={titleId}
                 aria-hidden={!open}
-                className={`glass-drawer fixed inset-y-0 right-0 z-50 flex w-80 max-w-[90vw] flex-col transition-transform duration-300 ease-[cubic-bezier(0.32,0,0.18,1)] ${
-                  open ? 'translate-x-0' : 'pointer-events-none translate-x-full'
+                className={`glass-drawer fixed inset-0 z-50 flex min-h-screen flex-col transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.32,0,0.18,1)] ${
+                  open ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-4 opacity-0'
                 }`}
               >
                 {/* Drawer header */}
-                <div className="flex h-14 flex-shrink-0 items-center justify-between border-b border-border/60 px-5">
+                <div className="flex h-16 flex-shrink-0 items-center justify-between border-b border-border/50 px-5 sm:px-6">
                   <span id={titleId} className="text-[15px] font-semibold tracking-tight text-text">
                     {t('nav.menuLabel')}
                   </span>
@@ -166,8 +166,8 @@ export function MobileNav({ locale }: { locale: Locale }) {
                 </div>
 
                 {/* Nav links */}
-                <nav className="flex-1 overflow-y-auto px-3 py-4" aria-label={t('nav.menuLabel')}>
-                  <ul className="flex flex-col gap-1">
+                <nav className="flex-1 overflow-y-auto px-4 py-6 sm:px-6" aria-label={t('nav.menuLabel')}>
+                  <ul className="flex flex-col gap-2">
                     {navLinks.map(({ href, label }) => {
                       const active =
                         href === `/${locale}`
@@ -179,10 +179,10 @@ export function MobileNav({ locale }: { locale: Locale }) {
                             href={href}
                             onClick={close}
                             aria-current={active ? 'page' : undefined}
-                            className={`group flex items-center gap-3 rounded-xl px-4 py-3 text-[15px] font-medium transition-all duration-150 ${
+                            className={`group flex items-center gap-3 rounded-2xl px-5 py-4 text-base font-medium transition-all duration-150 ${
                               active
-                                ? 'bg-surface text-text shadow-[0_1px_3px_rgba(0,0,0,0.06)]'
-                                : 'text-text-muted hover:bg-surface-muted hover:text-text'
+                                ? 'bg-white/55 text-text shadow-[0_10px_30px_rgba(0,0,0,0.08)]'
+                                : 'text-text-muted hover:bg-white/35 hover:text-text'
                             }`}
                           >
                             <span
@@ -200,7 +200,7 @@ export function MobileNav({ locale }: { locale: Locale }) {
                 </nav>
 
                 {/* Bottom toolbar */}
-                <div className="flex-shrink-0 border-t border-border/60 px-4 py-4">
+                <div className="flex-shrink-0 border-t border-border/50 px-4 py-4 sm:px-6">
                   <div className="flex items-center gap-2">
                     <ThemeToggle compact />
                     <LanguageSwitch locale={locale} />
