@@ -37,12 +37,12 @@ export function SiteHeader({ locale }: { locale: Locale }) {
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden sm:flex items-center gap-0.5" aria-label="Primary">
+        <nav className="hidden sm:flex items-center gap-1" aria-label="Primary">
           <NavLink href={`/${locale}/cv`}>{t('nav.cv')}</NavLink>
           <NavLink href={`/${locale}/projects`}>{t('nav.projects')}</NavLink>
           <NavLink href={`/${locale}/contact`}>{t('nav.contact')}</NavLink>
 
-          <span className="mx-2 h-4 w-px bg-border opacity-60" aria-hidden="true" />
+          <span className="h-4 w-px bg-border opacity-60" aria-hidden="true" />
 
           <ThemeToggle compact />
           <LanguageSwitch locale={locale} />

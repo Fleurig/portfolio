@@ -38,11 +38,11 @@ export function ThemeToggle({ compact = false }: { compact?: boolean }) {
         : t('themeContrast');
 
   return (
-    <div className="inline-flex items-center gap-0.5">
+    <div className="inline-flex items-center gap-1">
       <button
         type="button"
         onClick={() => setTheme(next)}
-        className="btn btn-surface inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs"
+        className="btn btn-surface inline-flex items-center justify-center text-2xl p-0 h-11 w-11"
         aria-label={`${t('toggleTheme')}: ${label}`}
         title={`${t('toggleTheme')}: ${label}`}
         aria-pressed={visibleTheme !== 'light'}
@@ -51,15 +51,15 @@ export function ThemeToggle({ compact = false }: { compact?: boolean }) {
         {!compact && <span>{label}</span>}
       </button>
 
-      <button
+      {/* <button
         type="button"
         onClick={clearTheme}
-        className="btn btn-surface inline-flex items-center px-2 py-1.5 text-xs"
+        className="btn btn-surface inline-flex items-center justify-center text-2xl p-0 h-11 w-11"
         aria-label={t('useSystemTheme')}
         title={t('useSystemTheme')}
       >
         <span aria-hidden="true" className="text-sm leading-none">🖥</span>
-      </button>
+      </button> */}
     </div>
   );
 }

@@ -20,7 +20,7 @@ export function NavLink({
       href={href}
       aria-current={active ? 'page' : undefined}
       className={clsx(
-        'relative rounded-lg px-3 py-1.5 text-sm font-medium transition-all duration-200',
+        'relative rounded-lg px-3 py-1.5 min-h-11 min-w-11 content-center text-center text-sm font-medium transition-all duration-200',
         'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus',
         active
           ? [

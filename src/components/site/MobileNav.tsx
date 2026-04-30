@@ -144,7 +144,7 @@ export function MobileNav({ locale }: { locale: Locale }) {
                 }`}
               >
                 {/* Drawer header */}
-                <div className="flex h-16 flex-shrink-0 items-center justify-between border-b border-border/50 px-5 sm:px-6">
+                <div className="flex h-16 shrink-0 items-center justify-between border-b border-border/50 px-5 sm:px-6">
                   <span id={titleId} className="text-[15px] font-semibold tracking-tight text-text">
                     {t('nav.menuLabel')}
                   </span>
@@ -152,7 +152,7 @@ export function MobileNav({ locale }: { locale: Locale }) {
                     type="button"
                     onClick={close}
                     aria-label={t('nav.closeMenu')}
-                    className="btn btn-surface flex h-9 w-9 items-center justify-center p-0"
+                    className="btn btn-surface flex h-11 w-11 items-center justify-center p-0"
                   >
                     <svg
                       aria-hidden="true"
@@ -191,7 +191,7 @@ export function MobileNav({ locale }: { locale: Locale }) {
                           >
                             <span
                               aria-hidden="true"
-                              className={`h-1.5 w-1.5 flex-shrink-0 rounded-full transition-all duration-200 ${
+                              className={`h-1.5 w-1.5 shrink-0 rounded-full transition-all duration-200 ${
                                 active ? 'bg-primary' : 'bg-transparent group-hover:bg-text-muted'
                               }`}
                             />
@@ -204,7 +204,7 @@ export function MobileNav({ locale }: { locale: Locale }) {
                 </nav>
 
                 {/* Bottom toolbar */}
-                <div className="flex-shrink-0 border-t border-border/50 px-4 py-4 sm:px-6">
+                <div className="shrink-0 border-t border-border/50 px-4 py-4 sm:px-6">
                   <div className="flex items-center gap-2">
                     <ThemeToggle compact />
                     <LanguageSwitch locale={locale} />
