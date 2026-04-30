@@ -23,7 +23,7 @@
    create a scroll container, so fixed-positioned elements remain relative to
    the true viewport in all browsers including Safari. Full-screen overlays are
    portalled to <body> so legitimate popovers/tooltips are not clipped by html.
-   If older browser support is ever expanded, re-check `overflow-x:clip`
+   If support for older browsers is added later, re-check `overflow-x:clip`
    compatibility before relying on this behavior. */
 html {
   overflow-x: clip;

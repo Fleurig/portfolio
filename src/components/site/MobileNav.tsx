@@ -20,7 +20,11 @@ function getFocusables(container: HTMLElement): HTMLElement[] {
 }
 
 const emptySubscribe = () => () => {};
+const FOCUS_DELAY_MS = 50; // lets the opening animation start before focus jumps into the dialog
+const mobileNavBackdropClass = 'bg-black/18';
 const hamburgerBarClass = 'block h-[1.5px] w-5 rounded-full bg-current transition-all duration-[250ms]';
+const hamburgerTopOpenClass = 'translate-y-[7.5px] rotate-45';
+const hamburgerBottomOpenClass = '-translate-y-[7.5px] -rotate-45';
 
 export function MobileNav({ locale }: { locale: Locale }) {
   const [open, setOpen] = useState(false);
@@ -45,7 +49,7 @@ export function MobileNav({ locale }: { locale: Locale }) {
       const id = setTimeout(() => {
         const first = drawerRef.current ? getFocusables(drawerRef.current)[0] : null;
         first?.focus();
-      }, 50); // wait for slide-in transition to start
+      }, FOCUS_DELAY_MS); // wait for the opening transition to start
       return () => clearTimeout(id);
     } else {
       triggerRef.current?.focus();
@@ -107,10 +111,10 @@ export function MobileNav({ locale }: { locale: Locale }) {
         aria-label={open ? t('nav.closeMenu') : t('nav.openMenu')}
         className="btn btn-surface flex h-11 w-11 flex-col items-center justify-center gap-1.5 p-0"
       >
-        {/* translate-y-[7.5px] = gap(6px) + half-bar(0.75px) × 2 — centres the rotated bars on the middle bar */}
-        <span aria-hidden="true" className={clsx(hamburgerBarClass, 'origin-center', open && 'translate-y-[7.5px] rotate-45')} />
+        {/* translate-y-[7.5px] = gap-1.5 (6px) + half-bar (0.75px) × 2, keeping the rotated bars centred */}
+        <span aria-hidden="true" className={clsx(hamburgerBarClass, 'origin-center', open && hamburgerTopOpenClass)} />
         <span aria-hidden="true" className={clsx(hamburgerBarClass, open && 'opacity-0 scale-x-50')} />
-        <span aria-hidden="true" className={clsx(hamburgerBarClass, 'origin-center', open && '-translate-y-[7.5px] -rotate-45')} />
+        <span aria-hidden="true" className={clsx(hamburgerBarClass, 'origin-center', open && hamburgerBottomOpenClass)} />
       </button>
 
       {isClient
@@ -120,7 +124,7 @@ export function MobileNav({ locale }: { locale: Locale }) {
               <div
                 onClick={close}
                 aria-hidden="true"
-                className={`fixed inset-0 z-40 bg-black/18 transition-opacity duration-300 ${
+                className={`fixed inset-0 z-40 ${mobileNavBackdropClass} transition-opacity duration-300 ${
                   open ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
                 }`}
               />
