@@ -1,3 +1,7 @@
+/* Establish CSS layer order BEFORE importing Tailwind so that
+   @layer utilities (Tailwind) always wins over @layer components (our custom rules). */
+@layer theme, base, components, utilities;
+
 @import 'tailwindcss';
 @import './theme.css';
 
@@ -14,8 +18,13 @@
   border-width: 0;
 }
 
-/* Softer typography defaults */
+/* Prevent horizontal scroll.
+   The mobile nav drawer (position: fixed; translate-x: 100% when closed) can
+   create a horizontal scrollable area in Safari and some Chromium builds.
+   overflow-x: hidden on the <html> element clips overflow without creating a
+   new block-formatting context, so position: sticky headers continue to work. */
 html {
+  overflow-x: hidden;
   text-rendering: optimizeLegibility;
 }
 

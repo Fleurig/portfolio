@@ -54,19 +54,20 @@ export function MobileNav({ locale }: { locale: Locale }) {
         aria-expanded={open}
         aria-controls="mobile-menu"
         aria-label={open ? t('nav.closeMenu') : t('nav.openMenu')}
-        className="btn btn-surface flex h-9 w-9 flex-col items-center justify-center gap-[5px] p-0"
+        className="btn btn-surface flex h-11 w-11 flex-col items-center justify-center gap-1.5 p-0"
       >
+        {/* translate-y-[7.5px] = gap(6px) + half bar(0.75px) × 2 — aligns outer bars with the centre of the middle bar when forming the × */}
         <span
           aria-hidden="true"
-          className={`block h-[1.5px] w-[18px] rounded-full bg-current origin-center transition-all duration-[250ms] ${open ? 'translate-y-[6.5px] rotate-45' : ''}`}
+          className={`block h-[1.5px] w-5 rounded-full bg-current origin-center transition-all duration-[250ms] ${open ? 'translate-y-[7.5px] rotate-45' : ''}`}
         />
         <span
           aria-hidden="true"
-          className={`block h-[1.5px] w-[18px] rounded-full bg-current transition-all duration-[250ms] ${open ? 'opacity-0 scale-x-50' : ''}`}
+          className={`block h-[1.5px] w-5 rounded-full bg-current transition-all duration-[250ms] ${open ? 'opacity-0 scale-x-50' : ''}`}
         />
         <span
           aria-hidden="true"
-          className={`block h-[1.5px] w-[18px] rounded-full bg-current origin-center transition-all duration-[250ms] ${open ? '-translate-y-[6.5px] -rotate-45' : ''}`}
+          className={`block h-[1.5px] w-5 rounded-full bg-current origin-center transition-all duration-[250ms] ${open ? '-translate-y-[7.5px] -rotate-45' : ''}`}
         />
       </button>
 
