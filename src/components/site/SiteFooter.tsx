@@ -5,7 +5,7 @@ export function SiteFooter({ locale }: { locale: 'nl' | 'en' }) {
   const t = useTranslations();
 
   return (
-    <footer className="no-print glass-header">
+    <footer role="contentinfo" className="no-print glass-header">
       <Container className="flex flex-col gap-2 py-6 text-sm text-text-muted sm:flex-row sm:items-center sm:justify-between">
         <p>© {new Date().getFullYear()} {t('brand.name')}</p>
         <a

@@ -21,7 +21,7 @@
     --color-focus: var(--color-primary);
 
     /* Header surface */
-    --color-header-surface: rgba(255, 255, 255, 0.72);
+    --color-header-surface: rgba(255, 255, 255, 0.58);
     --color-header-border: rgba(15, 23, 42, 0.10);
 
     /* Apple-ish glass tokens */
@@ -67,7 +67,7 @@
     --color-border-muted: rgba(255, 255, 255, 0.09);
 
     /* Header surface (dark) */
-    --color-header-surface: rgba(5, 4, 20, 0.68);
+    --color-header-surface: rgba(5, 4, 20, 0.58);
     --color-header-border: rgba(255, 255, 255, 0.10);
 
     /* Dark Apple-ish glass */

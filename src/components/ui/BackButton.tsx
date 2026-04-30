@@ -1,8 +1,8 @@
 "use client";
 
-import { useSyncExternalStore } from 'react';
-import { useRouter } from 'next/navigation';
+import type { MouseEvent } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
 const Chevron = () => (
@@ -22,42 +22,29 @@ const Chevron = () => (
 );
 
 const btnClass =
-  'inline-flex w-fit items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-sm font-medium ' +
+  'inline-flex w-fit items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-sm font-medium cursor-pointer ' +
   'text-text-muted transition-all duration-200 hover:bg-surface-muted hover:text-text ' +
   'active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus';
 
-const emptySubscribe = () => () => {};
-
 /**
- * Smart back button.
- * - SSR: renders as a <Link href={fallback}> for accessibility with no JS.
- * - After hydration: if browser history is available (length > 1), calls
- *   router.back() so the user naturally returns to wherever they came from.
- *   (home → project → back = home; projects list → project → back = projects list)
+ * Renders as a proper <a> element at all times (good for semantics, right-click, status bar).
+ * On click: uses browser history if available (router.back()), otherwise follows the Link href.
+ * This gives both link affordances AND the correct back-navigation behaviour.
  */
 export function BackButton({ fallback }: { fallback: string }) {
   const t = useTranslations('nav');
   const router = useRouter();
 
-  // useSyncExternalStore correctly handles SSR vs client without setState-in-effect.
-  // Server snapshot returns false (renders as Link); client snapshot reads real history.
-  const canGoBack = useSyncExternalStore(
-    emptySubscribe,
-    () => window.history.length > 1,
-    () => false,
-  );
-
-  if (canGoBack) {
-    return (
-      <button type="button" onClick={() => router.back()} className={btnClass}>
-        <Chevron />
-        <span>{t('back')}</span>
-      </button>
-    );
-  }
+  const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
+    // Only intercept plain left-clicks (no modifier keys / middle-click / right-click)
+    if (!e.defaultPrevented && e.button === 0 && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+      e.preventDefault();
+      router.back();
+    }
+  };
 
   return (
-    <Link href={fallback} className={btnClass}>
+    <Link href={fallback} onClick={handleClick} className={btnClass}>
       <Chevron />
       <span>{t('back')}</span>
     </Link>

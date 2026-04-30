@@ -44,7 +44,9 @@
     "projectsOther": "Overige",
     "cvTip": "Tip: gebruik je browser print-dialog voor een nette A4 export.",
     "cvDownload": "Download CV (PDF)",
-    "projectWebsite": "Website"
+    "projectWebsite": "Website",
+    "projectCompany": "Bedrijf",
+    "projectPeriod": "Periode"
   },
   "home": {
     "role": "Front-end Developer · React & Next.js",

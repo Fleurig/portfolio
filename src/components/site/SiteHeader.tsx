@@ -12,7 +12,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
   const t = useTranslations();
 
   return (
-    <header className="no-print sticky top-0 z-40 glass-header">
+    <header role="banner" className="no-print sticky top-0 z-40 glass-header">
       {/* Specular top-edge highlight */}
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-px"

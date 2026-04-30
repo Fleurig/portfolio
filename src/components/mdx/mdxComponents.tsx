@@ -20,7 +20,7 @@ export function MdxA({
   const external = isExternalHref(href);
 
   const className =
-    'font-medium text-text underline decoration-[color-mix(in_oklab,var(--color-primary)_55%,transparent)] underline-offset-4 hover:opacity-90';
+    'font-medium text-text underline decoration-[color-mix(in_oklab,var(--color-primary)_55%,transparent)] underline-offset-4 hover:opacity-90 cursor-pointer';
 
   if (external) {
     return (
@@ -48,6 +48,55 @@ export function MdxA({
 
 export const mdxComponents: MDXComponents = {
   a: (props) => <MdxA {...props} />,
+  h1: ({ children, ...props }) => (
+    <h1
+      className="mb-4 mt-8 text-2xl font-bold tracking-tight text-text first:mt-0 sm:text-3xl"
+      {...props}
+    >
+      {children}
+    </h1>
+  ),
+  h2: ({ children, ...props }) => (
+    <h2
+      className="mb-3 mt-8 border-b border-border-muted pb-2 text-lg font-semibold tracking-tight text-text first:mt-0"
+      {...props}
+    >
+      {children}
+    </h2>
+  ),
+  h3: ({ children, ...props }) => (
+    <h3
+      className="mb-2 mt-6 text-base font-semibold tracking-tight text-text first:mt-0"
+      {...props}
+    >
+      {children}
+    </h3>
+  ),
+  p: ({ children, ...props }) => (
+    <p className="mt-3 leading-relaxed text-text [&:first-child]:mt-0" {...props}>
+      {children}
+    </p>
+  ),
+  ul: ({ children, ...props }) => (
+    <ul className="my-3 ml-5 list-disc space-y-1 text-text" {...props}>
+      {children}
+    </ul>
+  ),
+  ol: ({ children, ...props }) => (
+    <ol className="my-3 ml-5 list-decimal space-y-1 text-text" {...props}>
+      {children}
+    </ol>
+  ),
+  li: ({ children, ...props }) => (
+    <li className="leading-relaxed" {...props}>
+      {children}
+    </li>
+  ),
+  strong: ({ children, ...props }) => (
+    <strong className="font-semibold text-text" {...props}>
+      {children}
+    </strong>
+  ),
   pre: (props) => (
     <pre
       className="not-prose overflow-x-auto rounded-xl border border-border bg-surface-muted p-4 text-sm"

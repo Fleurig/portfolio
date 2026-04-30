@@ -5,6 +5,7 @@ import { getTranslations } from 'next-intl/server';
 import { SiteLayout } from '@/src/components/site/SiteLayout';
 import { getProjectSlugs, getProjectMdx } from '@/src/lib/content';
 import { Mdx } from '@/src/components/mdx/Mdx';
+import { Badge } from '@/src/components/ui/Badge';
 
 export const dynamic = 'force-static';
 
@@ -51,7 +52,7 @@ export default async function ProjectDetailPage({
 
   const t = await getTranslations({ locale });
   const mdx = await getProjectMdx(locale, slug);
-  const title = mdx.frontmatter.title;
+  const { title, company, period, url, tags } = mdx.frontmatter;
 
   return (
     <SiteLayout
@@ -59,26 +60,54 @@ export default async function ProjectDetailPage({
       title={title}
       backHref={`/${locale}/projects`}
     >
-      {mdx.frontmatter.url ? (
-        <div className="not-prose mb-8">
-          <a
-            href={mdx.frontmatter.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="glass glass--elevated glass-hover inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
-          >
-            <span
-              aria-hidden="true"
-              className="flex h-6 w-6 items-center justify-center rounded-full text-xs"
-              style={{ background: 'rgba(124,58,237,0.12)' }}
-            >
-              ↗
-            </span>
-            {t('pages.projectWebsite')}
-            <span className="sr-only">({t('a11y.externalLinkNewTab')})</span>
-          </a>
+      {/* Frontmatter metadata card */}
+      <div className="not-prose mb-8 glass glass--elevated rounded-2xl p-5 sm:p-6">
+        <div className="flex flex-wrap gap-x-8 gap-y-3">
+          {company ? (
+            <div>
+              <dt className="text-[10px] font-semibold uppercase tracking-widest text-text-muted">
+                {t('pages.projectCompany')}
+              </dt>
+              <dd className="mt-0.5 text-sm font-medium text-text">{company}</dd>
+            </div>
+          ) : null}
+          {period ? (
+            <div>
+              <dt className="text-[10px] font-semibold uppercase tracking-widest text-text-muted">
+                {t('pages.projectPeriod')}
+              </dt>
+              <dd className="mt-0.5 text-sm font-medium text-text">{period}</dd>
+            </div>
+          ) : null}
+          {url ? (
+            <div>
+              <dt className="text-[10px] font-semibold uppercase tracking-widest text-text-muted">
+                {t('pages.projectWebsite')}
+              </dt>
+              <dd className="mt-0.5">
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-sm font-medium text-text underline decoration-[rgba(124,58,237,0.4)] underline-offset-4 hover:opacity-80 cursor-pointer"
+                >
+                  {url.replace(/^https?:\/\//, '')}
+                  <span aria-hidden="true" className="text-xs text-text-muted">↗</span>
+                  <span className="sr-only">({t('a11y.externalLinkNewTab')})</span>
+                </a>
+              </dd>
+            </div>
+          ) : null}
         </div>
-      ) : null}
+
+        {tags?.length ? (
+          <div className="mt-4 flex flex-wrap gap-1.5">
+            {tags.map((tag) => (
+              <Badge key={tag}>{tag}</Badge>
+            ))}
+          </div>
+        ) : null}
+      </div>
 
       <article className="prose max-w-none">
         <Mdx source={mdx} />
