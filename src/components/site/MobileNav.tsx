@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useId, useCallback } from 'react';
+import { clsx } from 'clsx';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
@@ -8,33 +9,78 @@ import type { Locale } from '@/src/lib/i18n';
 import { LanguageSwitch } from '@/src/components/site/LanguageSwitch';
 import { ThemeToggle } from '@/src/components/site/ThemeToggle';
 
+/** Returns all focusable elements inside a container that are not hidden. */
+function getFocusables(container: HTMLElement): HTMLElement[] {
+  return Array.from(
+    container.querySelectorAll<HTMLElement>(
+      'button:not([disabled]), [href]:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    )
+  ).filter((el) => !el.closest('[hidden]') && !el.closest('[aria-hidden="true"]'));
+}
+
 export function MobileNav({ locale }: { locale: Locale }) {
   const [open, setOpen] = useState(false);
   const t = useTranslations();
   const pathname = usePathname();
+
   const triggerRef = useRef<HTMLButtonElement>(null);
+  const drawerRef = useRef<HTMLDivElement>(null);
 
-  const close = () => setOpen(false);
+  // Unique IDs for the drawer panel and its visible title (used by aria-controls
+  // and aria-labelledby so screen readers announce the dialog name correctly).
+  const drawerId = useId();
+  const titleId = useId();
 
-  // Escape key closes drawer + returns focus
+  const close = useCallback(() => setOpen(false), []);
+
+  // When the drawer opens, move focus to its first interactive element.
+  // When it closes, return focus to the hamburger trigger.
   useEffect(() => {
-    if (!open) return;
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        close();
-        triggerRef.current?.focus();
-      }
-    };
-    document.addEventListener('keydown', handleKey);
-    return () => document.removeEventListener('keydown', handleKey);
+    if (open) {
+      const id = setTimeout(() => {
+        const first = drawerRef.current ? getFocusables(drawerRef.current)[0] : null;
+        first?.focus();
+      }, 50); // wait for slide-in transition to start
+      return () => clearTimeout(id);
+    } else {
+      triggerRef.current?.focus();
+    }
   }, [open]);
 
-  // Lock body scroll while open
+  // Keyboard handling: Escape closes; Tab is trapped inside the drawer.
+  useEffect(() => {
+    if (!open) return;
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        close();
+        return;
+      }
+      if (e.key !== 'Tab' || !drawerRef.current) return;
+
+      const focusables = getFocusables(drawerRef.current);
+      if (focusables.length === 0) return;
+
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [open, close]);
+
+  // Prevent body scroll while the drawer is open
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
-    return () => {
-      document.body.style.overflow = '';
-    };
+    return () => { document.body.style.overflow = ''; };
   }, [open]);
 
   const navLinks = [
@@ -46,57 +92,54 @@ export function MobileNav({ locale }: { locale: Locale }) {
 
   return (
     <div className="flex sm:hidden items-center">
-      {/* Hamburger trigger */}
+      {/* ── Hamburger trigger ── */}
       <button
         ref={triggerRef}
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
-        aria-controls="mobile-menu"
+        aria-controls={drawerId}
         aria-label={open ? t('nav.closeMenu') : t('nav.openMenu')}
         className="btn btn-surface flex h-11 w-11 flex-col items-center justify-center gap-1.5 p-0"
       >
-        {/* translate-y-[7.5px] = gap(6px) + half bar(0.75px) × 2 — aligns outer bars with the centre of the middle bar when forming the × */}
-        <span
-          aria-hidden="true"
-          className={`block h-[1.5px] w-5 rounded-full bg-current origin-center transition-all duration-[250ms] ${open ? 'translate-y-[7.5px] rotate-45' : ''}`}
-        />
-        <span
-          aria-hidden="true"
-          className={`block h-[1.5px] w-5 rounded-full bg-current transition-all duration-[250ms] ${open ? 'opacity-0 scale-x-50' : ''}`}
-        />
-        <span
-          aria-hidden="true"
-          className={`block h-[1.5px] w-5 rounded-full bg-current origin-center transition-all duration-[250ms] ${open ? '-translate-y-[7.5px] -rotate-45' : ''}`}
-        />
+        {/* translate-y-[7.5px] = gap(6px) + half-bar(0.75px) × 2 — centres the rotated bars on the middle bar */}
+        <span aria-hidden="true" className={clsx('block h-[1.5px] w-5 rounded-full bg-current origin-center transition-all duration-[250ms]', open && 'translate-y-[7.5px] rotate-45')} />
+        <span aria-hidden="true" className={clsx('block h-[1.5px] w-5 rounded-full bg-current transition-all duration-[250ms]', open && 'opacity-0 scale-x-50')} />
+        <span aria-hidden="true" className={clsx('block h-[1.5px] w-5 rounded-full bg-current origin-center transition-all duration-[250ms]', open && '-translate-y-[7.5px] -rotate-45')} />
       </button>
 
-      {/* Backdrop */}
+      {/* ── Backdrop ── */}
       <div
         onClick={close}
         aria-hidden="true"
-        className={`fixed inset-0 z-40 transition-opacity duration-300 ${open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
-        style={{ background: 'rgba(0,0,0,0.32)' }}
+        className={`fixed inset-0 z-40 bg-black/45 transition-opacity duration-300 ${
+          open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
       />
 
-      {/* Slide-in drawer */}
+      {/* ── Slide-in drawer ──
+          Uses aria-labelledby pointing to the visible title inside the drawer,
+          which is the recommended ARIA dialog pattern. */}
       <div
-        id="mobile-menu"
+        ref={drawerRef}
+        id={drawerId}
         role="dialog"
         aria-modal="true"
-        aria-label="Navigation menu"
-        className={`glass-drawer fixed inset-y-0 right-0 z-50 flex w-72 max-w-[88vw] flex-col transition-transform duration-300 ease-[cubic-bezier(0.32,0,0.18,1)] ${open ? 'translate-x-0' : 'translate-x-full'}`}
+        aria-labelledby={titleId}
+        className={`glass-drawer fixed inset-y-0 right-0 z-50 flex w-80 max-w-[90vw] flex-col transition-transform duration-300 ease-[cubic-bezier(0.32,0,0.18,1)] ${
+          open ? 'translate-x-0' : 'translate-x-full'
+        }`}
       >
         {/* Drawer header */}
-        <div className="flex h-14 items-center justify-between border-b border-border/60 px-5">
-          <span className="text-[15px] font-semibold tracking-tight text-text">
-            {t('brand.name')}
+        <div className="flex h-14 flex-shrink-0 items-center justify-between border-b border-border/60 px-5">
+          <span id={titleId} className="text-[15px] font-semibold tracking-tight text-text">
+            {t('nav.menuLabel')}
           </span>
           <button
             type="button"
             onClick={close}
             aria-label={t('nav.closeMenu')}
-            className="btn btn-surface flex h-8 w-8 items-center justify-center p-0"
+            className="btn btn-surface flex h-9 w-9 items-center justify-center p-0"
           >
             <svg
               aria-hidden="true"
@@ -114,10 +157,9 @@ export function MobileNav({ locale }: { locale: Locale }) {
         </div>
 
         {/* Nav links */}
-        <nav className="flex-1 overflow-y-auto px-3 py-4" aria-label="Mobile navigation">
-          <ul className="flex flex-col gap-0.5">
+        <nav className="flex-1 overflow-y-auto px-3 py-4" aria-label={t('nav.menuLabel')}>
+          <ul className="flex flex-col gap-1">
             {navLinks.map(({ href, label }) => {
-              // Exact match for home, prefix for sub-pages
               const active =
                 href === `/${locale}`
                   ? pathname === href
@@ -128,7 +170,7 @@ export function MobileNav({ locale }: { locale: Locale }) {
                     href={href}
                     onClick={close}
                     aria-current={active ? 'page' : undefined}
-                    className={`group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-150 ${
+                    className={`group flex items-center gap-3 rounded-xl px-4 py-3 text-[15px] font-medium transition-all duration-150 ${
                       active
                         ? 'bg-surface text-text shadow-[0_1px_3px_rgba(0,0,0,0.06)]'
                         : 'text-text-muted hover:bg-surface-muted hover:text-text'
@@ -149,9 +191,9 @@ export function MobileNav({ locale }: { locale: Locale }) {
         </nav>
 
         {/* Bottom toolbar */}
-        <div className="border-t border-border/60 px-4 py-3">
+        <div className="flex-shrink-0 border-t border-border/60 px-4 py-4">
           <div className="flex items-center gap-2">
-            <ThemeToggle />
+            <ThemeToggle compact />
             <LanguageSwitch locale={locale} />
           </div>
         </div>

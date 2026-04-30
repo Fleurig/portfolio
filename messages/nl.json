@@ -12,7 +12,8 @@
     "switchLanguage": "Wissel taal",
     "featured": "Uitgelicht",
     "openMenu": "Menu openen",
-    "closeMenu": "Menu sluiten"
+    "closeMenu": "Menu sluiten",
+    "menuLabel": "Navigatiemenu"
   },
   "a11y": {
     "skipToContent": "Ga naar inhoud",

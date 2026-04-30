@@ -18,13 +18,13 @@
   border-width: 0;
 }
 
-/* Prevent horizontal scroll.
-   The mobile nav drawer (position: fixed; translate-x: 100% when closed) can
-   create a horizontal scrollable area in Safari and some Chromium builds.
-   overflow-x: hidden on the <html> element clips overflow without creating a
-   new block-formatting context, so position: sticky headers continue to work. */
+/* Prevent horizontal scroll without breaking position:fixed.
+   overflow-x:clip clips at the viewport edge but — unlike hidden — does NOT
+   create a scroll container, so fixed-positioned elements (the mobile nav
+   drawer, its backdrop) remain relative to the true viewport in all browsers
+   including Safari. position:sticky is also unaffected. */
 html {
-  overflow-x: hidden;
+  overflow-x: clip;
   text-rendering: optimizeLegibility;
 }
 

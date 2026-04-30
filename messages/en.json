@@ -12,7 +12,8 @@
     "switchLanguage": "Switch language",
     "featured": "Featured",
     "openMenu": "Open menu",
-    "closeMenu": "Close menu"
+    "closeMenu": "Close menu",
+    "menuLabel": "Navigation menu"
   },
   "a11y": {
     "skipToContent": "Skip to content",
