@@ -217,6 +217,11 @@ html {
     );
     border: 1px solid rgba(59, 130, 246, 0.18);
   }
+  /* ── Gallery image tile (thumbnail button in ProjectImageGallery) ── */
+  .gallery-tile {
+    @apply relative overflow-hidden rounded-xl border shadow-glass;
+    border-color: var(--glass-border);
+  }
 }
 
 /* ── Button base ─────────────────────────────── */

@@ -9,6 +9,9 @@ export type GalleryImage = {
   alt: string;
 };
 
+/** Delay (ms) before moving focus into the lightbox, letting the opening animation start first. */
+const FOCUS_DELAY_MS = 50;
+
 function LightboxPortal({
   images,
   index,
@@ -31,7 +34,7 @@ function LightboxPortal({
 
   // Focus the close button when the lightbox opens
   useEffect(() => {
-    const id = setTimeout(() => closeRef.current?.focus(), 50);
+    const id = setTimeout(() => closeRef.current?.focus(), FOCUS_DELAY_MS);
     return () => clearTimeout(id);
   }, []);
 
@@ -128,8 +131,8 @@ function LightboxPortal({
         >
           <svg
             aria-hidden="true"
-            width="14"
-            height="14"
+            width="16"
+            height="16"
             viewBox="0 0 16 16"
             fill="none"
             stroke="currentColor"
@@ -152,8 +155,8 @@ function LightboxPortal({
         >
           <svg
             aria-hidden="true"
-            width="14"
-            height="14"
+            width="16"
+            height="16"
             viewBox="0 0 16 16"
             fill="none"
             stroke="currentColor"
@@ -228,7 +231,7 @@ export function ProjectImageGallery({ images }: { images: GalleryImage[] }) {
             type="button"
             onClick={() => openLightbox(i)}
             aria-label={`View image: ${img.alt}`}
-            className="group relative overflow-hidden rounded-xl border border-(--glass-border) shadow-glass focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+            className="gallery-tile group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
           >
             <div className="relative aspect-video w-full overflow-hidden bg-surface-muted">
               <Image
@@ -249,8 +252,8 @@ export function ProjectImageGallery({ images }: { images: GalleryImage[] }) {
                 className="absolute bottom-2 right-2 flex h-7 w-7 items-center justify-center rounded-full bg-black/40 opacity-0 backdrop-blur-sm transition-opacity duration-200 group-hover:opacity-100"
               >
                 <svg
-                  width="12"
-                  height="12"
+                  width="16"
+                  height="16"
                   viewBox="0 0 16 16"
                   fill="none"
                   stroke="white"
