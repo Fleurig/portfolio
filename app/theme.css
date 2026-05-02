@@ -25,7 +25,7 @@
 
     /* Brand */
     /* oklch equivalent of the original brand color `#7c3aed`, so slash-opacity utilities stay usable */
-    --ui-primary: oklch(0.546 0.245 293.22);
+    --ui-primary: oklch(0.546 0.261 293.22);
     --color-primary: var(--ui-primary);
 
     /* Neutrals (light) */
