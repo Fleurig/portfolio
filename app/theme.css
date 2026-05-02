@@ -11,6 +11,8 @@
   --color-text-muted: var(--ui-text-muted);
   --color-border: var(--ui-border);
   --color-border-muted: var(--ui-border-muted);
+  --radius-button: 0.625rem;
+  --text-button: 0.8125rem;
   --shadow-glass: var(--glass-shadow);
   --shadow-glass-hover: var(--glass-shadow-hover);
   --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.15);
@@ -22,6 +24,7 @@
     color-scheme: light;
 
     /* Brand */
+    /* oklch equivalent of the original brand color `#7c3aed`, so slash-opacity utilities stay usable */
     --ui-primary: oklch(0.546 0.245 293.22);
     --color-primary: var(--ui-primary);
 
