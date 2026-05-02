@@ -74,7 +74,7 @@ export default async function ProjectsIndexPage({
                 aria-label={t('home.viewProjectLabel', { title: p.title })}
                 className="project-link group"
               >
-                <ProjectCard project={p} />
+                <ProjectCard project={p} locale={locale} />
               </Link>
             ))}
           </div>
@@ -100,7 +100,7 @@ export default async function ProjectsIndexPage({
                 aria-label={t('home.viewProjectLabel', { title: p.title })}
                 className="project-link group"
               >
-                <ProjectCard project={p} />
+                <ProjectCard project={p} locale={locale} />
               </Link>
             ))}
           </div>

@@ -1,8 +1,9 @@
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import { Card } from '@/src/components/ui/Card';
+import type { Locale } from '@/src/lib/i18n';
 
-export function ContactCta() {
-  const t = useTranslations('contact');
+export async function ContactCta({ locale }: { locale: Locale }) {
+  const t = await getTranslations({ locale, namespace: 'contact' });
 
   return (
     <Card className="mt-12">
@@ -41,4 +42,3 @@ export function ContactCta() {
     </Card>
   );
 }
-

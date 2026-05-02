@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 
 import { Container } from '@/src/components/ui/Container';
 import { LanguageSwitch } from '@/src/components/site/LanguageSwitch';
@@ -8,8 +8,8 @@ import { ThemeToggle } from '@/src/components/site/ThemeToggle';
 import { NavLink } from '@/src/components/site/NavLink';
 import { MobileNav } from '@/src/components/site/MobileNav';
 
-export function SiteHeader({ locale }: { locale: Locale }) {
-  const t = useTranslations();
+export async function SiteHeader({ locale }: { locale: Locale }) {
+  const t = await getTranslations({ locale });
 
   return (
     <header role="banner" className="no-print sticky top-0 z-40 glass-header">
@@ -54,4 +54,3 @@ export function SiteHeader({ locale }: { locale: Locale }) {
     </header>
   );
 }
-

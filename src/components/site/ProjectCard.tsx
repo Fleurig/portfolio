@@ -1,8 +1,10 @@
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import { Badge } from '@/src/components/ui/Badge';
+import type { Locale } from '@/src/lib/i18n';
 
-export function ProjectCard({
+export async function ProjectCard({
   project,
+  locale,
 }: {
   project: {
     title: string;
@@ -11,8 +13,9 @@ export function ProjectCard({
     tags?: string[];
     featured?: boolean;
   };
+  locale: Locale;
 }) {
-  const t = useTranslations('nav');
+  const t = await getTranslations({ locale, namespace: 'nav' });
 
   return (
     <div className="glass-card group relative h-full overflow-hidden rounded-2xl p-5 sm:p-6 transition-all duration-300">
@@ -82,4 +85,3 @@ export function ProjectCard({
     </div>
   );
 }
-

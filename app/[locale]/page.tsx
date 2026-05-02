@@ -175,14 +175,14 @@ export default async function LocaleHomePage({
               aria-label={t('home.viewProjectLabel', { title: p.title })}
               className="project-link group"
             >
-              <ProjectCard project={p} />
+              <ProjectCard project={p} locale={locale} />
             </Link>
           ))}
         </div>
       </section>
 
       {/* Contact CTA */}
-      <ContactCta />
+      <ContactCta locale={locale} />
     </SiteLayout>
   );
 }

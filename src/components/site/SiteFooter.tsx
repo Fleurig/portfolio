@@ -1,8 +1,8 @@
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import { Container } from '@/src/components/ui/Container';
 
-export function SiteFooter({ locale }: { locale: 'nl' | 'en' }) {
-  const t = useTranslations();
+export async function SiteFooter({ locale }: { locale: 'nl' | 'en' }) {
+  const t = await getTranslations({ locale });
 
   return (
     <footer role="contentinfo" className="no-print glass-header">
@@ -22,4 +22,3 @@ export function SiteFooter({ locale }: { locale: 'nl' | 'en' }) {
     </footer>
   );
 }
-

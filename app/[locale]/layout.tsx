@@ -25,12 +25,12 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  const messages = await getMessages();
+  const messages = await getMessages({ locale });
 
   return (
     <html lang={locale} className={inter.variable} suppressHydrationWarning>
       <body className="min-h-dvh antialiased">
-        <NextIntlClientProvider messages={messages} locale={locale}>
+        <NextIntlClientProvider key={locale} messages={messages} locale={locale}>
           {children}
         </NextIntlClientProvider>
       </body>
