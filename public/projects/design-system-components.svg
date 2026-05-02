@@ -1,0 +1,140 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8f5ff"/>
+      <stop offset="100%" stop-color="#eef2ff"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#f3f0ff" stop-opacity="0.7"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#7c3aed" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="675" fill="url(#bg)"/>
+
+  <!-- Top bar -->
+  <rect width="1200" height="52" fill="#ffffff" fill-opacity="0.8"/>
+  <circle cx="32" cy="26" r="8" fill="#7c3aed"/>
+  <rect x="52" y="18" width="90" height="16" rx="4" fill="#1e1b4b" opacity="0.7"/>
+  <rect x="200" y="18" width="60" height="16" rx="4" fill="#6b7280" opacity="0.5"/>
+  <rect x="276" y="18" width="80" height="16" rx="4" fill="#6b7280" opacity="0.5"/>
+  <rect x="372" y="18" width="70" height="16" rx="4" fill="#6b7280" opacity="0.5"/>
+  <!-- Storybook logo hint -->
+  <rect x="1140" y="14" width="44" height="24" rx="6" fill="#ff4785" fill-opacity="0.9"/>
+  <text x="1162" y="30" font-family="monospace" font-size="12" fill="white" text-anchor="middle">S</text>
+
+  <!-- Left sidebar -->
+  <rect x="0" y="52" width="220" height="623" fill="#fafafa" fill-opacity="0.9"/>
+  <rect x="12" y="72" width="140" height="12" rx="3" fill="#9ca3af" opacity="0.6"/>
+  <rect x="12" y="96" width="196" height="32" rx="6" fill="#7c3aed" fill-opacity="0.12"/>
+  <rect x="24" y="108" width="100" height="12" rx="3" fill="#7c3aed"/>
+  <rect x="12" y="136" width="196" height="32" rx="6" fill="transparent"/>
+  <rect x="24" y="148" width="80" height="12" rx="3" fill="#374151" opacity="0.7"/>
+  <rect x="12" y="176" width="196" height="32" rx="6" fill="transparent"/>
+  <rect x="24" y="188" width="110" height="12" rx="3" fill="#374151" opacity="0.7"/>
+  <rect x="12" y="216" width="196" height="32" rx="6" fill="transparent"/>
+  <rect x="24" y="228" width="70" height="12" rx="3" fill="#374151" opacity="0.7"/>
+  <rect x="12" y="265" width="140" height="12" rx="3" fill="#9ca3af" opacity="0.6"/>
+  <rect x="24" y="288" width="100" height="12" rx="3" fill="#374151" opacity="0.7"/>
+  <rect x="24" y="316" width="88" height="12" rx="3" fill="#374151" opacity="0.7"/>
+  <rect x="24" y="344" width="120" height="12" rx="3" fill="#374151" opacity="0.7"/>
+
+  <!-- Main content area -->
+  <!-- Component preview card 1: Button -->
+  <rect x="240" y="72" width="270" height="180" rx="12" fill="url(#card)" stroke="#e5e7eb" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="258" y="90" width="80" height="14" rx="3" fill="#1e1b4b" opacity="0.8"/>
+  <!-- Button component preview -->
+  <rect x="258" y="118" width="100" height="36" rx="8" fill="#7c3aed"/>
+  <rect x="284" y="130" width="48" height="12" rx="3" fill="white"/>
+  <rect x="370" y="118" width="100" height="36" rx="8" fill="transparent" stroke="#7c3aed" stroke-width="1.5"/>
+  <rect x="396" y="130" width="48" height="12" rx="3" fill="#7c3aed"/>
+  <!-- Props table -->
+  <rect x="258" y="172" width="234" height="12" rx="2" fill="#f3f4f6"/>
+  <rect x="258" y="190" width="170" height="10" rx="2" fill="#f9fafb"/>
+  <rect x="258" y="206" width="200" height="10" rx="2" fill="#f3f4f6"/>
+  <rect x="258" y="222" width="150" height="10" rx="2" fill="#f9fafb"/>
+
+  <!-- Component preview card 2: Modal -->
+  <rect x="528" y="72" width="270" height="180" rx="12" fill="url(#card)" stroke="#e5e7eb" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="546" y="90" width="80" height="14" rx="3" fill="#1e1b4b" opacity="0.8"/>
+  <!-- Modal mockup -->
+  <rect x="546" y="118" width="234" height="116" rx="6" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+  <rect x="558" y="128" width="120" height="12" rx="3" fill="#374151"/>
+  <rect x="558" y="148" width="180" height="8" rx="2" fill="#9ca3af" opacity="0.6"/>
+  <rect x="558" y="162" width="150" height="8" rx="2" fill="#9ca3af" opacity="0.5"/>
+  <rect x="700" y="196" width="64" height="28" rx="6" fill="#7c3aed"/>
+  <rect x="714" y="206" width="36" height="10" rx="2" fill="white"/>
+  <rect x="628" y="196" width="64" height="28" rx="6" fill="transparent" stroke="#d1d5db" stroke-width="1"/>
+  <rect x="640" y="206" width="40" height="10" rx="2" fill="#6b7280"/>
+
+  <!-- Component preview card 3: Form input -->
+  <rect x="816" y="72" width="270" height="180" rx="12" fill="url(#card)" stroke="#e5e7eb" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="834" y="90" width="100" height="14" rx="3" fill="#1e1b4b" opacity="0.8"/>
+  <!-- Input mockup -->
+  <rect x="834" y="116" width="60" height="10" rx="2" fill="#374151" opacity="0.7"/>
+  <rect x="834" y="132" width="234" height="36" rx="6" fill="white" stroke="#7c3aed" stroke-width="1.5"/>
+  <rect x="846" y="148" width="100" height="10" rx="2" fill="#9ca3af" opacity="0.5"/>
+  <rect x="834" y="180" width="60" height="10" rx="2" fill="#374151" opacity="0.7"/>
+  <rect x="834" y="196" width="234" height="36" rx="6" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+  <rect x="846" y="212" width="80" height="10" rx="2" fill="#9ca3af" opacity="0.4"/>
+
+  <!-- Design tokens section -->
+  <rect x="240" y="272" width="846" height="200" rx="12" fill="url(#card)" stroke="#e5e7eb" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="258" y="290" width="120" height="16" rx="4" fill="#1e1b4b" opacity="0.8"/>
+
+  <!-- Color swatches -->
+  <circle cx="274" cy="340" r="22" fill="#7c3aed"/>
+  <rect x="260" y="368" width="48" height="10" rx="2" fill="#374151" opacity="0.6"/>
+  <circle cx="334" cy="340" r="22" fill="#6d28d9"/>
+  <circle cx="394" cy="340" r="22" fill="#ede9fe"/>
+  <circle cx="454" cy="340" r="22" fill="#a78bfa"/>
+  <circle cx="514" cy="340" r="22" fill="#ddd6fe"/>
+  <circle cx="574" cy="340" r="22" fill="#1e1b4b"/>
+
+  <!-- Typography -->
+  <rect x="650" y="312" width="1" height="140" fill="#e5e7eb"/>
+  <rect x="670" y="312" width="140" height="22" rx="3" fill="#1e1b4b" opacity="0.8"/>
+  <rect x="670" y="344" width="120" height="16" rx="3" fill="#374151" opacity="0.7"/>
+  <rect x="670" y="370" width="160" height="12" rx="3" fill="#374151" opacity="0.6"/>
+  <rect x="670" y="394" width="130" height="10" rx="2" fill="#374151" opacity="0.5"/>
+  <rect x="670" y="414" width="110" height="8" rx="2" fill="#374151" opacity="0.4"/>
+
+  <!-- Spacing -->
+  <rect x="870" y="312" width="1" height="140" fill="#e5e7eb"/>
+  <rect x="890" y="312" width="80" height="12" rx="3" fill="#6b7280" opacity="0.5"/>
+  <rect x="890" y="332" width="8" height="8" rx="1" fill="#7c3aed" fill-opacity="0.3"/>
+  <rect x="904" y="334" width="40" height="8" rx="2" fill="#374151" opacity="0.5"/>
+  <rect x="890" y="348" width="16" height="16" rx="2" fill="#7c3aed" fill-opacity="0.4"/>
+  <rect x="912" y="352" width="40" height="8" rx="2" fill="#374151" opacity="0.5"/>
+  <rect x="890" y="372" width="24" height="24" rx="3" fill="#7c3aed" fill-opacity="0.5"/>
+  <rect x="920" y="380" width="40" height="8" rx="2" fill="#374151" opacity="0.5"/>
+  <rect x="890" y="404" width="32" height="32" rx="4" fill="#7c3aed" fill-opacity="0.6"/>
+  <rect x="928" y="416" width="40" height="8" rx="2" fill="#374151" opacity="0.5"/>
+
+  <!-- Storybook canvas area note -->
+  <rect x="240" y="488" width="420" height="140" rx="12" fill="url(#card)" stroke="#e5e7eb" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="258" y="506" width="100" height="14" rx="3" fill="#1e1b4b" opacity="0.8"/>
+  <!-- Mini story list -->
+  <rect x="258" y="530" width="8" height="8" rx="2" fill="#7c3aed"/>
+  <rect x="272" y="530" width="80" height="8" rx="2" fill="#374151" opacity="0.6"/>
+  <rect x="258" y="548" width="8" height="8" rx="2" fill="#e5e7eb"/>
+  <rect x="272" y="548" width="60" height="8" rx="2" fill="#374151" opacity="0.5"/>
+  <rect x="258" y="566" width="8" height="8" rx="2" fill="#e5e7eb"/>
+  <rect x="272" y="566" width="100" height="8" rx="2" fill="#374151" opacity="0.5"/>
+  <rect x="258" y="584" width="8" height="8" rx="2" fill="#e5e7eb"/>
+  <rect x="272" y="584" width="70" height="8" rx="2" fill="#374151" opacity="0.5"/>
+
+  <!-- Accessibility check -->
+  <rect x="676" y="488" width="410" height="140" rx="12" fill="url(#card)" stroke="#e5e7eb" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="694" y="506" width="140" height="14" rx="3" fill="#1e1b4b" opacity="0.8"/>
+  <rect x="694" y="530" width="20" height="20" rx="10" fill="#10b981"/>
+  <rect x="720" y="536" width="100" height="10" rx="2" fill="#374151" opacity="0.6"/>
+  <rect x="694" y="558" width="20" height="20" rx="10" fill="#10b981"/>
+  <rect x="720" y="564" width="120" height="10" rx="2" fill="#374151" opacity="0.6"/>
+  <rect x="694" y="586" width="20" height="20" rx="10" fill="#f59e0b"/>
+  <rect x="720" y="592" width="80" height="10" rx="2" fill="#374151" opacity="0.6"/>
+</svg>

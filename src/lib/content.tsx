@@ -5,6 +5,11 @@ import { cache } from 'react';
 import type { Locale } from '@/src/lib/i18n';
 import { compileRuntimeMdx } from '@/src/lib/mdxRuntime';
 
+export type ProjectImage = {
+  src: string;
+  alt: string;
+};
+
 export type ProjectFrontmatter = {
   title: string;
   company?: string;
@@ -12,6 +17,7 @@ export type ProjectFrontmatter = {
   url?: string;
   tags?: string[];
   featured?: boolean;
+  images?: ProjectImage[];
 };
 
 function contentRoot() {

@@ -1,5 +1,13 @@
 /* Theme tokens + base styles (Safari friendly) */
 
+/* ── Custom shadow tokens (Tailwind v4: --shadow-* auto-registers as shadow-* utilities) ── */
+@theme inline {
+  --shadow-glass: var(--glass-shadow);
+  --shadow-glass-hover: var(--glass-shadow-hover);
+  --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  --shadow-glass-elevated: var(--glass-shadow), var(--glass-highlight), var(--glass-inner);
+}
+
 @layer base {
   :root {
     color-scheme: light;
@@ -30,7 +38,7 @@
     --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
     --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.85);
     --glass-inner: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
-    --glass-hover-border: rgba(124, 58, 237, 0.30);
+    --glass-hover-border: color-mix(in srgb, var(--color-primary) 30%, transparent);
     --glass-hover-shadow: 0 30px 110px rgba(11, 18, 32, 0.16);
 
     /* Glass card tokens */
@@ -48,7 +56,7 @@
     --line: rgba(15, 23, 42, 0.10);
 
     /* Background blobs */
-    --blob-1: radial-gradient(70rem 40rem at 18% -8%, rgba(124, 58, 237, 0.18), transparent 60%);
+    --blob-1: radial-gradient(70rem 40rem at 18% -8%, color-mix(in srgb, var(--color-primary) 18%, transparent), transparent 60%);
     --blob-2: radial-gradient(60rem 40rem at 82% -12%, rgba(59, 130, 246, 0.14), transparent 58%);
     --blob-3: radial-gradient(50rem 32rem at 50% 110%, rgba(236, 72, 153, 0.08), transparent 55%);
   }
@@ -76,7 +84,7 @@
     --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.40);
     --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.10);
     --glass-inner: inset 0 0 0 1px rgba(255, 255, 255, 0.07);
-    --glass-hover-border: rgba(124, 58, 237, 0.40);
+    --glass-hover-border: color-mix(in srgb, var(--color-primary) 40%, transparent);
     --glass-hover-shadow: 0 34px 140px rgba(0, 0, 0, 0.70);
 
     /* Glass card tokens (dark overrides) */
@@ -86,7 +94,7 @@
 
     --line: rgba(255, 255, 255, 0.14);
 
-    --blob-1: radial-gradient(70rem 40rem at 18% -8%, rgba(124, 58, 237, 0.22), transparent 60%);
+    --blob-1: radial-gradient(70rem 40rem at 18% -8%, color-mix(in srgb, var(--color-primary) 22%, transparent), transparent 60%);
     --blob-2: radial-gradient(60rem 40rem at 82% -12%, rgba(59, 130, 246, 0.18), transparent 58%);
     --blob-3: radial-gradient(50rem 32rem at 50% 110%, rgba(236, 72, 153, 0.08), transparent 55%);
   }
@@ -152,43 +160,41 @@
     outline-offset: 2px;
   }
 
-  /* Glass utility – Apple-ish look */
+  /* Better text selection */
+  ::selection {
+    background: color-mix(in srgb, var(--color-primary) 25%, transparent);
+  }
+}
+
+/* ── Glass utilities ─────────────────────────────────────────────── */
+@layer components {
+  /* Apple-ish frosted glass – base surface */
   .glass {
+    @apply border backdrop-blur-[28px] backdrop-saturate-[180%];
     background-color: var(--glass-bg);
-    border: 1px solid var(--glass-border);
+    border-color: var(--glass-border);
     box-shadow: var(--glass-shadow);
-    -webkit-backdrop-filter: blur(28px) saturate(180%);
-    backdrop-filter: blur(28px) saturate(180%);
   }
 
+  /* Elevated variant: adds inner highlight + border glow */
   .glass--elevated {
-    box-shadow: var(--glass-shadow), var(--glass-highlight), var(--glass-inner);
+    @apply shadow-glass-elevated;
   }
 
+  /* Hover / interactive glass animation */
   .glass-hover {
-    transition:
-      transform 180ms ease,
-      border-color 180ms ease,
-      box-shadow 220ms ease,
-      background-color 220ms ease,
-      opacity 180ms ease;
-    will-change: transform;
+    @apply transition-[transform,border-color,box-shadow,background-color,opacity] duration-[180ms] ease-in will-change-[transform];
   }
 
   .glass-hover:hover {
+    @apply -translate-y-0.5;
     border-color: var(--glass-hover-border);
     box-shadow: var(--glass-hover-shadow), var(--glass-highlight), var(--glass-inner);
-    transform: translateY(-2px);
   }
 
-  /* Deepen the effect specifically on clickable items */
+  /* Deepen the tint on clickable glass items */
   a.glass-hover:hover,
   button.glass-hover:hover {
-    background-color: color-mix(in srgb, var(--glass-bg) 85%, rgba(124, 58, 237, 0.08));
-  }
-
-  /* Better text selection */
-  ::selection {
-    background: rgba(124, 58, 237, 0.25);
+    background-color: color-mix(in srgb, var(--glass-bg) 85%, color-mix(in srgb, var(--color-primary) 8%, transparent));
   }
 }

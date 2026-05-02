@@ -6,6 +6,7 @@ import { SiteLayout } from '@/src/components/site/SiteLayout';
 import { getProjectSlugs, getProjectMdx } from '@/src/lib/content';
 import { Mdx } from '@/src/components/mdx/Mdx';
 import { Badge } from '@/src/components/ui/Badge';
+import { ProjectImageGallery } from '@/src/components/site/ProjectImageGallery';
 
 export const dynamic = 'force-static';
 
@@ -52,7 +53,7 @@ export default async function ProjectDetailPage({
 
   const t = await getTranslations({ locale });
   const mdx = await getProjectMdx(locale, slug);
-  const { title, company, period, url, tags } = mdx.frontmatter;
+  const { title, company, period, url, tags, images } = mdx.frontmatter;
 
   return (
     <SiteLayout
@@ -89,7 +90,7 @@ export default async function ProjectDetailPage({
                   href={url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-sm font-medium text-text underline decoration-[rgba(124,58,237,0.4)] underline-offset-4 hover:opacity-80 cursor-pointer"
+                  className="inline-flex items-center gap-1 text-sm font-medium text-text underline decoration-primary/40 underline-offset-4 hover:opacity-80 cursor-pointer"
                 >
                   {url.replace(/^https?:\/\//, '')}
                   <span aria-hidden="true" className="text-xs text-text-muted">↗</span>
@@ -112,6 +113,10 @@ export default async function ProjectDetailPage({
       <article className="prose max-w-none">
         <Mdx source={mdx} />
       </article>
+
+      {images?.length ? (
+        <ProjectImageGallery images={images} />
+      ) : null}
     </SiteLayout>
   );
 }

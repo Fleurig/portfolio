@@ -19,11 +19,7 @@ export function ProjectCard({
       {/* Accent gradient bar */}
       <div
         aria-hidden="true"
-        className="absolute inset-x-0 top-0 h-[3px] rounded-t-2xl"
-        style={{
-          background:
-            'linear-gradient(to right, rgba(124,58,237,0.5), rgba(124,58,237,0.9), rgba(59,130,246,0.6))',
-        }}
+        className="card-accent-bar absolute inset-x-0 top-0 h-[3px] rounded-t-2xl"
       />
 
       <div className="flex items-start justify-between gap-3 pt-1">
@@ -31,8 +27,7 @@ export function ProjectCard({
           {/* Featured label */}
           {project.featured ? (
             <p
-              className="mb-1 text-[10px] font-semibold uppercase tracking-widest"
-              style={{ color: 'var(--color-primary)' }}
+              className="mb-1 text-[10px] font-semibold uppercase tracking-widest text-primary"
             >
               {t('featured')}
             </p>

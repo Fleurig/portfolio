@@ -69,12 +69,7 @@ export default async function ContactPage({
               aria-label={t('contact.emailLabel')}
             >
               <div
-                className="flex h-11 w-11 items-center justify-center rounded-xl text-xl"
-                style={{
-                  background:
-                    'linear-gradient(135deg, rgba(124,58,237,0.18), rgba(124,58,237,0.06))',
-                  border: '1px solid rgba(124,58,237,0.18)',
-                }}
+                className="contact-icon-primary flex h-11 w-11 items-center justify-center rounded-xl text-xl"
               >
                 ✉️
               </div>
@@ -113,12 +108,7 @@ export default async function ContactPage({
               aria-label={t('contact.linkedInLabel')}
             >
               <div
-                className="flex h-11 w-11 items-center justify-center rounded-xl text-xl"
-                style={{
-                  background:
-                    'linear-gradient(135deg, rgba(59,130,246,0.18), rgba(59,130,246,0.06))',
-                  border: '1px solid rgba(59,130,246,0.18)',
-                }}
+                className="contact-icon-blue flex h-11 w-11 items-center justify-center rounded-xl text-xl"
               >
                 💼
               </div>
@@ -171,11 +161,7 @@ export default async function ContactPage({
               <li key={item} className="flex items-center gap-2.5 text-sm text-text-muted">
                 <span
                   aria-hidden="true"
-                  className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full"
-                  style={{
-                    background: 'rgba(124,58,237,0.12)',
-                    color: 'var(--color-primary)',
-                  }}
+                  className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-primary/12 text-primary"
                 >
                   ✓
                 </span>

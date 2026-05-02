@@ -20,7 +20,7 @@ export function MdxA({
   const external = isExternalHref(href);
 
   const className =
-    'font-medium text-text underline decoration-[color-mix(in_oklab,var(--color-primary)_55%,transparent)] underline-offset-4 hover:opacity-90 cursor-pointer';
+    'font-medium text-text underline decoration-primary/55 underline-offset-4 hover:opacity-90 cursor-pointer';
 
   if (external) {
     return (
@@ -114,7 +114,7 @@ export const mdxComponents: MDXComponents = {
   ),
   blockquote: (props) => (
     <blockquote
-      className="border-l-4 border-[color-mix(in_oklab,var(--color-primary)_40%,var(--color-border))] bg-surface px-4 py-1 text-text"
+      className="border-l-4 border-primary/40 bg-surface px-4 py-1 text-text"
       {...props}
     />
   ),
