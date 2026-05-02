@@ -190,7 +190,7 @@ function LightboxPortal({
         </p>
         {/* Counter */}
         {images.length > 1 ? (
-          <p aria-live="polite" className="text-xs text-white/60">
+          <p className="text-xs text-white/60">
             {index + 1} / {images.length}
           </p>
         ) : null}

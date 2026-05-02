@@ -173,7 +173,10 @@ html {
   }
 
   .glass-action-card {
-    @apply flex flex-col gap-4 rounded-2xl p-6 backdrop-blur-[28px] backdrop-saturate-[180%] transition-[transform,border-color,box-shadow,background-color,opacity] duration-[180ms] ease-in will-change-[transform] focus-ring;
+    @apply flex flex-col gap-4 rounded-2xl p-6;
+    @apply backdrop-blur-[28px] backdrop-saturate-[180%];
+    @apply transition-[transform,border-color,box-shadow,background-color,opacity] duration-[180ms] ease-in;
+    @apply will-change-[transform] focus-ring;
     background-color: var(--glass-bg);
     border: 1px solid var(--glass-border);
     box-shadow: var(--glass-shadow), var(--glass-highlight), var(--glass-inner);
