@@ -3,7 +3,6 @@
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
-
 import type { Locale } from '@/src/lib/i18n';
 import { routing } from '@/middleware';
 import { useMemo } from 'react';
@@ -37,6 +36,7 @@ export function LanguageSwitch({ locale }: { locale: Locale }) {
       href={nextPath}
       className="btn btn-surface inline-flex items-center justify-center text-2xl p-0 h-11 w-11"
       aria-label={t('switchLanguage')}
+      replace
     >
       {flag}
     </Link>
