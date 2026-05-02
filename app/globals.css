@@ -279,7 +279,9 @@ html {
 /* ── Button base ─────────────────────────────── */
 @layer components {
   .btn {
-    @apply inline-flex items-center justify-center gap-1.5 rounded-button text-button font-medium leading-none whitespace-nowrap cursor-pointer select-none;
+    @apply inline-flex items-center justify-center gap-1.5 rounded-button;
+    @apply text-button font-medium leading-none whitespace-nowrap;
+    @apply cursor-pointer select-none;
     transition:
       background-color 0.18s ease,
       color            0.18s ease,

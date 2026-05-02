@@ -24,7 +24,9 @@
     color-scheme: light;
 
     /* Brand */
-    /* oklch equivalent of the original brand color `#7c3aed`, so slash-opacity utilities stay usable */
+    /* Approximate OKLCH match for the original brand color `#7c3aed`.
+       We keep the same perceived hue/lightness while using a modern color space
+       so Tailwind slash-opacity utilities like `bg-primary/12` remain reliable. */
     --ui-primary: oklch(0.546 0.261 293.22);
     --color-primary: var(--ui-primary);
 

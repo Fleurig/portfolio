@@ -34,7 +34,10 @@ function LightboxPortal({
 
   // Focus the close button when the lightbox opens
   useEffect(() => {
-    const id = setTimeout(() => closeRef.current?.focus(), FOCUS_DELAY_MS);
+    const id: ReturnType<typeof setTimeout> = setTimeout(
+      () => closeRef.current?.focus(),
+      FOCUS_DELAY_MS,
+    );
     return () => clearTimeout(id);
   }, []);
 
