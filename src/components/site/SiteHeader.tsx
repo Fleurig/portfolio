@@ -37,7 +37,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden sm:flex items-center gap-1" aria-label="Primary">
+        <nav className="hidden sm:flex items-center gap-1" aria-label={t('a11y.primaryNav')}>
           <NavLink href={`/${locale}/cv`}>{t('nav.cv')}</NavLink>
           <NavLink href={`/${locale}/projects`}>{t('nav.projects')}</NavLink>
           <NavLink href={`/${locale}/contact`}>{t('nav.contact')}</NavLink>

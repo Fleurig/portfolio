@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useRef, useId } from 'react';
 import Image from 'next/image';
 import { createPortal } from 'react-dom';
+import { useTranslations } from 'next-intl';
 
 export type GalleryImage = {
   src: string;
@@ -18,12 +19,14 @@ function LightboxPortal({
   onClose,
   onPrev,
   onNext,
+  labels,
 }: {
   images: GalleryImage[];
   index: number;
   onClose: () => void;
   onPrev: () => void;
   onNext: () => void;
+  labels: { close: string; prev: string; next: string };
 }) {
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
@@ -107,7 +110,7 @@ function LightboxPortal({
         ref={closeRef}
         type="button"
         onClick={onClose}
-        aria-label="Close image viewer"
+        aria-label={labels.close}
         className="btn btn-surface absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full p-0"
       >
         <svg
@@ -129,7 +132,7 @@ function LightboxPortal({
         <button
           type="button"
           onClick={onPrev}
-          aria-label="Previous image"
+          aria-label={labels.prev}
           className="btn btn-surface absolute left-4 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full p-0"
         >
           <svg
@@ -153,7 +156,7 @@ function LightboxPortal({
         <button
           type="button"
           onClick={onNext}
-          aria-label="Next image"
+          aria-label={labels.next}
           className="btn btn-surface absolute right-4 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full p-0"
         >
           <svg
@@ -201,6 +204,7 @@ function LightboxPortal({
 }
 
 export function ProjectImageGallery({ images }: { images: GalleryImage[] }) {
+  const t = useTranslations('a11y');
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const openLightbox = useCallback((i: number) => setLightboxIndex(i), []);
@@ -233,7 +237,7 @@ export function ProjectImageGallery({ images }: { images: GalleryImage[] }) {
             key={img.src}
             type="button"
             onClick={() => openLightbox(i)}
-            aria-label={`View image ${i + 1} of ${images.length}`}
+            aria-label={t('viewImage', { current: i + 1, total: images.length })}
             className="gallery-tile group"
           >
             <div className="relative aspect-video w-full overflow-hidden bg-surface-muted">
@@ -281,6 +285,11 @@ export function ProjectImageGallery({ images }: { images: GalleryImage[] }) {
           onClose={closeLightbox}
           onPrev={prev}
           onNext={next}
+          labels={{
+            close: t('closeImageViewer'),
+            prev: t('prevImage'),
+            next: t('nextImage'),
+          }}
         />
       ) : null}
     </div>

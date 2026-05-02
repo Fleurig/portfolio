@@ -22,7 +22,12 @@
     "themeLight": "Licht",
     "themeContrast": "Hoog contrast",
     "externalLinkNewTab": "Opent in een nieuw tabblad",
-    "useSystemTheme": "Gebruik systeem thema"
+    "useSystemTheme": "Gebruik systeem thema",
+    "primaryNav": "Primaire navigatie",
+    "closeImageViewer": "Afbeeldingsweergave sluiten",
+    "prevImage": "Vorige afbeelding",
+    "nextImage": "Volgende afbeelding",
+    "viewImage": "Afbeelding {current} van {total} bekijken"
   },
   "seo": {
     "siteName": "Fleur Albers",

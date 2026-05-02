@@ -22,7 +22,12 @@
     "themeLight": "Light",
     "themeContrast": "High contrast",
     "externalLinkNewTab": "Opens in a new tab",
-    "useSystemTheme": "Use system theme"
+    "useSystemTheme": "Use system theme",
+    "primaryNav": "Primary navigation",
+    "closeImageViewer": "Close image viewer",
+    "prevImage": "Previous image",
+    "nextImage": "Next image",
+    "viewImage": "View image {current} of {total}"
   },
   "seo": {
     "siteName": "Fleur Albers",
