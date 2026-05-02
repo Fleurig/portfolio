@@ -136,6 +136,10 @@ html {
   }
 }
 
+@utility focus-ring {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-bg;
+}
+
 /* ── Glass header (Apple-style frosted bar) ── */
 @layer components {
   .site-shell {
@@ -160,12 +164,8 @@ html {
     box-shadow: var(--glass-shadow), var(--glass-highlight), var(--glass-inner);
   }
 
-  .focus-ring {
-    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-bg;
-  }
-
   .project-link {
-    @apply rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-bg;
+    @apply rounded-2xl focus-ring;
   }
 
   .text-link {
@@ -173,7 +173,7 @@ html {
   }
 
   .glass-action-card {
-    @apply flex flex-col gap-4 rounded-2xl p-6 backdrop-blur-[28px] backdrop-saturate-[180%] transition-[transform,border-color,box-shadow,background-color,opacity] duration-[180ms] ease-in will-change-[transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-bg;
+    @apply flex flex-col gap-4 rounded-2xl p-6 backdrop-blur-[28px] backdrop-saturate-[180%] transition-[transform,border-color,box-shadow,background-color,opacity] duration-[180ms] ease-in will-change-[transform] focus-ring;
     background-color: var(--glass-bg);
     border: 1px solid var(--glass-border);
     box-shadow: var(--glass-shadow), var(--glass-highlight), var(--glass-inner);
@@ -271,7 +271,7 @@ html {
   }
   /* ── Gallery image tile (thumbnail button in ProjectImageGallery) ── */
   .gallery-tile {
-    @apply relative overflow-hidden rounded-xl border shadow-glass focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-bg;
+    @apply relative overflow-hidden rounded-xl border shadow-glass focus-ring;
     border-color: var(--glass-border);
   }
 }

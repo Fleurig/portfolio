@@ -53,7 +53,7 @@ export default async function ProjectDetailPage({
 
   const t = await getTranslations({ locale });
   const mdx = await getProjectMdx(locale, slug);
-  const { title, company, period, url, tags, images } = mdx.frontmatter;
+  const { title, company, period, url, tags, images = [] } = mdx.frontmatter;
 
   return (
     <SiteLayout
@@ -114,7 +114,7 @@ export default async function ProjectDetailPage({
         <Mdx source={mdx} />
       </article>
 
-      {images?.length ? (
+      {images.length ? (
         <ProjectImageGallery images={images} />
       ) : null}
     </SiteLayout>
