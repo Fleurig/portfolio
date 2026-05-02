@@ -233,7 +233,7 @@ export function ProjectImageGallery({ images }: { images: GalleryImage[] }) {
             key={img.src}
             type="button"
             onClick={() => openLightbox(i)}
-            aria-label={`View image: ${img.alt} (${i + 1} of ${images.length})`}
+            aria-label={`View image ${i + 1} of ${images.length}`}
             className="gallery-tile group"
           >
             <div className="relative aspect-video w-full overflow-hidden bg-surface-muted">

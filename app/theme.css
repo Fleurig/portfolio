@@ -25,11 +25,13 @@
 
     /* Brand */
     /* Approximate OKLCH match for the original brand color `#7c3aed`.
-       Converted from the original hex/RGB brand value so we preserve the same
+       Converted from the original sRGB hex/RGB value into OKLCH so we preserve the same
        perceived hue/lightness while using a modern color space, which keeps
        Tailwind slash-opacity utilities like `bg-primary/12` reliable. */
     --ui-primary: oklch(0.546 0.261 293.22);
     --color-primary: var(--ui-primary);
+    --ui-accent-blue: oklch(0.623 0.188 259.81);
+    --color-accent-blue: var(--ui-accent-blue);
 
     /* Neutrals (light) */
     --ui-bg: #fbfbff;
@@ -104,6 +106,8 @@
     --ui-border-muted: rgba(255, 255, 255, 0.09);
     --color-border: var(--ui-border);
     --color-border-muted: var(--ui-border-muted);
+    --ui-accent-blue: oklch(0.67 0.144 254.62);
+    --color-accent-blue: var(--ui-accent-blue);
 
     /* Header surface (dark) */
     --color-header-surface: rgba(5, 4, 20, 0.58);
@@ -141,6 +145,7 @@
     --ui-border: #000000;
     --ui-border-muted: #000000;
     --ui-focus: var(--ui-primary);
+    --ui-accent-blue: #0000ff;
     --color-bg: var(--ui-bg);
     --color-surface: var(--ui-surface);
     --color-surface-muted: var(--ui-surface-muted);
@@ -149,6 +154,7 @@
     --color-border: var(--ui-border);
     --color-border-muted: var(--ui-border-muted);
     --color-focus: var(--ui-focus);
+    --color-accent-blue: var(--ui-accent-blue);
 
     --glass-bg: #ffffff;
     --glass-border: #000000;
