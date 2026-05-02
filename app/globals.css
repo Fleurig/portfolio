@@ -138,6 +138,58 @@ html {
 
 /* ── Glass header (Apple-style frosted bar) ── */
 @layer components {
+  .site-shell {
+    @apply min-h-dvh flex flex-col bg-bg;
+    background-image:
+      radial-gradient(
+        ellipse 80% 50% at 50% -15%,
+        color-mix(in srgb, var(--color-primary) 14%, transparent),
+        transparent
+      ),
+      radial-gradient(
+        ellipse 50% 30% at 80% 60%,
+        color-mix(in srgb, var(--color-primary) 6%, transparent),
+        transparent
+      );
+  }
+
+  .glass-panel {
+    @apply rounded-3xl p-6 sm:p-10 backdrop-blur-[28px] backdrop-saturate-[180%];
+    background-color: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow), var(--glass-highlight), var(--glass-inner);
+  }
+
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-bg;
+  }
+
+  .project-link {
+    @apply rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-bg;
+  }
+
+  .text-link {
+    @apply font-medium text-text underline underline-offset-4 hover:opacity-90;
+  }
+
+  .glass-action-card {
+    @apply flex flex-col gap-4 rounded-2xl p-6 backdrop-blur-[28px] backdrop-saturate-[180%] transition-[transform,border-color,box-shadow,background-color,opacity] duration-[180ms] ease-in will-change-[transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-bg;
+    background-color: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow), var(--glass-highlight), var(--glass-inner);
+  }
+
+  .glass-action-card:hover {
+    @apply -translate-y-0.5;
+    border-color: var(--glass-hover-border);
+    box-shadow: var(--glass-hover-shadow), var(--glass-highlight), var(--glass-inner);
+  }
+
+  .icon-bullet-primary {
+    @apply flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-primary;
+    background-color: color-mix(in srgb, var(--color-primary) 12%, transparent);
+  }
+
   .glass-header {
     @apply backdrop-blur-[40px] backdrop-saturate-[200%] backdrop-brightness-[1.04];
     background: var(--color-header-surface);
@@ -219,7 +271,7 @@ html {
   }
   /* ── Gallery image tile (thumbnail button in ProjectImageGallery) ── */
   .gallery-tile {
-    @apply relative overflow-hidden rounded-xl border shadow-glass;
+    @apply relative overflow-hidden rounded-xl border shadow-glass focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-bg;
     border-color: var(--glass-border);
   }
 }

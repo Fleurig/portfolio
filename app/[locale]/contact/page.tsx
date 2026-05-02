@@ -65,7 +65,7 @@ export default async function ContactPage({
             {/* Email card */}
             <a
               href="mailto:fleuralbers@live.nl"
-              className="glass glass--elevated glass-hover group flex flex-col gap-4 rounded-2xl p-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+              className="glass-action-card group"
               aria-label={t('contact.emailLabel')}
             >
               <div
@@ -104,7 +104,7 @@ export default async function ContactPage({
               href="https://www.linkedin.com/in/fleuralbers/"
               target="_blank"
               rel="noopener noreferrer"
-              className="glass glass--elevated glass-hover group flex flex-col gap-4 rounded-2xl p-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+              className="glass-action-card group"
               aria-label={t('contact.linkedInLabel')}
             >
               <div
@@ -161,7 +161,7 @@ export default async function ContactPage({
               <li key={item} className="flex items-center gap-2.5 text-sm text-text-muted">
                 <span
                   aria-hidden="true"
-                  className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-primary/12 text-primary"
+                  className="icon-bullet-primary"
                 >
                   ✓
                 </span>

@@ -2,6 +2,15 @@
 
 /* ── Custom shadow tokens (Tailwind v4: --shadow-* auto-registers as shadow-* utilities) ── */
 @theme inline {
+  --color-primary: var(--ui-primary);
+  --color-focus: var(--ui-focus);
+  --color-bg: var(--ui-bg);
+  --color-surface: var(--ui-surface);
+  --color-surface-muted: var(--ui-surface-muted);
+  --color-text: var(--ui-text);
+  --color-text-muted: var(--ui-text-muted);
+  --color-border: var(--ui-border);
+  --color-border-muted: var(--ui-border-muted);
   --shadow-glass: var(--glass-shadow);
   --shadow-glass-hover: var(--glass-shadow-hover);
   --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.15);
@@ -13,20 +22,29 @@
     color-scheme: light;
 
     /* Brand */
-    --color-primary: #7c3aed;
+    --ui-primary: oklch(0.546 0.245 293.22);
+    --color-primary: var(--ui-primary);
 
     /* Neutrals (light) */
-    --color-bg: #fbfbff;
-    --color-surface: rgba(255, 255, 255, 0.78);
-    --color-surface-muted: rgba(255, 255, 255, 0.6);
+    --ui-bg: #fbfbff;
+    --ui-surface: rgba(255, 255, 255, 0.78);
+    --ui-surface-muted: rgba(255, 255, 255, 0.6);
+    --color-bg: var(--ui-bg);
+    --color-surface: var(--ui-surface);
+    --color-surface-muted: var(--ui-surface-muted);
 
-    --color-text: #0b1220;
-    --color-text-muted: #475569;
+    --ui-text: #0b1220;
+    --ui-text-muted: #475569;
+    --color-text: var(--ui-text);
+    --color-text-muted: var(--ui-text-muted);
 
-    --color-border: rgba(15, 23, 42, 0.12);
-    --color-border-muted: rgba(15, 23, 42, 0.08);
+    --ui-border: rgba(15, 23, 42, 0.12);
+    --ui-border-muted: rgba(15, 23, 42, 0.08);
+    --color-border: var(--ui-border);
+    --color-border-muted: var(--ui-border-muted);
 
-    --color-focus: var(--color-primary);
+    --ui-focus: var(--ui-primary);
+    --color-focus: var(--ui-focus);
 
     /* Header surface */
     --color-header-surface: rgba(255, 255, 255, 0.58);
@@ -64,15 +82,22 @@
   :root[data-theme='dark'] {
     color-scheme: dark;
 
-    --color-bg: #050414;
-    --color-surface: rgba(11, 16, 36, 0.72);
-    --color-surface-muted: rgba(11, 16, 36, 0.58);
+    --ui-bg: #050414;
+    --ui-surface: rgba(11, 16, 36, 0.72);
+    --ui-surface-muted: rgba(11, 16, 36, 0.58);
+    --color-bg: var(--ui-bg);
+    --color-surface: var(--ui-surface);
+    --color-surface-muted: var(--ui-surface-muted);
 
-    --color-text: #f8fafc;
-    --color-text-muted: rgba(203, 213, 225, 0.9);
+    --ui-text: #f8fafc;
+    --ui-text-muted: rgba(203, 213, 225, 0.9);
+    --color-text: var(--ui-text);
+    --color-text-muted: var(--ui-text-muted);
 
-    --color-border: rgba(255, 255, 255, 0.14);
-    --color-border-muted: rgba(255, 255, 255, 0.09);
+    --ui-border: rgba(255, 255, 255, 0.14);
+    --ui-border-muted: rgba(255, 255, 255, 0.09);
+    --color-border: var(--ui-border);
+    --color-border-muted: var(--ui-border-muted);
 
     /* Header surface (dark) */
     --color-header-surface: rgba(5, 4, 20, 0.58);
@@ -102,14 +127,22 @@
   :root[data-theme='contrast'] {
     color-scheme: light;
 
-    --color-bg: #ffffff;
-    --color-surface: #ffffff;
-    --color-surface-muted: #ffffff;
-    --color-text: #000000;
-    --color-text-muted: #000000;
-    --color-border: #000000;
-    --color-border-muted: #000000;
-    --color-focus: var(--color-primary);
+    --ui-bg: #ffffff;
+    --ui-surface: #ffffff;
+    --ui-surface-muted: #ffffff;
+    --ui-text: #000000;
+    --ui-text-muted: #000000;
+    --ui-border: #000000;
+    --ui-border-muted: #000000;
+    --ui-focus: var(--ui-primary);
+    --color-bg: var(--ui-bg);
+    --color-surface: var(--ui-surface);
+    --color-surface-muted: var(--ui-surface-muted);
+    --color-text: var(--ui-text);
+    --color-text-muted: var(--ui-text-muted);
+    --color-border: var(--ui-border);
+    --color-border-muted: var(--ui-border-muted);
+    --color-focus: var(--ui-focus);
 
     --glass-bg: #ffffff;
     --glass-border: #000000;

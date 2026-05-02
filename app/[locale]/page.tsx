@@ -65,7 +65,7 @@ export default async function LocaleHomePage({
       {/* Hero */}
       <section className="relative">
         <div
-          className="glass glass--elevated rounded-3xl p-6 sm:p-10"
+          className="glass-panel"
           aria-labelledby="home-hero-title"
         >
           <p className="text-sm font-medium text-text-muted">
@@ -125,7 +125,7 @@ export default async function LocaleHomePage({
 
       {/* About */}
       <section className="mt-14">
-        <div className="glass glass--elevated rounded-3xl p-6 sm:p-10">
+        <div className="glass-panel">
           <div className="grid gap-8 md:grid-cols-12">
             <div className="md:col-span-4">
               <h2 className="text-xl font-semibold tracking-tight text-text">
@@ -160,7 +160,7 @@ export default async function LocaleHomePage({
           </div>
           <Link
             href={`/${locale}/projects`}
-            className="text-sm font-medium text-text underline underline-offset-4 hover:opacity-90"
+            className="text-link text-sm"
             aria-label={t('home.allProjectsLabel')}
           >
             {t('home.allProjects')}
@@ -173,7 +173,7 @@ export default async function LocaleHomePage({
               key={p.slug}
               href={`/${locale}/projects/${p.slug}`}
               aria-label={t('home.viewProjectLabel', { title: p.title })}
-              className="group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-bg rounded-2xl"
+              className="project-link group"
             >
               <ProjectCard project={p} />
             </Link>
@@ -186,4 +186,3 @@ export default async function LocaleHomePage({
     </SiteLayout>
   );
 }
-

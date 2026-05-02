@@ -231,7 +231,7 @@ export function ProjectImageGallery({ images }: { images: GalleryImage[] }) {
             type="button"
             onClick={() => openLightbox(i)}
             aria-label={`View image: ${img.alt}`}
-            className="gallery-tile group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+            className="gallery-tile group"
           >
             <div className="relative aspect-video w-full overflow-hidden bg-surface-muted">
               <Image
