@@ -101,7 +101,7 @@ export default async function ContactPage({
 
             {/* LinkedIn card */}
             <a
-              href="https://www.linkedin.com/in/fleuralbers/"
+              href="https://www.linkedin.com/in/fleuralbers"
               target="_blank"
               rel="noopener noreferrer"
               className="glass-action-card group"

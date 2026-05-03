@@ -58,7 +58,7 @@ export default async function LocaleHomePage({
   const featured = projects.filter((p) => p.featured).slice(0, 4);
 
   const downloadHref =
-    locale === 'en' ? '/cv-fleur-albers-en.pdf' : '/cv-fleur-albers-nl.pdf';
+    locale === 'en' ? '/cv-fleur-albers.pdf' : '/cv-fleur-albers.pdf';
 
   return (
     <SiteLayout locale={locale}>

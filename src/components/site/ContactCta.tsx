@@ -26,7 +26,7 @@ export async function ContactCta({ locale }: { locale: Locale }) {
             {t('email')}
           </a>
           <a
-            href="https://www.linkedin.com/in/fleuralbers/"
+            href="https://www.linkedin.com/in/fleuralbers"
             target="_blank"
             rel="noopener noreferrer"
             className="glass inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium text-card-text transition hover:opacity-90"

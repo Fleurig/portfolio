@@ -39,7 +39,7 @@ export default async function CvPage({
   const t = await getTranslations({ locale });
   const mdx = await getPageMdx(locale, 'cv');
   const pdfHref =
-    locale === 'en' ? '/cv-fleur-albers-en.pdf' : '/cv-fleur-albers-nl.pdf';
+    locale === 'en' ? '/cv-fleur-albers.pdf' : '/cv-fleur-albers.pdf';
 
   return (
     <SiteLayout locale={locale} backHref={`/${locale}`}>
