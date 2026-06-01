@@ -2,6 +2,7 @@ import path from 'node:path';
 import fs from 'node:fs/promises';
 import fsSync from 'node:fs';
 import { cache } from 'react';
+import { routing } from '@/middleware';
 
 export type ProfileMeta = {
   slug: string;
@@ -142,7 +143,7 @@ Feel free to reach out via email or LinkedIn.
 /** Create all content directories + template files for a new profile */
 export function scaffoldProfileContent(slug: string): void {
   const base = profileContentRoot(slug);
-  for (const locale of ['en', 'nl']) {
+  for (const locale of routing.locales) {
     fsSync.mkdirSync(path.join(base, locale, 'projects'), { recursive: true });
     const homePath = path.join(base, locale, 'home.mdx');
     const cvPath = path.join(base, locale, 'cv.mdx');

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { auth } from '@/src/lib/auth';
 import type { AuthUser } from '@/src/lib/auth';
 import { AdminLayout } from '@/src/components/admin/AdminLayout';
-import { logoutAction } from '@/src/lib/actions/auth';
+import { logoutAction, ROLE_ADMIN } from '@/src/lib/actions/auth';
 
 export default async function AdminDashboard({
   params,

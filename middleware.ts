@@ -11,7 +11,10 @@ const handleI18n = createMiddleware(routing);
 
 export default function middleware(request: NextRequest) {
   const response = handleI18n(request) ?? NextResponse.next();
-  // Forward the pathname so server layouts can inspect it without usePathname
+  // Forward the request pathname as a response header so server-side layouts
+  // can inspect the current route without using the client-only usePathname()
+  // hook. The admin layout uses this to exempt /admin/login and /admin/register
+  // from the authentication guard, preventing a redirect loop.
   response.headers.set('x-pathname', request.nextUrl.pathname);
   return response;
 }

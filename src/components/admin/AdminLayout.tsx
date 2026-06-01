@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import Link from 'next/link';
 import type { AuthUser } from '@/src/lib/auth';
+import { ROLE_ADMIN } from '@/src/lib/actions/auth';
 
 type NavItem = { label: string; href: string };
 

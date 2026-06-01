@@ -3,6 +3,8 @@
 import { useCallback, useRef, useState, useTransition } from 'react';
 import dynamic from 'next/dynamic';
 
+const SAVE_SUCCESS_DISPLAY_DURATION_MS = 2500;
+
 // Dynamically import to avoid SSR issues with MDXEditor
 const MDXEditorComponent = dynamic(
   async () => {
@@ -101,7 +103,7 @@ export function MdxEditor({ initialContent, saveAction, label = 'Save' }: Props)
       try {
         await saveAction(contentRef.current);
         setStatus('saved');
-        setTimeout(() => setStatus('idle'), 2500);
+        setTimeout(() => setStatus('idle'), SAVE_SUCCESS_DISPLAY_DURATION_MS);
       } catch {
         setStatus('error');
       }

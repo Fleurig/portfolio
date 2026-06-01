@@ -8,15 +8,18 @@ import {
   saveProfilePageMdxSync,
   saveProfileProjectMdxSync,
 } from '@/src/lib/content';
-import { scaffoldProfileContent } from '@/src/lib/profiles';
+import { getAllProfiles, scaffoldProfileContent } from '@/src/lib/profiles';
 import type { AuthUser } from '@/src/lib/auth';
+
+export const ROLE_ADMIN = 'admin' as const;
+const PROFILE_SLUG_PATTERN = /^[a-z0-9-]+$/;
 
 async function requireOwnerOrAdmin(slug: string): Promise<AuthUser> {
   const session = await auth.api.getSession({ headers: await headers() });
   if (!session) throw new Error('Not authenticated');
 
   const user = session.user as AuthUser;
-  const isAdmin = user.role === 'admin';
+  const isAdmin = user.role === ROLE_ADMIN;
   const isOwner = user.profileSlug === slug;
 
   if (!isAdmin && !isOwner) {
@@ -64,13 +67,12 @@ export async function registerUser(data: {
   const { name, email, password, profileSlug, locale } = data;
 
   // Validate slug format
-  if (!/^[a-z0-9-]+$/.test(profileSlug)) {
+  if (!PROFILE_SLUG_PATTERN.test(profileSlug)) {
     return { error: 'Profile slug may only contain lowercase letters, numbers, and hyphens.' };
   }
 
   // Check if slug is already taken
   try {
-    const { getAllProfiles } = await import('@/src/lib/profiles');
     const existing = await getAllProfiles();
     if (existing.includes(profileSlug)) {
       return { error: 'This profile slug is already taken. Please choose another.' };
