@@ -153,17 +153,18 @@ export function scaffoldProfileContent(slug: string): void {
     if (!fsSync.existsSync(contactPath)) fsSync.writeFileSync(contactPath, DEFAULT_CONTACT_TEMPLATE, 'utf8');
   }
 
-  // Create data directory for profile.json
+  // Create data directory for profile.json, one sub-directory per supported locale
   const dataDir = path.join(process.cwd(), 'data', 'profiles', slug);
-  fsSync.mkdirSync(path.join(dataDir, 'en'), { recursive: true });
-  fsSync.mkdirSync(path.join(dataDir, 'nl'), { recursive: true });
+  for (const locale of routing.locales) {
+    fsSync.mkdirSync(path.join(dataDir, locale), { recursive: true });
+  }
 
   const profileJson: ProfileMeta = {
     slug,
     displayName: slug,
     email: '',
-    locales: ['en', 'nl'],
-    defaultLocale: 'en',
+    locales: [...routing.locales],
+    defaultLocale: routing.defaultLocale,
   };
   const profileJsonPath = path.join(dataDir, 'profile.json');
   if (!fsSync.existsSync(profileJsonPath)) {

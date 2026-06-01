@@ -120,7 +120,7 @@ export default async function ProfileHomePage({
               </h2>
               <p className="mt-2 text-sm text-text-muted">{t('home.featuredSubtitle')}</p>
             </div>
-            <Link href={`${base}/projects`} className="text-link text-sm" aria-label={t('home.allProjectsLabel')}>
+            <Link href={`${base}/projects`} className="text-link text-sm">
               {t('home.allProjects')}
             </Link>
           </div>

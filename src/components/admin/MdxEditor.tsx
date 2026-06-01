@@ -8,9 +8,8 @@ const SAVE_SUCCESS_DISPLAY_DURATION_MS = 2500;
 // Dynamically import to avoid SSR issues with MDXEditor
 const MDXEditorComponent = dynamic(
   async () => {
-    const { MDXEditor, ...plugins } = await import('@mdxeditor/editor');
-
     const {
+      MDXEditor,
       headingsPlugin,
       listsPlugin,
       thematicBreakPlugin,
@@ -26,7 +25,7 @@ const MDXEditorComponent = dynamic(
       InsertFrontmatter,
       UndoRedo,
       Separator,
-    } = plugins;
+    } = await import('@mdxeditor/editor');
 
     function Editor({
       markdown,

@@ -10,6 +10,7 @@ import {
 } from '@/src/lib/content';
 import { getAllProfiles, scaffoldProfileContent } from '@/src/lib/profiles';
 import type { AuthUser } from '@/src/lib/auth';
+import { routing } from '@/middleware';
 
 export const ROLE_ADMIN = 'admin' as const;
 const PROFILE_SLUG_PATTERN = /^[a-z0-9-]+$/;
@@ -65,6 +66,12 @@ export async function registerUser(data: {
   locale: string;
 }): Promise<{ error?: string }> {
   const { name, email, password, profileSlug, locale } = data;
+
+  // Validate that locale is an allowed value before using it in a redirect
+  const allowedLocales: readonly string[] = routing.locales;
+  if (!allowedLocales.includes(locale)) {
+    return { error: 'Invalid locale.' };
+  }
 
   // Validate slug format
   if (!PROFILE_SLUG_PATTERN.test(profileSlug)) {
