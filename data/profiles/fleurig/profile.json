@@ -1,0 +1,7 @@
+{
+  "slug": "fleurig",
+  "displayName": "Fleur Albers",
+  "email": "fleur@fleuralbers.nl",
+  "locales": ["en", "nl"],
+  "defaultLocale": "en"
+}
