@@ -340,7 +340,13 @@ html {
 
   body {
     background: #fff !important;
-    color: #000 !important;
+    color: #111 !important;
+    font-size: 11pt !important;
+  }
+
+  @page {
+    size: A4;
+    margin: 18mm 16mm;
   }
 
   a {
@@ -348,7 +354,29 @@ html {
     color: inherit !important;
   }
 
+  .prose h2 {
+    font-size: 1rem !important;
+    margin-top: 1.5rem !important;
+    border-bottom: 1px solid #ccc !important;
+  }
+
+  .prose h3 {
+    font-size: 0.9rem !important;
+    margin-top: 1rem !important;
+  }
+
+  .prose p,
+  .prose li {
+    line-height: 1.6 !important;
+    margin-top: 0.25rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+
   .print-break-avoid {
     break-inside: avoid;
+  }
+
+  .site-shell {
+    background-image: none !important;
   }
 }
