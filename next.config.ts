@@ -11,6 +11,7 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 const nextConfig: NextConfig = {
   turbopack: {},
   pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
+  transpilePackages: ['@mdxeditor/editor'],
 };
 
 export default withNextIntl(withMDX(nextConfig));

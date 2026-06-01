@@ -1,0 +1,103 @@
+{
+  "name": "Fleur Albers",
+  "title": "Front-end Developer (React.js/Next.js)",
+  "location": "Haarlem",
+  "profile": "Front-end developer with over 6 years of professional experience building modern web applications using Next.js, React.js, and TypeScript. I enjoy building design systems that truly scale: reusable components, well-thought-out APIs, and consistency across multiple products. In addition to design systems, I like working on form-heavy flows and complex UX challenges.",
+  "experience": [
+    {
+      "id": "improvement-it",
+      "company": "Improvement-IT",
+      "role": "Software Developer",
+      "period": "Dec 2022 – present",
+      "location": "Halfweg (hybrid)",
+      "description": "Responsible for all front-end aspects within a product-driven environment with multiple clients. From architectural decisions and AWS Amplify setup to component libraries and code reviews.",
+      "bullets": [
+        "Development of Next.js/React.js applications for multiple clients (multi-tenant)",
+        "Setup and further development of an internal design system using Storybook",
+        "Responsible for front-end architecture, AWS Amplify, and CI/CD pipelines",
+        "Responsible for code quality, performance, and security across all front-end projects",
+        "Responsible for the deployment process of React Native apps in the app stores (iOS & Android)",
+        "Extensive work on form-heavy workflows (validation, conditional steps, edge cases)"
+      ]
+    },
+    {
+      "id": "cad-company",
+      "company": "CAD & Company",
+      "role": "Software Developer",
+      "period": "May 2019 – Nov 2022",
+      "location": "Wormerveer (hybrid)",
+      "description": "Part of a close-knit team with a high level of responsibility. Worked closely on Pillr, a B2B platform for construction teams to manage and collaborate on 3D models.",
+      "bullets": [
+        "Front-end development in Vue.js",
+        "Back-end development in C# ASP.NET Core",
+        "Contributed to architecture, data models, and user experience"
+      ]
+    },
+    {
+      "id": "premiums",
+      "company": "PREMIUMS",
+      "role": "Web Developer (Internship)",
+      "period": "Feb 2016 – Jan 2017",
+      "location": "Amsterdam",
+      "description": "One-year internship as a web developer, where I adapted and built websites based on client requirements. This is where I built a strong foundation in HTML & CSS and discovered how to fully leverage CSS.",
+      "bullets": [
+        "Adapting and building websites based on client needs",
+        "Extensive work with HTML & CSS — learned many CSS techniques",
+        "Collaboration with clients and colleagues"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": "portpay",
+      "name": "Municipality of Amsterdam — vignettes (PortPay)",
+      "description": "Fully built the current version independently: application portal + issuance app for store employees"
+    },
+    {
+      "id": "wuon",
+      "name": "WUON (Alltrack Medical)",
+      "description": "Explantation process, forms, and workflow for healthcare professionals"
+    },
+    {
+      "id": "ik-ben-iris",
+      "name": "Ik ben Iris (Alltrack Medical)",
+      "description": "Assistive device search, status, and management (multi-tenant)"
+    },
+    {
+      "id": "jdv",
+      "name": "JDV (Improvement-IT)",
+      "description": "Platform for managing container transport, with form flows and workflow support"
+    },
+    {
+      "id": "pillr",
+      "name": "Pillr (CAD & Company)",
+      "description": "Managing and collaborating on 3D models for construction teams (multi-tenant)"
+    },
+    {
+      "id": "design-system",
+      "name": "Design system (Improvement-IT)",
+      "description": "Dynamic forms, modals, alerts, buttons, camera & scan component"
+    }
+  ],
+  "skills": {
+    "daily": ["Next.js", "React.js", "TypeScript", "JavaScript", "HTML", "CSS", "Tailwind CSS"],
+    "strong": ["design systems", "Storybook", "component architecture", "form logic", "responsive/mobile-first", "AWS Amplify"],
+    "also": ["Vue.js", "C# ASP.NET Core", "Node.js", "Azure", "SASS", "Ionic Framework", "React Native", "OpenAPI"]
+  },
+  "education": [
+    {
+      "id": "novi",
+      "institution": "NOVI University of Applied Sciences",
+      "degree": "Bachelor ICT (Software Development)",
+      "period": "2019 – present",
+      "status": "finalizing"
+    },
+    {
+      "id": "college-amstelland",
+      "institution": "College Amstelland",
+      "degree": "Application and Media Developer",
+      "period": "2014 – 2018",
+      "status": "completed"
+    }
+  ]
+}
