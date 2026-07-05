@@ -13,7 +13,8 @@
     "featured": "Featured",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
-    "menuLabel": "Navigation menu"
+    "menuLabel": "Navigation menu",
+    "builder": "Create CV"
   },
   "a11y": {
     "skipToContent": "Skip to content",
@@ -30,18 +31,23 @@
     "viewImage": "View image {current} of {total}"
   },
   "seo": {
-    "siteName": "Fleur Albers",
-    "homeTitle": "Home",
-    "homeDescription": "Portfolio and CV of Fleur Albers (Haarlem) — Front-end Developer (React/Next.js).",
+    "siteName": "CV Studio",
+    "homeTitle": "CV Studio — Build your own CV, free",
+    "homeDescription": "Create a professional CV in minutes. Customize colors, fonts and layout, share it with a private link, and export to PDF. Free, no account, private by default.",
     "projectsTitle": "Projects",
     "projectsDescription": "Selected projects: multi-tenant apps, design systems, and form-heavy workflows.",
     "cvTitle": "CV",
     "cvDescription": "CV of Fleur Albers — experience, projects, skills and education (print-friendly).",
     "contactTitle": "Contact",
-    "contactDescription": "Contact details and links to reach Fleur Albers."
+    "contactDescription": "Contact details and links to reach Fleur Albers.",
+    "builderTitle": "CV builder — CV Studio",
+    "builderDescription": "Build and customize your CV: colors, fonts, layouts and section order, with a live preview. Saved in your browser, private by default.",
+    "sharedTitle": "Shared CV — CV Studio",
+    "sharedDescription": "View a CV that was shared with you via a private link."
   },
   "footer": {
-    "linkedInLabel": "LinkedIn profile (opens in a new tab)"
+    "linkedInLabel": "LinkedIn profile (opens in a new tab)",
+    "madeBy": "Made by"
   },
   "pages": {
     "projectsIntro": "A selection of products and platforms I worked on — focusing on UX, accessibility, and maintainable front-end architecture.",
@@ -87,5 +93,178 @@
     "availableFor2": "Full-time positions",
     "availableFor3": "Front-end & React work",
     "availableFor4": "Design system projects"
+  },
+  "platform": {
+    "name": "CV Studio"
+  },
+  "landing": {
+    "eyebrow": "Free online CV builder",
+    "heroTitle": "Create a CV that is truly yours",
+    "heroTagline": "Build a professional CV in minutes, make it match your style, and share it with a single link. Everything stays in your browser — private by default.",
+    "ctaStart": "Start building — it's free",
+    "ctaHow": "How it works",
+    "featuresTitle": "Everything you need, nothing you don't",
+    "features": {
+      "customize": {
+        "title": "Make it yours",
+        "body": "Pick your accent color, font and layout, and reorder sections until the CV fits you — every change shows up live."
+      },
+      "privacy": {
+        "title": "Private by default",
+        "body": "Your CV is saved in your own browser. No account, no server, nobody reading along."
+      },
+      "share": {
+        "title": "Share with a link",
+        "body": "Your data travels inside the link itself, so it never touches a server — only people you send it to can open it."
+      },
+      "free": {
+        "title": "Free to use",
+        "body": "CV Studio is free. One day a few unobtrusive ads may cover the hosting costs — never trackers or pop-ups."
+      }
+    },
+    "howTitle": "How it works",
+    "step1Title": "Fill in your details",
+    "step1Body": "Add your experience, education, skills and languages.",
+    "step2Title": "Make it match you",
+    "step2Body": "Choose a layout, an accent color and a font — you see every change instantly.",
+    "step3Title": "Export or share",
+    "step3Body": "Download a polished PDF or copy a private share link.",
+    "ctaFinalTitle": "Your next CV starts here",
+    "ctaFinalBody": "No account needed. Open the builder and start typing."
+  },
+  "builder": {
+    "title": "CV builder",
+    "intro": "Fill in your details on the left and watch your CV take shape on the right. Everything is saved automatically in your browser.",
+    "previewLabel": "Live preview",
+    "autosaveNote": "Saved automatically in your browser",
+    "resetConfirm": "This clears your entire CV from this browser. Are you sure?",
+    "sampleConfirm": "This replaces your current CV with the example. Continue?",
+    "tabs": {
+      "label": "Editor views",
+      "edit": "Edit",
+      "preview": "Preview"
+    },
+    "actions": {
+      "downloadPdf": "Download PDF",
+      "share": "Copy share link",
+      "shareCopied": "Link copied!",
+      "loadSample": "Load example",
+      "reset": "Start over",
+      "moveUp": "Move up",
+      "moveDown": "Move down",
+      "remove": "Remove",
+      "addExperience": "Add experience",
+      "addEducation": "Add education",
+      "addSkill": "Add skill",
+      "addLanguage": "Add language",
+      "addLink": "Add link",
+      "addCertification": "Add certification",
+      "addInterest": "Add interest",
+      "addReference": "Add reference"
+    },
+    "share": {
+      "linkLabel": "Your share link",
+      "privacyNote": "Your CV data lives inside this link — it is never uploaded to a server. Only people who have the link can view it."
+    },
+    "sections": {
+      "profile": "Personal details",
+      "summary": "Profile summary",
+      "experience": "Work experience",
+      "education": "Education",
+      "skills": "Skills",
+      "languages": "Languages",
+      "links": "Links",
+      "certifications": "Courses & certifications",
+      "interests": "Interests",
+      "references": "References"
+    },
+    "fields": {
+      "fullName": "Full name",
+      "headline": "Job title",
+      "headlinePlaceholder": "e.g. Front-end Developer",
+      "email": "Email",
+      "phone": "Phone",
+      "location": "Location",
+      "website": "Website",
+      "summary": "Summary",
+      "summaryPlaceholder": "A short introduction about yourself…",
+      "role": "Role",
+      "company": "Company",
+      "degree": "Degree",
+      "school": "School",
+      "start": "Start",
+      "startPlaceholder": "2022",
+      "end": "End",
+      "endPlaceholder": "present",
+      "description": "Description",
+      "skill": "Skill",
+      "language": "Language",
+      "level": "Level",
+      "levelPlaceholder": "e.g. Fluent",
+      "linkLabel": "Label",
+      "linkUrl": "URL",
+      "drivingLicense": "Driver's license",
+      "drivingLicensePlaceholder": "B",
+      "birthDate": "Date of birth",
+      "birthDatePlaceholder": "12-03-1996",
+      "certification": "Name",
+      "issuer": "Issuer",
+      "year": "Year",
+      "interest": "Interest",
+      "refName": "Name",
+      "refRole": "Role & organization",
+      "refContact": "Contact details",
+      "refContactPlaceholder": "email, phone or “available on request”"
+    },
+    "design": {
+      "title": "Design",
+      "accent": "Accent color",
+      "customColor": "Custom color",
+      "font": "Font",
+      "fonts": {
+        "sans": "Modern",
+        "serif": "Classic",
+        "mono": "Technical"
+      },
+      "template": "Layout",
+      "templates": {
+        "classic": "Single column",
+        "sidebar": "With sidebar"
+      },
+      "sectionOrder": "Section order",
+      "moveSectionUp": "Move {section} up",
+      "moveSectionDown": "Move {section} down"
+    }
+  },
+  "cv": {
+    "sections": {
+      "summary": "Profile",
+      "experience": "Work experience",
+      "education": "Education",
+      "skills": "Skills",
+      "languages": "Languages",
+      "links": "Links",
+      "certifications": "Courses & certifications",
+      "interests": "Interests",
+      "references": "References"
+    },
+    "preview": {
+      "namePlaceholder": "Your name",
+      "drivingLicense": "License {license}"
+    }
+  },
+  "shared": {
+    "notice": "This CV was shared with you privately — the data lives in the link, not on a server.",
+    "downloadPdf": "Download PDF",
+    "createOwn": "Create your own CV",
+    "useInEditor": "Open in the editor",
+    "useInEditorConfirm": "This replaces the CV currently saved in your browser. Continue?",
+    "invalidTitle": "This link doesn't contain a valid CV",
+    "invalidBody": "The link may be incomplete — ask the sender to copy it again from the builder.",
+    "loading": "Loading CV…"
+  },
+  "ads": {
+    "label": "Advertisement",
+    "note": "A small ad may appear here one day to cover hosting — never trackers or pop-ups."
   }
 }

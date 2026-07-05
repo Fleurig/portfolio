@@ -33,14 +33,12 @@ export async function SiteHeader({ locale }: { locale: Locale }) {
           className="text-[15px] font-semibold tracking-tight text-text transition-opacity duration-200 hover:opacity-60"
           aria-label={t('nav.home')}
         >
-          {t('brand.name')}
+          {t('platform.name')}
         </Link>
 
         {/* Desktop nav */}
         <nav className="hidden sm:flex items-center gap-1" aria-label={t('a11y.primaryNav')}>
-          <NavLink href={`/${locale}/cv`}>{t('nav.cv')}</NavLink>
-          <NavLink href={`/${locale}/projects`}>{t('nav.projects')}</NavLink>
-          <NavLink href={`/${locale}/contact`}>{t('nav.contact')}</NavLink>
+          <NavLink href={`/${locale}/builder`}>{t('nav.builder')}</NavLink>
 
           <span className="h-4 w-px bg-border opacity-60" aria-hidden="true" />
 

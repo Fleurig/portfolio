@@ -1,15 +1,10 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 
 import { SiteLayout } from '@/src/components/site/SiteLayout';
-import { getAllProjects, getPageMdx } from '@/src/lib/content';
-import { Mdx } from '@/src/components/mdx/Mdx';
 import { ButtonLink } from '@/src/components/ui/ButtonLink';
 import { Chip } from '@/src/components/ui/Chip';
-import { ProjectCard } from '@/src/components/site/ProjectCard';
-import { ContactCta } from '@/src/components/site/ContactCta';
 
 export const dynamic = 'force-static';
 
@@ -33,18 +28,16 @@ export async function generateMetadata({
   };
 }
 
-function MetaItem({ icon, label }: { icon: string; label: string }) {
-  return (
-    <span className="inline-flex items-center gap-2 text-sm text-text-muted">
-      <span aria-hidden="true" className="text-base">
-        {icon}
-      </span>
-      <span>{label}</span>
-    </span>
-  );
-}
+const FEATURES = [
+  { key: 'customize', icon: '🎨' },
+  { key: 'privacy', icon: '🔒' },
+  { key: 'share', icon: '🔗' },
+  { key: 'free', icon: '🌱' },
+] as const;
 
-export default async function LocaleHomePage({
+const STEPS = ['step1', 'step2', 'step3'] as const;
+
+export default async function LandingPage({
   params,
 }: {
   params: Promise<{ locale: string }>;
@@ -53,136 +46,113 @@ export default async function LocaleHomePage({
   if (locale !== 'nl' && locale !== 'en') return notFound();
 
   const t = await getTranslations({ locale });
-  const mdx = await getPageMdx(locale, 'home');
-  const projects = await getAllProjects(locale);
-  const featured = projects.filter((p) => p.featured).slice(0, 4);
-
-  const downloadHref =
-    locale === 'en' ? '/cv-fleur-albers.pdf' : '/cv-fleur-albers.pdf';
 
   return (
     <SiteLayout locale={locale}>
       {/* Hero */}
-      <section className="relative">
-        <div
-          className="glass-panel"
-          aria-labelledby="home-hero-title"
-        >
-          <p className="text-sm font-medium text-text-muted">
-            {t('home.role')}
-          </p>
+      <section className="relative" aria-labelledby="landing-hero-title">
+        <div className="glass-panel">
+          <p className="text-sm font-medium text-text-muted">{t('landing.eyebrow')}</p>
 
           <h1
-            id="home-hero-title"
-            className="mt-3 text-4xl font-semibold tracking-tight text-text sm:text-6xl"
+            id="landing-hero-title"
+            className="mt-3 max-w-3xl text-4xl font-semibold tracking-tight text-text sm:text-6xl"
           >
-            {t('brand.name')}
+            {t('landing.heroTitle')}
           </h1>
 
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-muted sm:text-lg">
-            {t('home.tagline')}
+            {t('landing.heroTagline')}
           </p>
 
           <div className="mt-6 flex flex-wrap gap-3">
-            <ButtonLink href={`/${locale}/projects`} variant="primary">
-              {t('home.viewProjects')}
+            <ButtonLink href={`/${locale}/builder`} variant="primary">
+              {t('landing.ctaStart')}
             </ButtonLink>
-            <ButtonLink href={`/${locale}/cv`} variant="secondary">
-              {t('home.viewCv')}
+            <ButtonLink href="#how-it-works" variant="secondary">
+              {t('landing.ctaHow')}
             </ButtonLink>
-            <a
-              href={downloadHref}
-              className="glass glass--elevated glass-hover inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium text-text-muted transition hover:text-text"
-              aria-label={t('home.downloadCvLabel')}
-            >
-              {t('home.downloadCv')}
-            </a>
           </div>
 
-          <div
-            className="mt-7 flex flex-wrap gap-2"
-            aria-label={t('home.focusLabel')}
-          >
-            <Chip>Next.js</Chip>
-            <Chip>React</Chip>
-            <Chip>TypeScript</Chip>
-            <Chip>Design systems</Chip>
-            <Chip>Forms &amp; workflows</Chip>
-          </div>
-
-          <div
-            className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2"
-            aria-label={t('home.profileLabel')}
-          >
-            <MetaItem icon="📍" label={t('brand.location')} />
-            <span aria-hidden="true" className="text-sm text-text-muted">|</span>
-            <MetaItem icon="🚗" label={t('home.driversLicense')} />
-            <span aria-hidden="true" className="text-sm text-text-muted">|</span>
-            <MetaItem icon="🎂" label="26-08-1999" />
+          <div className="mt-7 flex flex-wrap gap-2">
+            {FEATURES.map(({ key }) => (
+              <Chip key={key}>{t(`landing.features.${key}.title`)}</Chip>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* About */}
-      <section className="mt-14">
-        <div className="glass-panel">
-          <div className="grid gap-8 md:grid-cols-12">
-            <div className="md:col-span-4">
-              <h2 className="text-xl font-semibold tracking-tight text-text">
-                {t('home.aboutTitle')}
-              </h2>
-              <p className="mt-2 text-sm text-text-muted">
-                {t('home.aboutSubtitle')}
+      {/* Features */}
+      <section className="mt-14" aria-labelledby="landing-features-title">
+        <h2
+          id="landing-features-title"
+          className="text-xl font-semibold tracking-tight text-text"
+        >
+          {t('landing.featuresTitle')}
+        </h2>
+        <div className="mt-6 grid gap-4 sm:grid-cols-2">
+          {FEATURES.map(({ key, icon }) => (
+            <div key={key} className="glass-card rounded-2xl p-6">
+              <span aria-hidden="true" className="text-2xl">
+                {icon}
+              </span>
+              <h3 className="mt-3 text-base font-semibold text-text">
+                {t(`landing.features.${key}.title`)}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-text-muted">
+                {t(`landing.features.${key}.body`)}
               </p>
             </div>
-            <div className="md:col-span-8">
-              <article className="prose max-w-none prose-p:leading-relaxed prose-p:text-text-muted prose-strong:text-text">
-                <Mdx source={mdx} />
-              </article>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured projects */}
-      <section className="mt-14" aria-labelledby="home-featured">
-        <div className="flex items-end justify-between gap-4">
-          <div>
-            <h2
-              id="home-featured"
-              className="text-xl font-semibold tracking-tight text-text"
-            >
-              {t('home.featuredTitle')}
-            </h2>
-            <p className="mt-2 text-sm text-text-muted">
-              {t('home.featuredSubtitle')}
-            </p>
-          </div>
-          <Link
-            href={`/${locale}/projects`}
-            className="text-link text-sm"
-            aria-label={t('home.allProjectsLabel')}
-          >
-            {t('home.allProjects')}
-          </Link>
-        </div>
-
-        <div className="mt-6 grid gap-4 md:grid-cols-2">
-          {featured.map((p) => (
-            <Link
-              key={p.slug}
-              href={`/${locale}/projects/${p.slug}`}
-              aria-label={t('home.viewProjectLabel', { title: p.title })}
-              className="project-link group"
-            >
-              <ProjectCard project={p} locale={locale} />
-            </Link>
           ))}
         </div>
       </section>
 
-      {/* Contact CTA */}
-      <ContactCta locale={locale} />
+      {/* How it works */}
+      <section id="how-it-works" className="mt-14" aria-labelledby="landing-how-title">
+        <div className="glass-panel">
+          <h2 id="landing-how-title" className="text-xl font-semibold tracking-tight text-text">
+            {t('landing.howTitle')}
+          </h2>
+          <ol className="mt-6 grid gap-6 sm:grid-cols-3">
+            {STEPS.map((step, index) => (
+              <li key={step}>
+                <span
+                  aria-hidden="true"
+                  className="icon-bullet-primary h-8 w-8 text-sm font-semibold"
+                >
+                  {index + 1}
+                </span>
+                <h3 className="mt-3 text-base font-semibold text-text">
+                  {t(`landing.${step}Title`)}
+                </h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-text-muted">
+                  {t(`landing.${step}Body`)}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="mt-14" aria-labelledby="landing-cta-title">
+        <div className="glass-panel text-center">
+          <h2
+            id="landing-cta-title"
+            className="text-2xl font-semibold tracking-tight text-text sm:text-3xl"
+          >
+            {t('landing.ctaFinalTitle')}
+          </h2>
+          <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-text-muted sm:text-base">
+            {t('landing.ctaFinalBody')}
+          </p>
+          <div className="mt-6 flex justify-center">
+            <ButtonLink href={`/${locale}/builder`} variant="primary">
+              {t('landing.ctaStart')}
+            </ButtonLink>
+          </div>
+        </div>
+      </section>
     </SiteLayout>
   );
 }

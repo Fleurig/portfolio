@@ -94,9 +94,7 @@ export function MobileNav({ locale }: { locale: Locale }) {
 
   const navLinks = [
     { href: `/${locale}`, label: t('nav.home') },
-    { href: `/${locale}/cv`, label: t('nav.cv') },
-    { href: `/${locale}/projects`, label: t('nav.projects') },
-    { href: `/${locale}/contact`, label: t('nav.contact') },
+    { href: `/${locale}/builder`, label: t('nav.builder') },
   ];
 
   return (
