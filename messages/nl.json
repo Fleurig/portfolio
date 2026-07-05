@@ -157,7 +157,10 @@
       "addEducation": "Opleiding toevoegen",
       "addSkill": "Vaardigheid toevoegen",
       "addLanguage": "Taal toevoegen",
-      "addLink": "Link toevoegen"
+      "addLink": "Link toevoegen",
+      "addCertification": "Certificaat toevoegen",
+      "addInterest": "Interesse toevoegen",
+      "addReference": "Referentie toevoegen"
     },
     "share": {
       "linkLabel": "Jouw deellink",
@@ -170,7 +173,10 @@
       "education": "Opleidingen",
       "skills": "Vaardigheden",
       "languages": "Talen",
-      "links": "Links"
+      "links": "Links",
+      "certifications": "Cursussen & certificaten",
+      "interests": "Interesses",
+      "references": "Referenties"
     },
     "fields": {
       "fullName": "Volledige naam",
@@ -196,7 +202,19 @@
       "level": "Niveau",
       "levelPlaceholder": "bijv. Vloeiend",
       "linkLabel": "Label",
-      "linkUrl": "URL"
+      "linkUrl": "URL",
+      "drivingLicense": "Rijbewijs",
+      "drivingLicensePlaceholder": "B",
+      "birthDate": "Geboortedatum",
+      "birthDatePlaceholder": "12-03-1996",
+      "certification": "Naam",
+      "issuer": "Uitgever",
+      "year": "Jaar",
+      "interest": "Interesse",
+      "refName": "Naam",
+      "refRole": "Functie & organisatie",
+      "refContact": "Contactgegevens",
+      "refContactPlaceholder": "e-mail, telefoon of “op aanvraag”"
     },
     "design": {
       "title": "Ontwerp",
@@ -225,10 +243,14 @@
       "education": "Opleidingen",
       "skills": "Vaardigheden",
       "languages": "Talen",
-      "links": "Links"
+      "links": "Links",
+      "certifications": "Cursussen & certificaten",
+      "interests": "Interesses",
+      "references": "Referenties"
     },
     "preview": {
-      "namePlaceholder": "Jouw naam"
+      "namePlaceholder": "Jouw naam",
+      "drivingLicense": "Rijbewijs {license}"
     }
   },
   "shared": {

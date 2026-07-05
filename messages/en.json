@@ -157,7 +157,10 @@
       "addEducation": "Add education",
       "addSkill": "Add skill",
       "addLanguage": "Add language",
-      "addLink": "Add link"
+      "addLink": "Add link",
+      "addCertification": "Add certification",
+      "addInterest": "Add interest",
+      "addReference": "Add reference"
     },
     "share": {
       "linkLabel": "Your share link",
@@ -170,7 +173,10 @@
       "education": "Education",
       "skills": "Skills",
       "languages": "Languages",
-      "links": "Links"
+      "links": "Links",
+      "certifications": "Courses & certifications",
+      "interests": "Interests",
+      "references": "References"
     },
     "fields": {
       "fullName": "Full name",
@@ -196,7 +202,19 @@
       "level": "Level",
       "levelPlaceholder": "e.g. Fluent",
       "linkLabel": "Label",
-      "linkUrl": "URL"
+      "linkUrl": "URL",
+      "drivingLicense": "Driver's license",
+      "drivingLicensePlaceholder": "B",
+      "birthDate": "Date of birth",
+      "birthDatePlaceholder": "12-03-1996",
+      "certification": "Name",
+      "issuer": "Issuer",
+      "year": "Year",
+      "interest": "Interest",
+      "refName": "Name",
+      "refRole": "Role & organization",
+      "refContact": "Contact details",
+      "refContactPlaceholder": "email, phone or “available on request”"
     },
     "design": {
       "title": "Design",
@@ -225,10 +243,14 @@
       "education": "Education",
       "skills": "Skills",
       "languages": "Languages",
-      "links": "Links"
+      "links": "Links",
+      "certifications": "Courses & certifications",
+      "interests": "Interests",
+      "references": "References"
     },
     "preview": {
-      "namePlaceholder": "Your name"
+      "namePlaceholder": "Your name",
+      "drivingLicense": "License {license}"
     }
   },
   "shared": {

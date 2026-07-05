@@ -5,9 +5,12 @@ export const SECTION_KEYS = [
   'summary',
   'experience',
   'education',
+  'certifications',
   'skills',
   'languages',
+  'interests',
   'links',
+  'references',
 ] as const;
 export type SectionKey = (typeof SECTION_KEYS)[number];
 
@@ -24,6 +27,8 @@ export interface CvProfile {
   phone: string;
   location: string;
   website: string;
+  drivingLicense: string;
+  birthDate: string;
   summary: string;
 }
 
@@ -55,6 +60,13 @@ export interface CvLink {
   url: string;
 }
 
+export interface CvReference {
+  id: string;
+  name: string;
+  role: string;
+  contact: string;
+}
+
 export interface CvStyle {
   accent: string;
   font: CvFont;
@@ -66,9 +78,12 @@ export interface CvData {
   profile: CvProfile;
   experience: CvEntry[];
   education: CvEntry[];
+  certifications: CvEntry[];
   skills: CvSkill[];
   languages: CvLanguage[];
+  interests: CvSkill[];
   links: CvLink[];
+  references: CvReference[];
   sectionOrder: SectionKey[];
   style: CvStyle;
 }

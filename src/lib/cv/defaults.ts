@@ -5,6 +5,7 @@ import type {
   CvLanguage,
   CvLink,
   CvProfile,
+  CvReference,
   CvSkill,
   CvStyle,
   CvTemplate,
@@ -22,13 +23,18 @@ export function createEmptyCv(): CvData {
       phone: '',
       location: '',
       website: '',
+      drivingLicense: '',
+      birthDate: '',
       summary: '',
     },
     experience: [],
     education: [],
+    certifications: [],
     skills: [],
     languages: [],
+    interests: [],
     links: [],
+    references: [],
     sectionOrder: [...SECTION_KEYS],
     style: {
       accent: ACCENT_PRESETS[0],
@@ -67,6 +73,8 @@ function normalizeProfile(value: unknown): CvProfile {
     phone: asString(raw.phone),
     location: asString(raw.location),
     website: asString(raw.website),
+    drivingLicense: asString(raw.drivingLicense),
+    birthDate: asString(raw.birthDate),
     summary: asString(raw.summary),
   };
 }
@@ -104,6 +112,16 @@ function normalizeLink(value: unknown): CvLink {
     id: asString(raw.id) || newId(),
     label: asString(raw.label),
     url: asString(raw.url),
+  };
+}
+
+function normalizeReference(value: unknown): CvReference {
+  const raw = asRecord(value);
+  return {
+    id: asString(raw.id) || newId(),
+    name: asString(raw.name),
+    role: asString(raw.role),
+    contact: asString(raw.contact),
   };
 }
 
@@ -151,9 +169,12 @@ export function normalizeCvData(value: unknown): CvData | null {
     profile: normalizeProfile(raw.profile),
     experience: asArray(raw.experience).map(normalizeEntry),
     education: asArray(raw.education).map(normalizeEntry),
+    certifications: asArray(raw.certifications).map(normalizeEntry),
     skills: asArray(raw.skills).map(normalizeSkill),
     languages: asArray(raw.languages).map(normalizeLanguage),
+    interests: asArray(raw.interests).map(normalizeSkill),
     links: asArray(raw.links).map(normalizeLink),
+    references: asArray(raw.references).map(normalizeReference),
     sectionOrder: normalizeSectionOrder(raw.sectionOrder),
     style: normalizeStyle(raw.style),
   };
@@ -173,6 +194,8 @@ export function createSampleCv(locale: 'nl' | 'en'): CvData {
       phone: '+31 6 12 34 56 78',
       location: nl ? 'Utrecht, Nederland' : 'Utrecht, the Netherlands',
       website: 'alexjansen.example.com',
+      drivingLicense: 'B',
+      birthDate: '12-03-1996',
       summary: nl
         ? 'Front-end developer met vijf jaar ervaring in het bouwen van toegankelijke webapplicaties. Sterk in React, design systems en het vertalen van ontwerp naar soepele, snelle interfaces.'
         : 'Front-end developer with five years of experience building accessible web applications. Strong in React, design systems, and turning designs into smooth, fast interfaces.',
@@ -212,6 +235,17 @@ export function createSampleCv(locale: 'nl' | 'en'): CvData {
         description: '',
       },
     ],
+    certifications: [
+      {
+        id: newId(),
+        title: nl ? 'Scrum Master (PSM I)' : 'Scrum Master (PSM I)',
+        organization: 'Scrum.org',
+        location: '',
+        start: '2023',
+        end: '',
+        description: '',
+      },
+    ],
     skills: ['React', 'TypeScript', 'Next.js', 'CSS', 'Accessibility', 'Git'].map((name) => ({
       id: newId(),
       name,
@@ -220,6 +254,18 @@ export function createSampleCv(locale: 'nl' | 'en'): CvData {
       { id: newId(), name: nl ? 'Nederlands' : 'Dutch', level: nl ? 'Moedertaal' : 'Native' },
       { id: newId(), name: nl ? 'Engels' : 'English', level: nl ? 'Vloeiend' : 'Fluent' },
     ],
+    interests: (nl
+      ? ['Fotografie', 'Bouldern', 'Koken']
+      : ['Photography', 'Bouldering', 'Cooking']
+    ).map((name) => ({ id: newId(), name })),
     links: [{ id: newId(), label: 'LinkedIn', url: 'linkedin.com/in/alexjansen' }],
+    references: [
+      {
+        id: newId(),
+        name: 'Sanne de Vries',
+        role: nl ? 'Lead developer, Studio Noord' : 'Lead developer, Studio Noord',
+        contact: nl ? 'op aanvraag' : 'available on request',
+      },
+    ],
   };
 }

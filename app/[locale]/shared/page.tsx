@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
-import { SiteLayout } from '@/src/components/site/SiteLayout';
 import { SharedCvViewer } from '@/src/components/cv/SharedCvViewer';
 
 export const dynamic = 'force-static';
@@ -32,9 +31,7 @@ export default async function SharedCvPage({
   const { locale } = await params;
   if (locale !== 'nl' && locale !== 'en') return notFound();
 
-  return (
-    <SiteLayout locale={locale}>
-      <SharedCvViewer locale={locale} />
-    </SiteLayout>
-  );
+  // Deliberately no SiteLayout: a shared link should read as the CV document
+  // itself, not as a page of the builder site.
+  return <SharedCvViewer locale={locale} />;
 }

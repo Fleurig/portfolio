@@ -4,6 +4,14 @@ import type { CSSProperties, ReactNode } from 'react';
 import { useTranslations } from 'next-intl';
 import { clsx } from 'clsx';
 import type { CvData, CvEntry, CvFont, SectionKey } from '@/src/lib/cv/types';
+import {
+  IconCake,
+  IconCar,
+  IconGlobe,
+  IconMail,
+  IconMapPin,
+  IconPhone,
+} from '@/src/components/cv/icons';
 
 /** The CV renders as a light "paper" sheet with fixed colors, independent of
  *  the site theme, so what you see on screen is what prints. */
@@ -14,7 +22,7 @@ const FONT_STACKS: Record<CvFont, string> = {
   mono: "ui-monospace, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace",
 };
 
-const SIDEBAR_SECTIONS: readonly SectionKey[] = ['skills', 'languages', 'links'];
+const SIDEBAR_SECTIONS: readonly SectionKey[] = ['skills', 'languages', 'interests', 'links'];
 
 function SectionTitle({ children }: { children: ReactNode }) {
   return (
@@ -75,6 +83,27 @@ function externalHref(url: string): string {
   return /^https?:\/\//i.test(url) ? url : `https://${url}`;
 }
 
+function ChipList({ items }: { items: { id: string; name: string }[] }) {
+  return (
+    <ul className="flex flex-wrap gap-1.5">
+      {items
+        .filter((item) => item.name)
+        .map((item) => (
+          <li
+            key={item.id}
+            className="rounded-md px-2 py-0.5 text-xs font-medium text-gray-800"
+            style={{
+              backgroundColor: 'color-mix(in srgb, var(--cv-accent) 10%, white)',
+              border: '1px solid color-mix(in srgb, var(--cv-accent) 25%, transparent)',
+            }}
+          >
+            {item.name}
+          </li>
+        ))}
+    </ul>
+  );
+}
+
 export function CvPreview({ data, className }: { data: CvData; className?: string }) {
   const t = useTranslations('cv');
   const { profile, style } = data;
@@ -84,17 +113,28 @@ export function CvPreview({ data, className }: { data: CvData; className?: strin
     fontFamily: FONT_STACKS[style.font],
   } as CSSProperties;
 
-  const contactItems = [profile.email, profile.phone, profile.location, profile.website].filter(
-    Boolean,
-  );
+  const contactItems: { icon: ReactNode; text: string }[] = [
+    profile.email && { icon: <IconMail />, text: profile.email },
+    profile.phone && { icon: <IconPhone />, text: profile.phone },
+    profile.location && { icon: <IconMapPin />, text: profile.location },
+    profile.website && { icon: <IconGlobe />, text: profile.website },
+    profile.drivingLicense && {
+      icon: <IconCar />,
+      text: t('preview.drivingLicense', { license: profile.drivingLicense }),
+    },
+    profile.birthDate && { icon: <IconCake />, text: profile.birthDate },
+  ].filter(Boolean) as { icon: ReactNode; text: string }[];
 
   const hasContent: Record<SectionKey, boolean> = {
     summary: Boolean(profile.summary),
     experience: data.experience.length > 0,
     education: data.education.length > 0,
+    certifications: data.certifications.length > 0,
     skills: data.skills.some((s) => s.name),
     languages: data.languages.some((l) => l.name),
+    interests: data.interests.some((s) => s.name),
     links: data.links.some((l) => l.label || l.url),
+    references: data.references.some((r) => r.name),
   };
 
   const renderSection = (key: SectionKey): ReactNode => {
@@ -120,22 +160,37 @@ export function CvPreview({ data, className }: { data: CvData; className?: strin
             <EntryList entries={data.education} />
           </Section>
         );
+      case 'certifications':
+        return (
+          <Section key={key} title={t('sections.certifications')}>
+            <EntryList entries={data.certifications} />
+          </Section>
+        );
       case 'skills':
         return (
           <Section key={key} title={t('sections.skills')}>
-            <ul className="flex flex-wrap gap-1.5">
-              {data.skills
-                .filter((s) => s.name)
-                .map((skill) => (
-                  <li
-                    key={skill.id}
-                    className="rounded-md px-2 py-0.5 text-xs font-medium text-gray-800"
-                    style={{
-                      backgroundColor: 'color-mix(in srgb, var(--cv-accent) 10%, white)',
-                      border: '1px solid color-mix(in srgb, var(--cv-accent) 25%, transparent)',
-                    }}
-                  >
-                    {skill.name}
+            <ChipList items={data.skills} />
+          </Section>
+        );
+      case 'interests':
+        return (
+          <Section key={key} title={t('sections.interests')}>
+            <ChipList items={data.interests} />
+          </Section>
+        );
+      case 'references':
+        return (
+          <Section key={key} title={t('sections.references')}>
+            <ul className="space-y-2">
+              {data.references
+                .filter((r) => r.name)
+                .map((ref) => (
+                  <li key={ref.id} className="text-[13px] leading-relaxed print-break-avoid">
+                    <span className="font-medium text-gray-900">{ref.name}</span>
+                    {ref.role ? <span className="text-gray-600"> — {ref.role}</span> : null}
+                    {ref.contact ? (
+                      <span className="block text-xs text-gray-500">{ref.contact}</span>
+                    ) : null}
                   </li>
                 ))}
             </ul>
@@ -190,7 +245,10 @@ export function CvPreview({ data, className }: { data: CvData; className?: strin
   };
 
   const header = (
-    <header>
+    <header
+      className="border-b-2 pb-4"
+      style={{ borderColor: 'color-mix(in srgb, var(--cv-accent) 55%, transparent)' }}
+    >
       <h1 className="text-3xl font-bold tracking-tight text-gray-900">
         {profile.fullName || t('preview.namePlaceholder')}
       </h1>
@@ -200,7 +258,14 @@ export function CvPreview({ data, className }: { data: CvData; className?: strin
         </p>
       ) : null}
       {contactItems.length > 0 ? (
-        <p className="mt-2 text-xs leading-relaxed text-gray-500">{contactItems.join('  ·  ')}</p>
+        <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-1.5">
+          {contactItems.map((item, index) => (
+            <li key={index} className="inline-flex items-center gap-1.5 text-xs text-gray-600">
+              <span style={{ color: 'var(--cv-accent)' }}>{item.icon}</span>
+              {item.text}
+            </li>
+          ))}
+        </ul>
       ) : null}
     </header>
   );

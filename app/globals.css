@@ -355,9 +355,11 @@ html {
 }
 
 /* Print styles for CV */
+/* Zero page margins suppress the browser-generated print header/footer
+   (URL, date, page numbers); the sheet carries its own 14mm padding instead. */
 @page {
   size: A4;
-  margin: 12mm;
+  margin: 0;
 }
 
 @media print {
@@ -389,7 +391,8 @@ html {
   }
 
   /* Let the sheet fill the printable area edge to edge */
-  .site-shell main > div {
+  .site-shell main > div,
+  .print-reset-pad {
     padding: 0 !important;
     max-width: none !important;
   }
@@ -398,7 +401,7 @@ html {
     border: none !important;
     border-radius: 0 !important;
     box-shadow: none !important;
-    padding: 0 !important;
+    padding: 14mm !important; /* page margin lives here, see @page above */
     max-width: none !important;
   }
 }

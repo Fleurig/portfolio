@@ -99,12 +99,18 @@ function EntryListEditor({
   titleLabel,
   organizationLabel,
   addLabel,
+  startLabel,
+  withLocation = true,
+  withEndDate = true,
 }: {
   entries: CvEntry[];
   onEntriesChange: (entries: CvEntry[]) => void;
   titleLabel: string;
   organizationLabel: string;
   addLabel: string;
+  startLabel?: string;
+  withLocation?: boolean;
+  withEndDate?: boolean;
 }) {
   const t = useTranslations('builder');
 
@@ -135,24 +141,28 @@ function EntryListEditor({
               value={entry.organization}
               onChange={(v) => patch(entry.id, { organization: v })}
             />
-            <LabeledInput
-              label={t('fields.location')}
-              value={entry.location}
-              onChange={(v) => patch(entry.id, { location: v })}
-            />
-            <div className="grid grid-cols-2 gap-3">
+            {withLocation ? (
               <LabeledInput
-                label={t('fields.start')}
+                label={t('fields.location')}
+                value={entry.location}
+                onChange={(v) => patch(entry.id, { location: v })}
+              />
+            ) : null}
+            <div className={withEndDate ? 'grid grid-cols-2 gap-3' : undefined}>
+              <LabeledInput
+                label={startLabel ?? t('fields.start')}
                 value={entry.start}
                 onChange={(v) => patch(entry.id, { start: v })}
                 placeholder={t('fields.startPlaceholder')}
               />
-              <LabeledInput
-                label={t('fields.end')}
-                value={entry.end}
-                onChange={(v) => patch(entry.id, { end: v })}
-                placeholder={t('fields.endPlaceholder')}
-              />
+              {withEndDate ? (
+                <LabeledInput
+                  label={t('fields.end')}
+                  value={entry.end}
+                  onChange={(v) => patch(entry.id, { end: v })}
+                  placeholder={t('fields.endPlaceholder')}
+                />
+              ) : null}
             </div>
             <LabeledTextarea
               label={t('fields.description')}
@@ -165,6 +175,47 @@ function EntryListEditor({
         </ItemCard>
       ))}
       <AddButton label={addLabel} onClick={() => onEntriesChange([...entries, emptyEntry()])} />
+    </>
+  );
+}
+
+/** Editor for simple name-only lists (skills, interests). */
+function NameListEditor({
+  items,
+  onItemsChange,
+  itemLabel,
+  addLabel,
+}: {
+  items: { id: string; name: string }[];
+  onItemsChange: (items: { id: string; name: string }[]) => void;
+  itemLabel: string;
+  addLabel: string;
+}) {
+  const t = useTranslations('builder');
+  return (
+    <>
+      {items.map((item, index) => (
+        <div key={item.id} className="flex items-end gap-1.5">
+          <LabeledInput
+            label={`${itemLabel} ${index + 1}`}
+            value={item.name}
+            onChange={(v) =>
+              onItemsChange(items.map((i) => (i.id === item.id ? { ...i, name: v } : i)))
+            }
+            className="flex-1"
+          />
+          <IconButton
+            label={t('actions.remove')}
+            onClick={() => onItemsChange(items.filter((i) => i.id !== item.id))}
+          >
+            ✕
+          </IconButton>
+        </div>
+      ))}
+      <AddButton
+        label={addLabel}
+        onClick={() => onItemsChange([...items, { id: newId(), name: '' }])}
+      />
     </>
   );
 }
@@ -213,6 +264,18 @@ export function EditorPanel({ data, onChange }: { data: CvData; onChange: CvUpda
             value={data.profile.website}
             onChange={(v) => patchProfile({ website: v })}
           />
+          <LabeledInput
+            label={t('fields.drivingLicense')}
+            value={data.profile.drivingLicense}
+            onChange={(v) => patchProfile({ drivingLicense: v })}
+            placeholder={t('fields.drivingLicensePlaceholder')}
+          />
+          <LabeledInput
+            label={t('fields.birthDate')}
+            value={data.profile.birthDate}
+            onChange={(v) => patchProfile({ birthDate: v })}
+            placeholder={t('fields.birthDatePlaceholder')}
+          />
         </div>
       </EditorSection>
 
@@ -249,39 +312,27 @@ export function EditorPanel({ data, onChange }: { data: CvData; onChange: CvUpda
         />
       </EditorSection>
 
+      {/* Courses & certifications */}
+      <EditorSection title={t('sections.certifications')} count={data.certifications.length}>
+        <EntryListEditor
+          entries={data.certifications}
+          onEntriesChange={(certifications) => onChange((prev) => ({ ...prev, certifications }))}
+          titleLabel={t('fields.certification')}
+          organizationLabel={t('fields.issuer')}
+          addLabel={t('actions.addCertification')}
+          startLabel={t('fields.year')}
+          withLocation={false}
+          withEndDate={false}
+        />
+      </EditorSection>
+
       {/* Skills */}
       <EditorSection title={t('sections.skills')} count={data.skills.length}>
-        {data.skills.map((skill, index) => (
-          <div key={skill.id} className="flex items-end gap-1.5">
-            <LabeledInput
-              label={`${t('fields.skill')} ${index + 1}`}
-              value={skill.name}
-              onChange={(v) =>
-                onChange((prev) => ({
-                  ...prev,
-                  skills: prev.skills.map((s) => (s.id === skill.id ? { ...s, name: v } : s)),
-                }))
-              }
-              className="flex-1"
-            />
-            <IconButton
-              label={t('actions.remove')}
-              onClick={() =>
-                onChange((prev) => ({
-                  ...prev,
-                  skills: prev.skills.filter((s) => s.id !== skill.id),
-                }))
-              }
-            >
-              ✕
-            </IconButton>
-          </div>
-        ))}
-        <AddButton
-          label={t('actions.addSkill')}
-          onClick={() =>
-            onChange((prev) => ({ ...prev, skills: [...prev.skills, { id: newId(), name: '' }] }))
-          }
+        <NameListEditor
+          items={data.skills}
+          onItemsChange={(skills) => onChange((prev) => ({ ...prev, skills }))}
+          itemLabel={t('fields.skill')}
+          addLabel={t('actions.addSkill')}
         />
       </EditorSection>
 
@@ -336,6 +387,16 @@ export function EditorPanel({ data, onChange }: { data: CvData; onChange: CvUpda
         />
       </EditorSection>
 
+      {/* Interests */}
+      <EditorSection title={t('sections.interests')} count={data.interests.length}>
+        <NameListEditor
+          items={data.interests}
+          onItemsChange={(interests) => onChange((prev) => ({ ...prev, interests }))}
+          itemLabel={t('fields.interest')}
+          addLabel={t('actions.addInterest')}
+        />
+      </EditorSection>
+
       {/* Links */}
       <EditorSection title={t('sections.links')} count={data.links.length}>
         {data.links.map((link) => (
@@ -383,6 +444,76 @@ export function EditorPanel({ data, onChange }: { data: CvData; onChange: CvUpda
             onChange((prev) => ({
               ...prev,
               links: [...prev.links, { id: newId(), label: '', url: '' }],
+            }))
+          }
+        />
+      </EditorSection>
+
+      {/* References */}
+      <EditorSection title={t('sections.references')} count={data.references.length}>
+        {data.references.map((ref) => (
+          <div key={ref.id} className="rounded-xl border border-border-muted bg-surface-muted/50 p-4">
+            <div className="grid gap-3 sm:grid-cols-2">
+              <LabeledInput
+                label={t('fields.refName')}
+                value={ref.name}
+                onChange={(v) =>
+                  onChange((prev) => ({
+                    ...prev,
+                    references: prev.references.map((r) =>
+                      r.id === ref.id ? { ...r, name: v } : r,
+                    ),
+                  }))
+                }
+              />
+              <LabeledInput
+                label={t('fields.refRole')}
+                value={ref.role}
+                onChange={(v) =>
+                  onChange((prev) => ({
+                    ...prev,
+                    references: prev.references.map((r) =>
+                      r.id === ref.id ? { ...r, role: v } : r,
+                    ),
+                  }))
+                }
+              />
+              <div className="flex items-end gap-1.5 sm:col-span-2">
+                <LabeledInput
+                  label={t('fields.refContact')}
+                  value={ref.contact}
+                  onChange={(v) =>
+                    onChange((prev) => ({
+                      ...prev,
+                      references: prev.references.map((r) =>
+                        r.id === ref.id ? { ...r, contact: v } : r,
+                      ),
+                    }))
+                  }
+                  placeholder={t('fields.refContactPlaceholder')}
+                  className="flex-1"
+                />
+                <IconButton
+                  label={t('actions.remove')}
+                  onClick={() =>
+                    onChange((prev) => ({
+                      ...prev,
+                      references: prev.references.filter((r) => r.id !== ref.id),
+                    }))
+                  }
+                >
+                  ✕
+                </IconButton>
+              </div>
+            </div>
+          </div>
+        ))}
+        <AddButton
+          label={t('actions.addReference')}
+          onClick={() =>
+            onChange((prev) => ({
+              ...prev,
+              references: [...prev.references, { id: newId(), name: '', role: '', contact: '' }],
             }))
           }
         />
