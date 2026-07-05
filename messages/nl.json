@@ -13,7 +13,8 @@
     "featured": "Uitgelicht",
     "openMenu": "Menu openen",
     "closeMenu": "Menu sluiten",
-    "menuLabel": "Navigatiemenu"
+    "menuLabel": "Navigatiemenu",
+    "builder": "Cv maken"
   },
   "a11y": {
     "skipToContent": "Ga naar inhoud",
@@ -30,18 +31,23 @@
     "viewImage": "Afbeelding {current} van {total} bekijken"
   },
   "seo": {
-    "siteName": "Fleur Albers",
-    "homeTitle": "Home",
-    "homeDescription": "Portfolio en CV van Fleur Albers (Haarlem) — Front-end Developer (React/Next.js).",
+    "siteName": "CV Studio",
+    "homeTitle": "CV Studio — Maak gratis je eigen cv",
+    "homeDescription": "Maak in een paar minuten een professioneel cv. Pas kleuren, lettertypes en indeling aan, deel het met een privélink en exporteer naar pdf. Gratis, zonder account, standaard privé.",
     "projectsTitle": "Projecten",
     "projectsDescription": "Selectie van projecten: multi-tenant apps, design systems en form-heavy workflows.",
     "cvTitle": "CV",
     "cvDescription": "CV van Fleur Albers — ervaring, projecten, skills en opleiding (print-friendly).",
     "contactTitle": "Contact",
-    "contactDescription": "Contactgegevens en links om Fleur Albers te bereiken."
+    "contactDescription": "Contactgegevens en links om Fleur Albers te bereiken.",
+    "builderTitle": "Cv-bouwer — CV Studio",
+    "builderDescription": "Bouw je cv en maak het persoonlijk: kleuren, lettertypes, indeling en sectievolgorde, met live voorbeeld. Opgeslagen in je browser, standaard privé.",
+    "sharedTitle": "Gedeeld cv — CV Studio",
+    "sharedDescription": "Bekijk een cv dat via een privélink met je is gedeeld."
   },
   "footer": {
-    "linkedInLabel": "LinkedIn profiel (opent in nieuw tabblad)"
+    "linkedInLabel": "LinkedIn profiel (opent in nieuw tabblad)",
+    "madeBy": "Gemaakt door"
   },
   "pages": {
     "projectsIntro": "Een selectie van producten en platformen waar ik aan heb gewerkt — met focus op UX, toegankelijkheid en onderhoudbare front-end architectuur.",
@@ -87,5 +93,156 @@
     "availableFor2": "Vast dienstverband",
     "availableFor3": "Front-end & React projecten",
     "availableFor4": "Design system werk"
+  },
+  "platform": {
+    "name": "CV Studio"
+  },
+  "landing": {
+    "eyebrow": "Gratis online cv-bouwer",
+    "heroTitle": "Maak een cv dat écht van jou is",
+    "heroTagline": "Zet in een paar minuten een professioneel cv in elkaar, geef het jouw stijl en deel het met één link. Alles blijft in je browser — standaard privé.",
+    "ctaStart": "Begin met bouwen — gratis",
+    "ctaHow": "Hoe het werkt",
+    "featuresTitle": "Alles wat je nodig hebt, niets wat je niet nodig hebt",
+    "features": {
+      "customize": {
+        "title": "Maak het van jou",
+        "body": "Kies je accentkleur, lettertype en indeling, en verander de volgorde van secties tot het cv bij je past — elke wijziging zie je direct."
+      },
+      "privacy": {
+        "title": "Standaard privé",
+        "body": "Je cv wordt in je eigen browser opgeslagen. Geen account, geen server, niemand die meekijkt."
+      },
+      "share": {
+        "title": "Delen met een link",
+        "body": "Je gegevens reizen mee in de link zelf en komen dus nooit op een server — alleen mensen aan wie jij de link geeft kunnen hem openen."
+      },
+      "free": {
+        "title": "Gratis te gebruiken",
+        "body": "CV Studio is gratis. Op termijn dekken misschien een paar bescheiden advertenties de hostingkosten — nooit trackers of pop-ups."
+      }
+    },
+    "howTitle": "Hoe het werkt",
+    "step1Title": "Vul je gegevens in",
+    "step1Body": "Voeg je werkervaring, opleidingen, vaardigheden en talen toe.",
+    "step2Title": "Maak het passend",
+    "step2Body": "Kies een indeling, accentkleur en lettertype — je ziet elke wijziging meteen.",
+    "step3Title": "Exporteer of deel",
+    "step3Body": "Download een verzorgde pdf of kopieer een privé deellink.",
+    "ctaFinalTitle": "Je volgende cv begint hier",
+    "ctaFinalBody": "Geen account nodig. Open de bouwer en begin met typen."
+  },
+  "builder": {
+    "title": "Cv-bouwer",
+    "intro": "Vul links je gegevens in en zie rechts je cv vorm krijgen. Alles wordt automatisch in je browser opgeslagen.",
+    "previewLabel": "Live voorbeeld",
+    "autosaveNote": "Automatisch opgeslagen in je browser",
+    "resetConfirm": "Hiermee wis je je hele cv uit deze browser. Weet je het zeker?",
+    "sampleConfirm": "Dit vervangt je huidige cv door het voorbeeld. Doorgaan?",
+    "tabs": {
+      "label": "Weergave",
+      "edit": "Bewerken",
+      "preview": "Voorbeeld"
+    },
+    "actions": {
+      "downloadPdf": "Download pdf",
+      "share": "Kopieer deellink",
+      "shareCopied": "Link gekopieerd!",
+      "loadSample": "Voorbeeld laden",
+      "reset": "Opnieuw beginnen",
+      "moveUp": "Omhoog",
+      "moveDown": "Omlaag",
+      "remove": "Verwijderen",
+      "addExperience": "Werkervaring toevoegen",
+      "addEducation": "Opleiding toevoegen",
+      "addSkill": "Vaardigheid toevoegen",
+      "addLanguage": "Taal toevoegen",
+      "addLink": "Link toevoegen"
+    },
+    "share": {
+      "linkLabel": "Jouw deellink",
+      "privacyNote": "Je cv-gegevens zitten in de link zelf — ze worden nooit naar een server geüpload. Alleen mensen met de link kunnen je cv bekijken."
+    },
+    "sections": {
+      "profile": "Persoonlijke gegevens",
+      "summary": "Profieltekst",
+      "experience": "Werkervaring",
+      "education": "Opleidingen",
+      "skills": "Vaardigheden",
+      "languages": "Talen",
+      "links": "Links"
+    },
+    "fields": {
+      "fullName": "Volledige naam",
+      "headline": "Functietitel",
+      "headlinePlaceholder": "bijv. Front-end Developer",
+      "email": "E-mail",
+      "phone": "Telefoon",
+      "location": "Woonplaats",
+      "website": "Website",
+      "summary": "Profieltekst",
+      "summaryPlaceholder": "Een korte introductie over jezelf…",
+      "role": "Functie",
+      "company": "Bedrijf",
+      "degree": "Opleiding",
+      "school": "School",
+      "start": "Start",
+      "startPlaceholder": "2022",
+      "end": "Einde",
+      "endPlaceholder": "heden",
+      "description": "Omschrijving",
+      "skill": "Vaardigheid",
+      "language": "Taal",
+      "level": "Niveau",
+      "levelPlaceholder": "bijv. Vloeiend",
+      "linkLabel": "Label",
+      "linkUrl": "URL"
+    },
+    "design": {
+      "title": "Ontwerp",
+      "accent": "Accentkleur",
+      "customColor": "Eigen kleur",
+      "font": "Lettertype",
+      "fonts": {
+        "sans": "Modern",
+        "serif": "Klassiek",
+        "mono": "Technisch"
+      },
+      "template": "Indeling",
+      "templates": {
+        "classic": "Eén kolom",
+        "sidebar": "Met zijbalk"
+      },
+      "sectionOrder": "Volgorde van secties",
+      "moveSectionUp": "{section} omhoog",
+      "moveSectionDown": "{section} omlaag"
+    }
+  },
+  "cv": {
+    "sections": {
+      "summary": "Profiel",
+      "experience": "Werkervaring",
+      "education": "Opleidingen",
+      "skills": "Vaardigheden",
+      "languages": "Talen",
+      "links": "Links"
+    },
+    "preview": {
+      "namePlaceholder": "Jouw naam"
+    }
+  },
+  "shared": {
+    "notice": "Dit cv is privé met je gedeeld — de gegevens zitten in de link, niet op een server.",
+    "downloadPdf": "Download pdf",
+    "createOwn": "Maak je eigen cv",
+    "useInEditor": "Openen in de bouwer",
+    "useInEditorConfirm": "Dit vervangt het cv dat nu in je browser is opgeslagen. Doorgaan?",
+    "invalidTitle": "Deze link bevat geen geldig cv",
+    "invalidBody": "De link is misschien niet volledig — vraag de afzender om hem opnieuw te kopiëren vanuit de bouwer.",
+    "loading": "Cv laden…"
+  },
+  "ads": {
+    "label": "Advertentie",
+    "note": "Hier komt misschien ooit een kleine advertentie om de hosting te betalen — nooit trackers of pop-ups."
   }
 }
